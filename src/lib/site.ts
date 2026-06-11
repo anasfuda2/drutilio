@@ -10,6 +10,9 @@ export const siteConfig = {
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") || defaultSiteUrl,
   contactEmail:
     process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@example.com",
+  googleSiteVerification:
+    process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+    "b7yfqTRAa3iCtGvNY_ACtsNx9ZaDg-z7V4qAJRVziJY",
 };
 
 export function toAbsoluteUrl(path = "/") {
