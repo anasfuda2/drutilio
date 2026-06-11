@@ -21,16 +21,18 @@ export function buildCalculatorStructuredData({
   name,
   description,
   path,
+  applicationCategory = "FinanceApplication",
 }: {
   name: string;
   description: string;
   path: string;
+  applicationCategory?: string;
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name,
-    applicationCategory: "FinanceApplication",
+    applicationCategory,
     operatingSystem: "Web",
     isAccessibleForFree: true,
     url: toAbsoluteUrl(path),

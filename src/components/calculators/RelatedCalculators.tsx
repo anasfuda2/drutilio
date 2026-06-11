@@ -7,7 +7,7 @@ export function RelatedCalculators({ currentSlug }: { currentSlug: string }) {
   return (
     <section className="mt-12">
       <h2 className="text-2xl font-semibold tracking-tight text-white">
-        Related calculators
+        Related tools
       </h2>
       <div className="mt-6 grid gap-4 md:grid-cols-3">
         {relatedCalculators.map((calculator) => (
