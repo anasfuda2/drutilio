@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { CalculatorCard } from "@/components/calculators/CalculatorCard";
 import type { CalculatorItem, ToolCategory } from "@/lib/calculators";
 
@@ -12,37 +13,90 @@ type CalculatorsDirectoryClientProps = {
   categoryDescriptions: Record<ToolCategory, string>;
 };
 
+function parseCategoryFilter(
+  value: string | null,
+  toolCategories: ToolCategory[],
+): CategoryFilter {
+  return value && toolCategories.includes(value as ToolCategory)
+    ? (value as ToolCategory)
+    : "All";
+}
+
 export function CalculatorsDirectoryClient({
   calculators,
   toolCategories,
   categoryDescriptions,
 }: CalculatorsDirectoryClientProps) {
-  const [activeCategory, setActiveCategory] = useState<CategoryFilter>("All");
-  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const activeCategory = parseCategoryFilter(
+    searchParams.get("category"),
+    toolCategories,
+  );
+  const searchQuery = searchParams.get("q") ?? "";
+
+  function updateQueryParams(nextValues: {
+    category?: CategoryFilter;
+    q?: string;
+  }) {
+    const nextParams = new URLSearchParams(searchParams.toString());
+    const nextCategory = nextValues.category ?? activeCategory;
+    const nextQuery = nextValues.q ?? searchQuery;
+
+    if (nextCategory === "All") {
+      nextParams.delete("category");
+    } else {
+      nextParams.set("category", nextCategory);
+    }
+
+    const trimmedQuery = nextQuery.trim();
+
+    if (trimmedQuery.length === 0) {
+      nextParams.delete("q");
+    } else {
+      nextParams.set("q", trimmedQuery);
+    }
+
+    const nextQueryString = nextParams.toString();
+    const currentQueryString = searchParams.toString();
+
+    if (nextQueryString === currentQueryString) {
+      return;
+    }
+
+    router.replace(
+      nextQueryString ? `${pathname}?${nextQueryString}` : pathname,
+      { scroll: false },
+    );
+  }
 
   const normalizedQuery = searchQuery.trim().toLowerCase();
 
-  const filteredCalculators = useMemo(() => {
-    return calculators.filter((calculator) => {
-      const matchesCategory =
-        activeCategory === "All" || calculator.category === activeCategory;
-      const matchesSearch =
-        normalizedQuery.length === 0 ||
-        calculator.title.toLowerCase().includes(normalizedQuery);
+  const filteredCalculators = calculators.filter((calculator) => {
+    const matchesCategory =
+      activeCategory === "All" || calculator.category === activeCategory;
+    const matchesSearch =
+      normalizedQuery.length === 0 ||
+      calculator.title.toLowerCase().includes(normalizedQuery);
 
-      return matchesCategory && matchesSearch;
-    });
-  }, [activeCategory, calculators, normalizedQuery]);
+    return matchesCategory && matchesSearch;
+  });
 
-  const visibleCategories = useMemo(() => {
-    if (activeCategory !== "All") {
-      return [activeCategory];
-    }
+  const visibleCategories =
+    activeCategory !== "All"
+      ? [activeCategory]
+      : toolCategories.filter((category) =>
+          filteredCalculators.some(
+            (calculator) => calculator.category === category,
+          ),
+        );
 
-    return toolCategories.filter((category) =>
-      filteredCalculators.some((calculator) => calculator.category === category),
-    );
-  }, [activeCategory, filteredCalculators, toolCategories]);
+  const categoryFilters = useMemo(
+    () => ["All", ...toolCategories] as CategoryFilter[],
+    [toolCategories],
+  );
 
   return (
     <div className="mt-12 space-y-10">
@@ -53,7 +107,7 @@ export function CalculatorsDirectoryClient({
               Browse by category
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
-              {(["All", ...toolCategories] as CategoryFilter[]).map((category) => {
+              {categoryFilters.map((category) => {
                 const isActive = activeCategory === category;
 
                 return (
@@ -61,7 +115,7 @@ export function CalculatorsDirectoryClient({
                     key={category}
                     type="button"
                     aria-pressed={isActive}
-                    onClick={() => setActiveCategory(category)}
+                    onClick={() => updateQueryParams({ category })}
                     className={[
                       "rounded-full border px-4 py-2 text-sm font-semibold transition",
                       isActive
@@ -87,7 +141,7 @@ export function CalculatorsDirectoryClient({
               id="tool-search"
               type="search"
               value={searchQuery}
-              onChange={(event) => setSearchQuery(event.target.value)}
+              onChange={(event) => updateQueryParams({ q: event.target.value })}
               placeholder="Search calculators and tools"
               className="mt-3 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-base text-white outline-none transition placeholder:text-slate-500 focus:border-emerald-400/50 focus:ring-2 focus:ring-emerald-400/20"
             />
