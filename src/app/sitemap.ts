@@ -1,14 +1,10 @@
 import type { MetadataRoute } from "next";
+import { calculators } from "@/lib/calculators";
 import { toAbsoluteUrl } from "@/lib/site";
 
-const routes = [
+const staticRoutes = [
   "",
   "/calculators",
-  "/calculators/mortgage-calculator",
-  "/calculators/auto-loan-calculator",
-  "/calculators/retirement-calculator",
-  "/calculators/savings-goal-calculator",
-  "/calculators/student-loan-calculator",
   "/about",
   "/contact",
   "/privacy-policy",
@@ -17,7 +13,11 @@ const routes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return routes.map((route) => ({
+  const calculatorRoutes = calculators.map(
+    (calculator) => `/calculators/${calculator.slug}`,
+  );
+
+  return [...staticRoutes, ...calculatorRoutes].map((route) => ({
     url: toAbsoluteUrl(route || "/"),
     lastModified: new Date(),
   }));
