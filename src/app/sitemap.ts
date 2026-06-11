@@ -10,6 +10,7 @@ const staticRoutes = [
   "/privacy-policy",
   "/terms",
   "/disclaimer",
+  "/how-to-calculate-zakat",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

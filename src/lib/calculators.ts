@@ -81,6 +81,14 @@ export const calculators: CalculatorItem[] = [
     status: "Featured",
   },
   {
+    slug: "zakat-calculator",
+    title: "Zakat Calculator",
+    description:
+      "Estimate net zakatable assets and 2.5% zakat due across savings, metals, investments, and deductible debts.",
+    category: "Finance",
+    status: "Available now",
+  },
+  {
     slug: "bmi-calculator",
     title: "BMI Calculator",
     description:
@@ -477,6 +485,46 @@ export function calculateStudentLoan({
     canRepay: true,
     payoffMonths,
     totalInterest: Math.max(0, totalPaid - principal),
+  };
+}
+
+export function calculateZakat({
+  cashSavings,
+  goldValue,
+  silverValue,
+  investments,
+  retirementAccounts,
+  businessAssets,
+  debtsOwed,
+}: {
+  cashSavings: number;
+  goldValue: number;
+  silverValue: number;
+  investments: number;
+  retirementAccounts: number;
+  businessAssets: number;
+  debtsOwed: number;
+}) {
+  const totalZakatableAssets =
+    clampNonNegative(cashSavings) +
+    clampNonNegative(goldValue) +
+    clampNonNegative(silverValue) +
+    clampNonNegative(investments) +
+    clampNonNegative(retirementAccounts) +
+    clampNonNegative(businessAssets);
+
+  const deductibleDebts = clampNonNegative(debtsOwed);
+  const netZakatableAssets = Math.max(
+    0,
+    totalZakatableAssets - deductibleDebts,
+  );
+
+  return {
+    totalZakatableAssets,
+    deductibleDebts,
+    netZakatableAssets,
+    zakatRate: 0.025,
+    zakatDue: netZakatableAssets * 0.025,
   };
 }
 
