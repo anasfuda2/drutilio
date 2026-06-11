@@ -11,10 +11,12 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description:
-    "US-focused financial calculators for loans, mortgages, retirement planning, taxes, and savings decisions.",
+    "Drutilio is a growing platform for smart online tools and calculators, starting with US-focused financial calculators for mortgages, loans, savings, retirement, and student loan planning.",
   applicationName: siteConfig.name,
   keywords: [
     "financial calculators",
+    "online tools",
+    "smart calculators",
     "US finance tools",
     "mortgage calculator",
     "loan calculator",
@@ -33,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: siteConfig.name,
     description:
-      "A public utility website with US-focused financial calculators, educational estimates, and practical planning tools.",
+      `${siteConfig.name} is a growing platform for smart online tools and calculators, including US-focused financial planning tools and educational estimates.`,
     url: siteConfig.siteUrl,
     siteName: siteConfig.name,
     locale: "en_US",
@@ -43,7 +45,7 @@ export const metadata: Metadata = {
         url: toAbsoluteUrl("/opengraph-image"),
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} - Free Financial Calculators`,
+        alt: `${siteConfig.name} - ${siteConfig.subtitle}`,
       },
     ],
   },
@@ -51,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description:
-      "Practical calculators for mortgages, loans, retirement, taxes, and savings.",
+      `${siteConfig.subtitle}. Start with mortgages, loans, savings, retirement, and student loan tools.`,
     images: [toAbsoluteUrl("/opengraph-image")],
   },
   robots: {

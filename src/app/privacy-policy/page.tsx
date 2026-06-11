@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import { ContentPage } from "@/components/content/ContentPage";
 import { ContentSection } from "@/components/content/ContentSection";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Review the privacy policy for Finance Calculators Hub, including general information about data handling and website use.",
+    `Review the privacy policy for ${siteConfig.name}, including general information about data handling and website use.`,
   alternates: {
     canonical: "/privacy-policy",
   },
   openGraph: {
-    title: "Privacy Policy | Finance Calculators Hub",
+    title: `Privacy Policy | ${siteConfig.name}`,
     description:
-      "Privacy information for users of Finance Calculators Hub.",
+      `Privacy information for users of ${siteConfig.name}.`,
     url: "/privacy-policy",
   },
 };
@@ -26,7 +27,7 @@ export default function PrivacyPolicyPage() {
     >
       <ContentSection title="Information you provide">
         <p>
-          Finance Calculators Hub is designed as a calculator website and does
+          {siteConfig.name} is designed as a tools website and does
           not require account creation to use the tools currently shown.
           Information entered into calculators is intended to stay within your
           browsing session and is used to generate educational estimates.

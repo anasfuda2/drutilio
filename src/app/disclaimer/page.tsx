@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import { ContentPage } from "@/components/content/ContentPage";
 import { ContentSection } from "@/components/content/ContentSection";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Disclaimer",
   description:
-    "Read the site disclaimer for Finance Calculators Hub, including important limits on calculator accuracy and no-advice statements.",
+    `Read the site disclaimer for ${siteConfig.name}, including important limits on calculator accuracy and no-advice statements.`,
   alternates: {
     canonical: "/disclaimer",
   },
   openGraph: {
-    title: "Disclaimer | Finance Calculators Hub",
+    title: `Disclaimer | ${siteConfig.name}`,
     description:
       "Important disclaimer information for the calculator estimates and site content.",
     url: "/disclaimer",
@@ -26,9 +27,9 @@ export default function DisclaimerPage() {
     >
       <ContentSection title="Educational estimates only">
         <p>
-          All calculators, examples, and written content on Finance Calculators
-          Hub are provided for educational and informational purposes only.
-          Results are estimates based on the assumptions shown in each tool.
+          All calculators, examples, and written content on {siteConfig.name}{" "}
+          are provided for educational and informational purposes only. Results
+          are estimates based on the assumptions shown in each tool.
         </p>
         <p>
           These estimates may omit important factors such as taxes, fees,
@@ -39,7 +40,7 @@ export default function DisclaimerPage() {
 
       <ContentSection title="No advice">
         <p>
-          Finance Calculators Hub does not provide financial, tax, legal, or
+          {siteConfig.name} does not provide financial, tax, legal, or
           investment advice. Nothing on this site should be treated as a
           recommendation to borrow, lend, invest, buy, sell, refinance, file,
           or take legal action.

@@ -2,18 +2,19 @@ import type { Metadata } from "next";
 import { CalculatorCard } from "@/components/calculators/CalculatorCard";
 import { Container } from "@/components/layout/Container";
 import { calculators } from "@/lib/calculators";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Calculators",
   description:
-    "Browse interactive US-focused financial calculators for mortgages, auto loans, retirement, savings goals, and student loans.",
+    `${siteConfig.name} calculators include interactive US-focused tools for mortgages, auto loans, retirement, savings goals, and student loans.`,
   alternates: {
     canonical: "/calculators",
   },
   openGraph: {
     title: "Calculator Library",
     description:
-      "A central library of US-focused financial calculators for everyday planning scenarios.",
+      `${siteConfig.name} starts with a central library of US-focused financial calculators and can grow into a broader tools platform over time.`,
     url: "/calculators",
   },
 };

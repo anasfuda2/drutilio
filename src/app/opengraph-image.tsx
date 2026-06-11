@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { siteConfig } from "@/lib/site";
 
 export const size = {
   width: 1200,
@@ -40,7 +41,7 @@ export default function OpenGraphImage() {
               textTransform: "uppercase",
             }}
           >
-            Finance Calculators Hub
+            {siteConfig.name}
           </div>
           <div
             style={{

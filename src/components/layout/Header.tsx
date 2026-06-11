@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
+import { siteConfig } from "@/lib/site";
 
 const navigation = [
   { href: "/", label: "Home" },
@@ -12,10 +13,10 @@ export function Header() {
       <Container className="flex h-16 items-center justify-between">
         <Link href="/" className="flex flex-col">
           <span className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">
-            US Personal Finance
+            {siteConfig.subtitle}
           </span>
           <span className="text-lg font-semibold text-white">
-            Finance Calculators Hub
+            {siteConfig.name}
           </span>
         </Link>
 

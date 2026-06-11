@@ -2,18 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentPage } from "@/components/content/ContentPage";
 import { ContentSection } from "@/components/content/ContentSection";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn about Finance Calculators Hub, a US-focused educational utility website for financial estimate calculators.",
+    `Learn about ${siteConfig.name}, a growing tools platform that currently focuses on educational financial calculators.`,
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About Finance Calculators Hub",
+    title: `About ${siteConfig.name}`,
     description:
-      "Background and purpose for this US-focused financial calculator website.",
+      `Background and purpose for ${siteConfig.name}, a smart online tools platform.`,
     url: "/about",
   },
 };
@@ -22,14 +23,16 @@ export default function AboutPage() {
   return (
     <ContentPage
       eyebrow="About"
-      title="About Finance Calculators Hub"
-      intro="Finance Calculators Hub is a public utility website built to help people think through common US personal finance decisions with practical, easy-to-read estimate tools."
+      title={`About ${siteConfig.name}`}
+      intro={`${siteConfig.name} is a growing platform for smart online tools and calculators. It currently starts with practical US-focused financial tools designed to help people compare scenarios and understand everyday money decisions more clearly.`}
     >
       <ContentSection title="What this site is for">
         <p>
-          The site focuses on calculators for borrowing, saving, retirement, and
-          other everyday money planning questions. Our goal is to make basic
-          financial estimates faster to understand and easier to compare.
+          The platform currently focuses on calculators for borrowing, saving,
+          retirement, and other everyday money planning questions. The goal is
+          to make basic estimates faster to understand and easier to compare
+          while leaving room for the platform to grow into additional practical
+          tool categories over time.
         </p>
         <p>
           Every calculator on this site is intended for educational and
@@ -40,7 +43,7 @@ export default function AboutPage() {
 
       <ContentSection title="Important limitations">
         <p>
-          Finance Calculators Hub does not provide financial, tax, legal, or
+          {siteConfig.name} does not provide financial, tax, legal, or
           investment advice. The tools do not account for every factor that may
           apply to your situation, and actual outcomes may differ from the
           results shown.

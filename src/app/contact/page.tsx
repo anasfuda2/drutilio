@@ -6,14 +6,14 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Finance Calculators Hub for general website questions, corrections, or support inquiries.",
+    `Contact ${siteConfig.name} for general website questions, corrections, or support inquiries.`,
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
-    title: "Contact Finance Calculators Hub",
+    title: `Contact ${siteConfig.name}`,
     description:
-      "Contact information for general questions about the website and calculator content.",
+      `Contact information for general questions about ${siteConfig.name} and its tool content.`,
     url: "/contact",
   },
 };
@@ -48,7 +48,7 @@ export default function ContactPage() {
           calculator issues, and requests to review factual or wording errors.
         </p>
         <p>
-          Finance Calculators Hub does not provide individualized financial,
+          {siteConfig.name} does not provide individualized financial,
           tax, legal, or investment advice through email or through the site.
         </p>
       </ContentSection>

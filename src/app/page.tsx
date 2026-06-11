@@ -3,18 +3,19 @@ import Link from "next/link";
 import { CalculatorCard } from "@/components/calculators/CalculatorCard";
 import { Container } from "@/components/layout/Container";
 import { featuredCalculators } from "@/lib/calculators";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "US Financial Calculators",
+  title: "Smart Online Tools and Calculators",
   description:
-    "Explore US-focused financial calculators for mortgages, auto loans, retirement, savings goals, and student loans.",
+    "Drutilio is a growing tools platform with smart online calculators, starting with US-focused mortgage, auto loan, retirement, savings, and student loan tools.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Finance Calculators Hub",
+    title: siteConfig.name,
     description:
-      "US-focused financial calculators for borrowing, saving, and retirement planning.",
+      "Smart online tools and calculators, starting with practical US-focused financial planning tools.",
     url: "/",
   },
 };
@@ -26,15 +27,16 @@ export default function Home() {
         <Container className="py-20 sm:py-24 lg:py-28">
           <div className="max-w-3xl">
             <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300">
-              Built for US-focused money decisions
+              {siteConfig.subtitle}
             </span>
             <h1 className="mt-8 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Clear calculators for everyday financial planning.
+              Meet Drutilio, a growing platform for smart online tools.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              Explore practical tools for mortgages, loans, savings, income
-              planning, and retirement. The experience is designed to stay fast,
-              readable, and useful on any screen.
+              Start with practical financial calculators for mortgages, loans,
+              savings, student debt, and retirement planning. Over time, the
+              platform can grow beyond finance while keeping the same fast,
+              readable, utility-first experience.
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -64,8 +66,8 @@ export default function Home() {
                 value: "5 interactive launch calculators",
               },
               {
-                label: "Audience",
-                value: "US households and individual planners",
+                label: "Brand direction",
+                value: "A growing tools platform with finance at launch",
               },
               {
                 label: "Approach",
@@ -96,11 +98,11 @@ export default function Home() {
                 Featured calculators
               </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
-                Start with the tools people use most.
+                Start with the financial tools people use most.
               </h2>
               <p className="mt-4 text-base leading-7 text-slate-300">
-                These calculators cover common borrowing and long-term planning
-                questions without burying the useful parts.
+                These launch calculators cover common borrowing and long-term
+                planning questions without burying the useful parts.
               </p>
             </div>
 

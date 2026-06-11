@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import { ContentPage } from "@/components/content/ContentPage";
 import { ContentSection } from "@/components/content/ContentSection";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
   description:
-    "Read the terms of use for Finance Calculators Hub, including educational-use and no-advice terms.",
+    `Read the terms of use for ${siteConfig.name}, including educational-use and no-advice terms.`,
   alternates: {
     canonical: "/terms",
   },
   openGraph: {
-    title: "Terms of Use | Finance Calculators Hub",
+    title: `Terms of Use | ${siteConfig.name}`,
     description:
-      "Terms governing use of the Finance Calculators Hub website.",
+      `Terms governing use of the ${siteConfig.name} website.`,
     url: "/terms",
   },
 };
@@ -26,7 +27,7 @@ export default function TermsPage() {
     >
       <ContentSection title="Permitted use">
         <p>
-          Finance Calculators Hub is provided for lawful personal or internal
+          {siteConfig.name} is provided for lawful personal or internal
           business use as an educational calculator website. You may use the
           tools to generate estimates and compare scenarios.
         </p>
@@ -39,7 +40,7 @@ export default function TermsPage() {
       <ContentSection title="No professional advice">
         <p>
           All content and calculator outputs are educational estimates only.
-          Finance Calculators Hub does not provide financial, tax, legal, or
+          {siteConfig.name} does not provide financial, tax, legal, or
           investment advice, and no professional relationship is created by your
           use of the site.
         </p>
