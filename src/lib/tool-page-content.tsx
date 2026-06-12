@@ -1611,6 +1611,679 @@ export const toolPageContent: Record<string, ToolPageContent> = {
       },
     ],
   },
+  "401k-calculator": {
+    title: "401(k) Calculator",
+    description:
+      "Project long-term 401(k) growth using salary, employee contribution, employer match, return assumptions, and time.",
+    eyebrow: "Finance",
+    intro:
+      "Use this 401(k) calculator to estimate how employee contributions, employer matching, and long-term growth assumptions may affect a workplace retirement account over time. It is designed for educational planning and rough comparisons, not for investment or tax advice.",
+    category: "Finance",
+    path: "/calculators/401k-calculator",
+    applicationCategory: "FinanceApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This calculator starts with current balance, annual salary, employee
+            contribution rate, employer match assumptions, expected annual
+            return, and years until retirement. It converts contribution inputs
+            into a monthly saving stream, then projects growth using monthly
+            compounding.
+          </p>
+          <p>
+            Because employer matching can meaningfully change the pace of
+            accumulation, the tool separates employee contributions from match
+            amounts. It pairs naturally with the guides on{" "}
+            {toolLink("/401k-vs-ira", "401(k) vs. IRA")} and{" "}
+            {toolLink(
+              "/how-much-should-i-save-for-retirement",
+              "how much should I save for retirement",
+            )}
+            .
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The projected balance is a simplified estimate of what the account
+            may grow to if contributions, match, and return assumptions remain
+            consistent. The result grid breaks out annual employee
+            contributions, employer match, and estimated long-term growth so you
+            can see where the projection is coming from.
+          </p>
+          <p>
+            This makes the calculator especially helpful for comparison
+            questions: How much does the match matter? What happens if the
+            contribution rate rises? How different does a longer time horizon
+            look?
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            The estimate is intentionally simplified. It does not model plan
+            fees, contribution limits, vesting schedules, investment menu
+            quality, taxes, or changing salary over time unless you approximate
+            those effects yourself through the inputs.
+          </p>
+          <p>
+            Results are estimates only. Real retirement outcomes depend on
+            savings behavior, market returns, job changes, and planning
+            decisions that no general calculator can fully predict.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this calculator when you want to compare 401(k) contribution
+            strategies, understand the value of an employer match, or estimate
+            whether your current pace looks aligned with your broader retirement
+            goals.
+          </p>
+          <p>
+            Strong companion resources are{" "}
+            {toolLink(
+              "/calculators/retirement-calculator",
+              "retirement calculator",
+            )}
+            ,{" "}
+            {toolLink("/calculators/ira-calculator", "IRA calculator")},{" "}
+            {toolLink(
+              "/retirement-savings-by-age",
+              "retirement savings by age",
+            )},
+            {" "}and {toolLink("/retirement", "the retirement hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Does this 401(k) calculator include an employer match?",
+        answer:
+          "Yes. The calculator includes a simplified employer match model based on the match rate and salary cap percentage you enter.",
+      },
+      {
+        question: "Does it account for vesting or plan fees?",
+        answer:
+          "No. This is a simplified projection and does not model vesting schedules, fee drag, or plan-specific rules.",
+      },
+      {
+        question: "Can I use it to compare contribution rates?",
+        answer:
+          "Yes. It is especially useful for seeing how different employee contribution rates and employer match levels may change long-term results.",
+      },
+      {
+        question: "Are the results guaranteed?",
+        answer:
+          "No. The results are estimates only and depend heavily on future returns, contributions, and real-world account conditions.",
+      },
+      {
+        question: "Is this financial advice?",
+        answer:
+          "No. This tool is educational only and not individualized financial, investment, or tax advice.",
+      },
+    ],
+  },
+  "ira-calculator": {
+    title: "IRA Calculator",
+    description:
+      "Project IRA growth using current balance, annual contributions, return assumptions, and time horizon.",
+    eyebrow: "Finance",
+    intro:
+      "Use this IRA calculator to estimate how current balance, annual contributions, and return assumptions may affect long-term IRA growth. It is designed for educational planning and comparison, not for tax or investment advice.",
+    category: "Finance",
+    path: "/calculators/ira-calculator",
+    applicationCategory: "FinanceApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This calculator starts with current balance, annual contribution,
+            expected annual return, and years until retirement. It spreads the
+            annual contribution across monthly savings and uses monthly
+            compounding to project growth over time.
+          </p>
+          <p>
+            You can label the projection as traditional or Roth for planning
+            context, even though this simplified version does not model tax
+            differences directly. For the tax-treatment side of the discussion,
+            read{" "}
+            {toolLink(
+              "/roth-ira-vs-traditional-ira",
+              "Roth IRA vs. traditional IRA",
+            )}{" "}
+            and {toolLink("/401k-vs-ira", "401(k) vs. IRA")}.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The projected balance shows how ongoing contributions and growth may
+            build over time under the assumptions you enter. The result grid
+            also breaks out annual contribution, total contribution, and
+            estimated growth so you can see the balance between discipline and
+            compounding.
+          </p>
+          <p>
+            This helps answer practical planning questions: Is my annual
+            contribution pace meaningful? How much of the future value comes
+            from deposits versus growth? How sensitive is the projection to
+            time?
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This is a simplified growth projection. It does not account for
+            contribution limits, eligibility rules, taxes, fees, or investment
+            outcomes that change over time. Choosing Roth or traditional in the
+            interface is a labeling aid, not a tax engine.
+          </p>
+          <p>
+            Results are estimates only and should not be treated as financial,
+            investment, or tax advice. A real IRA plan depends on broader
+            household and tax context.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this calculator when you want to compare IRA contribution
+            scenarios, understand how steady funding may grow over time, or see
+            how an IRA fits into a wider retirement system.
+          </p>
+          <p>
+            Good next resources are{" "}
+            {toolLink(
+              "/calculators/retirement-calculator",
+              "retirement calculator",
+            )}
+            ,{" "}
+            {toolLink("/calculators/401k-calculator", "401(k) calculator")},{" "}
+            {toolLink(
+              "/how-much-do-i-need-to-retire",
+              "how much do I need to retire",
+            )},
+            {" "}and {toolLink("/retirement", "the retirement hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Does this IRA calculator work for both Roth and traditional IRAs?",
+        answer:
+          "Yes, as a simplified growth projection. The account-type selection adds planning context but does not change the underlying growth math.",
+      },
+      {
+        question: "Does it include IRA contribution limits?",
+        answer:
+          "No. This calculator does not enforce legal contribution limits or eligibility rules.",
+      },
+      {
+        question: "Does the calculator model taxes?",
+        answer:
+          "No. It focuses on contribution and growth assumptions rather than tax treatment details.",
+      },
+      {
+        question: "Can I compare different annual contribution amounts?",
+        answer:
+          "Yes. That is one of the main uses of the tool, especially when paired with other retirement calculators and guides.",
+      },
+      {
+        question: "Is this financial advice?",
+        answer:
+          "No. This tool is educational only and not individualized financial, investment, or tax advice.",
+      },
+    ],
+  },
+  "retirement-income-calculator": {
+    title: "Retirement Income Calculator",
+    description:
+      "Estimate first-year retirement income, annual withdrawals, and how savings may hold up over time under simplified assumptions.",
+    eyebrow: "Finance",
+    intro:
+      "Use this retirement income calculator to estimate how portfolio withdrawals and other annual income sources may combine during retirement. It is designed for educational planning and rough scenario testing, not for guaranteed retirement advice.",
+    category: "Finance",
+    path: "/calculators/retirement-income-calculator",
+    applicationCategory: "FinanceApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This calculator starts with total retirement savings, an annual
+            withdrawal rate, other annual income, a return assumption during
+            retirement, and the number of years in retirement you want to test.
+            It estimates first-year withdrawal income and then runs a simple
+            annual drawdown-and-growth loop to show a rough ending balance.
+          </p>
+          <p>
+            It is especially useful when paired with the guide on{" "}
+            {toolLink(
+              "/retirement-income-planning",
+              "retirement income planning",
+            )}{" "}
+            and the article on{" "}
+            {toolLink(
+              "/safe-withdrawal-rate-explained",
+              "safe withdrawal rate explained",
+            )}
+            .
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The annual and monthly income estimates show what your first-year
+            retirement cash flow may look like under the assumptions entered.
+            The ending balance estimate gives a simplified sense of how the
+            savings pool may hold up over the time horizon selected.
+          </p>
+          <p>
+            This is not a claim about what retirement will actually cost or how
+            markets will behave. It is a way to connect withdrawals, outside
+            income, and time horizon into one planning picture.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            The estimate is intentionally simplified. It does not model taxes,
+            inflation detail, spending changes, sequence risk, changing
+            withdrawal patterns, Social Security timing decisions, or account
+            structure differences with full realism.
+          </p>
+          <p>
+            Results are estimates only and should not be treated as financial
+            advice or as a guarantee that a given withdrawal rate will be
+            sustainable.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this calculator when you want to test whether a portfolio and
+            outside income mix feels plausible for retirement, compare
+            withdrawal assumptions, or translate a retirement target into a
+            rough annual income picture.
+          </p>
+          <p>
+            Strong companion resources are{" "}
+            {toolLink(
+              "/how-much-do-i-need-to-retire",
+              "how much do I need to retire",
+            )}
+            ,{" "}
+            {toolLink(
+              "/calculators/retirement-calculator",
+              "retirement calculator",
+            )}
+            ,{" "}
+            {toolLink(
+              "/common-retirement-planning-mistakes",
+              "common retirement planning mistakes",
+            )},
+            {" "}and {toolLink("/retirement", "the retirement hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Does this retirement income calculator guarantee a sustainable withdrawal rate?",
+        answer:
+          "No. It is a simplified estimate only and cannot guarantee sustainability under real market and spending conditions.",
+      },
+      {
+        question: "What does other annual income mean here?",
+        answer:
+          "It can represent recurring retirement income such as Social Security, pension income, or consistent part-time earnings.",
+      },
+      {
+        question: "Does this calculator include taxes?",
+        answer:
+          "No. It is a gross planning estimate and does not model tax effects on retirement income.",
+      },
+      {
+        question: "Why does the ending balance matter?",
+        answer:
+          "It gives a simplified sense of how the savings pool may hold up after repeated withdrawals and assumed growth over time.",
+      },
+      {
+        question: "Is this financial advice?",
+        answer:
+          "No. This tool is educational only and not individualized financial, investment, or tax advice.",
+      },
+    ],
+  },
+  "mortgage-affordability-calculator": {
+    title: "Mortgage Affordability Calculator",
+    description:
+      "Estimate a simplified affordable home price range from income, debts, down payment, rate, and loan term assumptions.",
+    eyebrow: "Home Buying",
+    intro:
+      "Use this mortgage affordability calculator to estimate a simplified home price range based on household income, monthly debts, available down payment, mortgage rate, and loan term. It is built for planning and education, not as a lender approval tool.",
+    category: "Finance",
+    path: "/calculators/mortgage-affordability-calculator",
+    applicationCategory: "FinanceApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This calculator estimates an affordable housing-payment range using
+            a simplified debt-to-income framework. It starts with annual income
+            and monthly debts, applies a front-end and back-end ratio
+            assumption, and then solves backward for an estimated loan amount
+            based on the mortgage rate and term you enter.
+          </p>
+          <p>
+            It then adds your available down payment to estimate an affordable
+            home price. This makes it a useful first-pass planning tool before
+            you move into the broader mortgage hub, the{" "}
+            {toolLink("/calculators/mortgage-calculator", "mortgage calculator")},
+            {" "}or articles like {toolLink("/how-much-house-can-i-afford", "how much house can I afford")}.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The estimated home price is a simplified planning number, not an
+            approval amount. The max housing payment helps explain what the
+            calculator is assuming about affordability, while the estimated loan
+            amount and down payment show how that price range was constructed.
+          </p>
+          <p>
+            This is most useful for early-range comparison. It helps you see
+            whether a target home price is roughly in line with income and debt
+            assumptions before taxes, insurance, HOA dues, and lender-specific
+            rules are layered in.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This calculator uses a simplified debt-to-income framework and does
+            not model property taxes, homeowners insurance, mortgage insurance,
+            HOA dues, reserves, credit profile, underwriting overlays, or local
+            lender standards.
+          </p>
+          <p>
+            Results are estimates only and should not be treated as lending,
+            financial, tax, or legal advice. A lender&apos;s actual approval or
+            comfort level may differ materially.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this calculator when you are narrowing a home-shopping range,
+            testing how debts affect affordability, or comparing how a larger
+            down payment changes the picture. It is especially helpful before a
+            preapproval conversation.
+          </p>
+          <p>
+            Strong companion resources are{" "}
+            {toolLink("/mortgage", "the mortgage hub")},{" "}
+            {toolLink("/mortgage-preapproval-guide", "mortgage preapproval guide")},
+            {" "}{toolLink("/down-payment-guide", "down payment guide")}, and the{" "}
+            {toolLink("/calculators/closing-costs-calculator", "closing costs calculator")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Is this an approval calculator?",
+        answer:
+          "No. It is an educational affordability estimate and not a lender approval or guarantee.",
+      },
+      {
+        question: "Does this include taxes and insurance?",
+        answer:
+          "No. This simplified version focuses on mortgage payment capacity and does not fully model taxes, insurance, or HOA dues.",
+      },
+      {
+        question: "Why do my monthly debts matter here?",
+        answer:
+          "Because existing monthly debts affect how much room a simplified debt-to-income framework leaves for housing costs.",
+      },
+      {
+        question: "Can a larger down payment change the estimate a lot?",
+        answer:
+          "Yes. A larger down payment increases the estimated home price range because less of the purchase must be financed.",
+      },
+      {
+        question: "Is this mortgage advice?",
+        answer:
+          "No. It is an educational estimate only and not lending, financial, tax, or legal advice.",
+      },
+    ],
+  },
+  "mortgage-refinance-calculator": {
+    title: "Mortgage Refinance Calculator",
+    description:
+      "Compare current and refinanced mortgage payments, monthly savings, and a simplified break-even period.",
+    eyebrow: "Home Buying",
+    intro:
+      "Use this mortgage refinance calculator to compare a simplified current mortgage payment with a possible refinance scenario. It estimates monthly savings, financed closing costs, and a rough break-even period for educational planning only.",
+    category: "Finance",
+    path: "/calculators/mortgage-refinance-calculator",
+    applicationCategory: "FinanceApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This calculator takes your current loan balance, current rate,
+            remaining term, proposed new rate, proposed new term, and refinance
+            closing costs. It estimates the current monthly principal-and-interest
+            payment and compares it with a refinanced loan that includes the
+            closing costs in the financed amount.
+          </p>
+          <p>
+            It then shows the monthly payment change and a rough break-even
+            period based on the costs entered. This is useful for framing the
+            question before you move to deeper reading like{" "}
+            {toolLink("/refinance-vs-new-mortgage", "refinance vs. new mortgage")}
+            {" "}and {toolLink("/mortgage-points-explained", "mortgage points explained")}.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            Monthly savings compares the simplified current payment with the new
+            payment estimate. The break-even period shows how long it may take
+            for those monthly savings to offset the refinance costs you entered.
+          </p>
+          <p>
+            That break-even number is useful because a lower rate does not
+            automatically mean a refinance is compelling. Timing, term reset,
+            and how long you expect to keep the loan all matter.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This calculator does not include every factor that matters in a real
+            refinance decision. It does not model escrow changes, taxes,
+            insurance, cash paid at closing, opportunity cost, future moving
+            plans, or individualized lender pricing.
+          </p>
+          <p>
+            Results are estimates only and should not be treated as mortgage,
+            lending, financial, tax, or legal advice. A refinance decision is
+            more nuanced than payment change alone.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this calculator when rates have moved, when you are comparing a
+            shorter or longer term, or when you want a rough sense of whether a
+            refinance conversation is worth exploring further.
+          </p>
+          <p>
+            Good companion resources are{" "}
+            {toolLink("/mortgage", "the mortgage hub")},{" "}
+            {toolLink("/refinance-vs-new-mortgage", "refinance vs. new mortgage")},
+            {" "}{toolLink("/mortgage-closing-costs-explained", "mortgage closing costs explained")},
+            {" "}and the {toolLink("/calculators/mortgage-calculator", "mortgage calculator")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Does this refinance calculator include closing costs?",
+        answer:
+          "Yes, in a simplified way. It assumes the closing costs you enter are financed into the new loan for comparison purposes.",
+      },
+      {
+        question: "Is break-even enough to decide whether to refinance?",
+        answer:
+          "No. Break-even is helpful, but term reset, total interest, future moving plans, cash needs, and broader goals also matter.",
+      },
+      {
+        question: "Does this include taxes and insurance?",
+        answer:
+          "No. It focuses on simplified principal-and-interest payment comparison rather than full escrowed housing cost.",
+      },
+      {
+        question: "Can a lower monthly payment still be a weak refinance?",
+        answer:
+          "Yes. A lower payment may come from a longer term or higher financed costs, so the broader context still matters.",
+      },
+      {
+        question: "Is this mortgage advice?",
+        answer:
+          "No. It is an educational estimate only and not mortgage, lending, tax, or legal advice.",
+      },
+    ],
+  },
+  "closing-costs-calculator": {
+    title: "Closing Costs Calculator",
+    description:
+      "Estimate mortgage closing costs and cash to close using purchase price, down payment, fees, and prepaid-cost assumptions.",
+    eyebrow: "Home Buying",
+    intro:
+      "Use this closing costs calculator to estimate percent-based closing costs, fixed fees, and a rough cash-to-close total for a home purchase. It is designed for educational budgeting, not for replacing a lender's loan estimate or closing disclosure.",
+    category: "Finance",
+    path: "/calculators/closing-costs-calculator",
+    applicationCategory: "FinanceApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This calculator starts with home price, down payment, a general
+            closing-cost percentage estimate, lender/title fees, and prepaid
+            taxes and insurance. It combines the percentage-based costs with the
+            fixed-fee assumptions you enter and then adds the down payment to
+            estimate cash to close.
+          </p>
+          <p>
+            This makes it useful for early budgeting because home shoppers often
+            focus on down payment while underestimating the rest of the upfront
+            cash. For broader context, read{" "}
+            {toolLink(
+              "/mortgage-closing-costs-explained",
+              "mortgage closing costs explained",
+            )}{" "}
+            and the{" "}
+            {toolLink("/down-payment-guide", "down payment guide")}.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The total closing-cost estimate shows the rough size of upfront
+            costs beyond the down payment. Cash to close combines those closing
+            costs with the down payment amount to give a more realistic picture
+            of how much cash may be needed near purchase.
+          </p>
+          <p>
+            This is useful because many affordability conversations become more
+            practical once upfront cash is included, not just the ongoing
+            mortgage payment.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            Real closing costs vary by lender, location, escrow setup, seller
+            concessions, prepaid items, rate choice, and transaction structure.
+            This calculator does not replace an official loan estimate or closing
+            disclosure.
+          </p>
+          <p>
+            Results are estimates only and should not be treated as mortgage,
+            lending, tax, or legal advice. Actual charges can differ materially
+            from generalized planning numbers.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this calculator when you are trying to budget for a purchase,
+            compare properties, or check whether the cash side of a home purchase
+            feels realistic alongside the monthly-payment side.
+          </p>
+          <p>
+            Strong companion resources are{" "}
+            {toolLink("/mortgage", "the mortgage hub")},{" "}
+            {toolLink("/how-much-house-can-i-afford", "how much house can I afford")},
+            {" "}{toolLink("/common-home-buying-mistakes", "common home buying mistakes")},
+            {" "}and the {toolLink("/calculators/mortgage-affordability-calculator", "mortgage affordability calculator")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Does this closing costs calculator replace a lender estimate?",
+        answer:
+          "No. It is a generalized educational estimate and not a substitute for a lender's official loan estimate or closing disclosure.",
+      },
+      {
+        question: "Why does cash to close exceed the down payment?",
+        answer:
+          "Because home purchases often involve lender fees, title costs, prepaids, escrow funding, and other upfront charges in addition to the down payment.",
+      },
+      {
+        question: "Can closing costs vary a lot by location and lender?",
+        answer:
+          "Yes. Location, lender pricing, title charges, escrow setup, rate choice, and seller credits can all change the final number.",
+      },
+      {
+        question: "Is the percentage input enough for a real transaction?",
+        answer:
+          "Not by itself. It is useful for rough budgeting, but real transactions should be reviewed using formal lender documents.",
+      },
+      {
+        question: "Is this mortgage advice?",
+        answer:
+          "No. It is an educational estimate only and not mortgage, lending, tax, or legal advice.",
+      },
+    ],
+  },
   "unit-converter": {
     title: "Unit Converter",
     description:

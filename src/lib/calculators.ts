@@ -11,6 +11,8 @@ export type TaxFilingStatus =
   | "married-filing-separately"
   | "head-of-household";
 
+export type IraAccountType = "traditional" | "roth";
+
 export type CalculatorItem = {
   slug: string;
   title: string;
@@ -119,6 +121,54 @@ export const calculators: CalculatorItem[] = [
     status: "Available now",
   },
   {
+    slug: "401k-calculator",
+    title: "401(k) Calculator",
+    description:
+      "Project long-term 401(k) growth using salary, employee contribution, employer match, return assumptions, and time.",
+    category: "Finance",
+    status: "Featured",
+  },
+  {
+    slug: "ira-calculator",
+    title: "IRA Calculator",
+    description:
+      "Project IRA growth using current balance, annual contributions, return assumptions, and time horizon.",
+    category: "Finance",
+    status: "Popular",
+  },
+  {
+    slug: "retirement-income-calculator",
+    title: "Retirement Income Calculator",
+    description:
+      "Estimate first-year retirement income, annual withdrawals, and how savings may hold up over time under simplified assumptions.",
+    category: "Finance",
+    status: "Featured",
+  },
+  {
+    slug: "mortgage-affordability-calculator",
+    title: "Mortgage Affordability Calculator",
+    description:
+      "Estimate a simplified affordable home price range from income, debts, down payment, rate, and loan term assumptions.",
+    category: "Finance",
+    status: "Popular",
+  },
+  {
+    slug: "mortgage-refinance-calculator",
+    title: "Mortgage Refinance Calculator",
+    description:
+      "Compare current and refinanced mortgage payments, monthly savings, and a simplified break-even period.",
+    category: "Finance",
+    status: "Available now",
+  },
+  {
+    slug: "closing-costs-calculator",
+    title: "Closing Costs Calculator",
+    description:
+      "Estimate mortgage closing costs and cash to close using purchase price, down payment, fees, and prepaid-cost assumptions.",
+    category: "Finance",
+    status: "Available now",
+  },
+  {
     slug: "bmi-calculator",
     title: "BMI Calculator",
     description:
@@ -203,8 +253,11 @@ export const calculators: CalculatorItem[] = [
 export const featuredCalculators = calculators.filter((calculator) =>
   [
     "mortgage-calculator",
+    "mortgage-affordability-calculator",
     "compound-interest-calculator",
     "federal-income-tax-calculator",
+    "401k-calculator",
+    "retirement-income-calculator",
     "bmi-calculator",
     "age-calculator",
     "gpa-calculator",
@@ -1096,5 +1149,236 @@ export function estimateTaxRefund({
     estimatedRefund: overpayment > 0 ? overpayment : 0,
     estimatedAmountDue: overpayment < 0 ? Math.abs(overpayment) : 0,
     isRefund: overpayment >= 0,
+  };
+}
+
+export function calculate401kProjection({
+  currentBalance,
+  annualSalary,
+  employeeContributionPercent,
+  employerMatchPercent,
+  employerMatchCapPercent,
+  annualReturn,
+  yearsUntilRetirement,
+}: {
+  currentBalance: number;
+  annualSalary: number;
+  employeeContributionPercent: number;
+  employerMatchPercent: number;
+  employerMatchCapPercent: number;
+  annualReturn: number;
+  yearsUntilRetirement: number;
+}) {
+  const startingBalance = clampNonNegative(currentBalance);
+  const salary = clampNonNegative(annualSalary);
+  const employeeContributionRate =
+    Math.max(0, clampNonNegative(employeeContributionPercent)) / 100;
+  const employerMatchRate =
+    Math.max(0, clampNonNegative(employerMatchPercent)) / 100;
+  const employerCapRate =
+    Math.max(0, clampNonNegative(employerMatchCapPercent)) / 100;
+  const annualEmployeeContribution = salary * employeeContributionRate;
+  const matchedContributionBase = salary * Math.min(employeeContributionRate, employerCapRate);
+  const annualEmployerMatch = matchedContributionBase * employerMatchRate;
+  const monthlyContribution =
+    (annualEmployeeContribution + annualEmployerMatch) / 12;
+  const projection = calculateCompoundInterest({
+    principal: startingBalance,
+    monthlyContribution,
+    annualRate: annualReturn,
+    years: yearsUntilRetirement,
+    compoundsPerYear: 12,
+  });
+
+  return {
+    ...projection,
+    annualEmployeeContribution,
+    annualEmployerMatch,
+    monthlyContribution,
+  };
+}
+
+export function calculateIraProjection({
+  currentBalance,
+  annualContribution,
+  annualReturn,
+  yearsUntilRetirement,
+}: {
+  currentBalance: number;
+  annualContribution: number;
+  annualReturn: number;
+  yearsUntilRetirement: number;
+}) {
+  const projection = calculateCompoundInterest({
+    principal: clampNonNegative(currentBalance),
+    monthlyContribution: clampNonNegative(annualContribution) / 12,
+    annualRate: annualReturn,
+    years: yearsUntilRetirement,
+    compoundsPerYear: 12,
+  });
+
+  return {
+    ...projection,
+    annualContribution: clampNonNegative(annualContribution),
+  };
+}
+
+export function calculateRetirementIncomePlan({
+  retirementSavings,
+  withdrawalRate,
+  otherAnnualIncome,
+  annualReturnDuringRetirement,
+  yearsInRetirement,
+}: {
+  retirementSavings: number;
+  withdrawalRate: number;
+  otherAnnualIncome: number;
+  annualReturnDuringRetirement: number;
+  yearsInRetirement: number;
+}) {
+  const startingBalance = clampNonNegative(retirementSavings);
+  const withdrawalDecimal = clampNonNegative(withdrawalRate) / 100;
+  const annualWithdrawal = startingBalance * withdrawalDecimal;
+  const annualOtherIncome = clampNonNegative(otherAnnualIncome);
+  const years = Math.max(1, Math.round(clampNonNegative(yearsInRetirement)));
+  const annualGrowth = clampNonNegative(annualReturnDuringRetirement) / 100;
+  let endingBalance = startingBalance;
+
+  for (let year = 0; year < years; year += 1) {
+    endingBalance = Math.max(0, endingBalance - annualWithdrawal);
+    endingBalance *= 1 + annualGrowth;
+  }
+
+  return {
+    startingBalance,
+    annualWithdrawal,
+    monthlyWithdrawal: annualWithdrawal / 12,
+    annualOtherIncome,
+    estimatedAnnualIncome: annualWithdrawal + annualOtherIncome,
+    estimatedMonthlyIncome: (annualWithdrawal + annualOtherIncome) / 12,
+    years,
+    endingBalance,
+  };
+}
+
+export function calculateMortgageAffordability({
+  annualIncome,
+  monthlyDebts,
+  downPayment,
+  annualInterestRate,
+  loanTermYears,
+}: {
+  annualIncome: number;
+  monthlyDebts: number;
+  downPayment: number;
+  annualInterestRate: number;
+  loanTermYears: number;
+}) {
+  const grossMonthlyIncome = clampNonNegative(annualIncome) / 12;
+  const existingDebts = clampNonNegative(monthlyDebts);
+  const maxHousingPayment = Math.max(
+    0,
+    Math.min(grossMonthlyIncome * 0.28, grossMonthlyIncome * 0.36 - existingDebts),
+  );
+  const totalMonths = Math.max(1, Math.round(clampNonNegative(loanTermYears) * 12));
+  const monthlyRate = monthlyRateFromAnnual(annualInterestRate);
+  let maxLoanAmount = 0;
+
+  if (maxHousingPayment > 0) {
+    if (monthlyRate === 0) {
+      maxLoanAmount = maxHousingPayment * totalMonths;
+    } else {
+      const factor = Math.pow(1 + monthlyRate, totalMonths);
+      maxLoanAmount =
+        maxHousingPayment / ((monthlyRate * factor) / (factor - 1));
+    }
+  }
+
+  const availableDownPayment = clampNonNegative(downPayment);
+  const estimatedHomePrice = maxLoanAmount + availableDownPayment;
+
+  return {
+    grossMonthlyIncome,
+    maxHousingPayment,
+    maxLoanAmount,
+    estimatedHomePrice,
+    availableDownPayment,
+    assumptions:
+      "Simplified affordability estimate using a 28% front-end ratio and a 36% total debt-to-income ratio.",
+  };
+}
+
+export function calculateMortgageRefinance({
+  currentLoanBalance,
+  currentInterestRate,
+  currentRemainingTermYears,
+  newInterestRate,
+  newLoanTermYears,
+  closingCosts,
+}: {
+  currentLoanBalance: number;
+  currentInterestRate: number;
+  currentRemainingTermYears: number;
+  newInterestRate: number;
+  newLoanTermYears: number;
+  closingCosts: number;
+}) {
+  const principal = clampNonNegative(currentLoanBalance);
+  const currentLoan = calculateMortgagePayment({
+    homePrice: principal,
+    downPayment: 0,
+    annualInterestRate: currentInterestRate,
+    loanTermYears: currentRemainingTermYears,
+  });
+  const refinancedLoan = calculateMortgagePayment({
+    homePrice: principal + clampNonNegative(closingCosts),
+    downPayment: 0,
+    annualInterestRate: newInterestRate,
+    loanTermYears: newLoanTermYears,
+  });
+  const monthlySavings = currentLoan.monthlyPayment - refinancedLoan.monthlyPayment;
+  const breakEvenMonths =
+    monthlySavings > 0
+      ? clampNonNegative(closingCosts) / monthlySavings
+      : Number.POSITIVE_INFINITY;
+
+  return {
+    currentMonthlyPayment: currentLoan.monthlyPayment,
+    newMonthlyPayment: refinancedLoan.monthlyPayment,
+    monthlySavings,
+    breakEvenMonths,
+    financedClosingCosts: clampNonNegative(closingCosts),
+  };
+}
+
+export function calculateClosingCosts({
+  homePrice,
+  downPayment,
+  closingCostPercent,
+  lenderFees,
+  prepaidTaxesAndInsurance,
+}: {
+  homePrice: number;
+  downPayment: number;
+  closingCostPercent: number;
+  lenderFees: number;
+  prepaidTaxesAndInsurance: number;
+}) {
+  const purchasePrice = clampNonNegative(homePrice);
+  const down = clampNonNegative(downPayment);
+  const percentBasedCosts =
+    purchasePrice * (clampNonNegative(closingCostPercent) / 100);
+  const fixedFees =
+    clampNonNegative(lenderFees) + clampNonNegative(prepaidTaxesAndInsurance);
+  const totalClosingCosts = percentBasedCosts + fixedFees;
+  const cashToClose = down + totalClosingCosts;
+
+  return {
+    purchasePrice,
+    downPayment: down,
+    percentBasedCosts,
+    fixedFees,
+    totalClosingCosts,
+    cashToClose,
   };
 }
