@@ -225,6 +225,22 @@ export const calculators: CalculatorItem[] = [
     status: "Featured",
   },
   {
+    slug: "final-grade-calculator",
+    title: "Final Grade Calculator",
+    description:
+      "Estimate the exam score needed to reach a target course grade using a simplified weighted-grade model.",
+    category: "Education",
+    status: "Popular",
+  },
+  {
+    slug: "study-time-calculator",
+    title: "Study Time Calculator",
+    description:
+      "Estimate a simple weekly study schedule from subject count, target hours, and available study days.",
+    category: "Education",
+    status: "Available now",
+  },
+  {
     slug: "grade-calculator",
     title: "Grade Calculator",
     description:
@@ -300,6 +316,7 @@ export const featuredCalculators = calculators.filter((calculator) =>
     "retirement-income-calculator",
     "calorie-calculator",
     "bmi-calculator",
+    "final-grade-calculator",
     "age-calculator",
     "gpa-calculator",
     "unit-converter",
@@ -1133,6 +1150,7 @@ export const gradeScale = Object.keys(gradePoints);
 
 export type GpaCourse = {
   id: string;
+  name?: string;
   grade: string;
   credits: number;
 };
@@ -1189,6 +1207,40 @@ export function calculateRequiredFinalExamScore({
     requiredScore,
     isPossible: requiredScore <= 100,
     isAlreadyMet: requiredScore <= 0,
+  };
+}
+
+export function calculateStudyTimePlan({
+  numberOfSubjects,
+  targetStudyHoursPerWeek,
+  availableDays,
+}: {
+  numberOfSubjects: number;
+  targetStudyHoursPerWeek: number;
+  availableDays: number;
+}) {
+  const subjects = Math.max(1, Math.round(clampNonNegative(numberOfSubjects)));
+  const weeklyHours = clampNonNegative(targetStudyHoursPerWeek);
+  const studyDays = Math.max(1, Math.round(clampNonNegative(availableDays)));
+
+  const hoursPerSubjectPerWeek = weeklyHours / subjects;
+  const hoursPerDay = weeklyHours / studyDays;
+  const sessionsPerWeek = subjects * 2;
+  const hoursPerSession = sessionsPerWeek > 0 ? weeklyHours / sessionsPerWeek : 0;
+  const minutesPerSession = hoursPerSession * 60;
+
+  return {
+    subjects,
+    weeklyHours,
+    studyDays,
+    hoursPerSubjectPerWeek,
+    hoursPerDay,
+    sessionsPerWeek,
+    minutesPerSession,
+    suggestedWeeklyOutline: Array.from({ length: studyDays }, (_, index) => ({
+      day: `Day ${index + 1}`,
+      hours: hoursPerDay,
+    })),
   };
 }
 

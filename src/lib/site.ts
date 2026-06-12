@@ -5,7 +5,7 @@ const defaultSiteUrl =
 
 export const siteConfig = {
   name: "Dr.Utilio",
-  subtitle: "Smart online tools and calculators",
+  subtitle: "Smart Online Tools & Calculators",
   siteUrl:
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") || defaultSiteUrl,
   contactEmail:

@@ -11,24 +11,29 @@ import { CalculatorField } from "@/components/calculators/CalculatorField";
 import { CalculatorPanel } from "@/components/calculators/CalculatorPanel";
 import { CalculatorResult } from "@/components/calculators/CalculatorResult";
 import { CalculatorSelectField } from "@/components/calculators/CalculatorSelectField";
+import { CalculatorTextField } from "@/components/calculators/CalculatorTextField";
 import { ResultGrid } from "@/components/calculators/ResultGrid";
 
 const courseOptions = gradeScale.map((grade) => ({ value: grade, label: grade }));
 
-function createCourse(id: string, grade = "A", credits = 3): GpaCourse {
-  return { id, grade, credits };
+function createCourse(id: string, name = "", grade = "A", credits = 3): GpaCourse {
+  return { id, name, grade, credits };
 }
 
 export function GpaCalculatorClient() {
   const [courses, setCourses] = useState<GpaCourse[]>([
-    createCourse("course-1", "A", 3),
-    createCourse("course-2", "B+", 4),
-    createCourse("course-3", "A-", 3),
+    createCourse("course-1", "Course 1", "A", 3),
+    createCourse("course-2", "Course 2", "B+", 4),
+    createCourse("course-3", "Course 3", "A-", 3),
   ]);
 
   const result = useMemo(() => calculateGpa(courses), [courses]);
 
-  function updateCourse(id: string, field: "grade" | "credits", value: string | number) {
+  function updateCourse(
+    id: string,
+    field: "name" | "grade" | "credits",
+    value: string | number,
+  ) {
     setCourses((current) =>
       current.map((course) =>
         course.id === id ? { ...course, [field]: value } : course,
@@ -39,7 +44,12 @@ export function GpaCalculatorClient() {
   function addCourse() {
     setCourses((current) => [
       ...current,
-      createCourse(`course-${current.length + 1}`, "B", 3),
+      createCourse(
+        `course-${current.length + 1}`,
+        `Course ${current.length + 1}`,
+        "B",
+        3,
+      ),
     ]);
   }
 
@@ -71,6 +81,12 @@ export function GpaCalculatorClient() {
                 </button>
               </div>
               <div className="grid gap-4 md:grid-cols-2">
+                <CalculatorTextField
+                  id={`${course.id}-name`}
+                  label="Course name"
+                  value={course.name ?? ""}
+                  onChange={(value) => updateCourse(course.id, "name", value)}
+                />
                 <CalculatorSelectField
                   id={`${course.id}-grade`}
                   label="Letter grade"

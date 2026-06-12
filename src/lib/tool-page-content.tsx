@@ -1413,8 +1413,11 @@ export const toolPageContent: Record<string, ToolPageContent> = {
             three-credit course usually carries more influence than a
             one-credit course, so the calculator reflects that difference
             automatically. If you are planning around a specific final exam, the{" "}
-            {toolLink("/calculators/grade-calculator", "grade calculator")} is a
-            strong companion tool.
+            {toolLink(
+              "/calculators/final-grade-calculator",
+              "final grade calculator",
+            )}{" "}
+            is a strong companion tool.
           </p>
         </>
       ),
@@ -1459,13 +1462,21 @@ export const toolPageContent: Record<string, ToolPageContent> = {
           </p>
           <p>
             It works well alongside the{" "}
-            {toolLink("/calculators/grade-calculator", "grade calculator")} for
-            target-grade planning and the{" "}
+            {toolLink(
+              "/calculators/final-grade-calculator",
+              "final grade calculator",
+            )}{" "}
+            for target-grade planning, the{" "}
+            {toolLink(
+              "/how-to-calculate-gpa",
+              "how to calculate GPA guide",
+            )},
+            and the {toolLink("/education", "education hub")}. For quick math checks, the{" "}
             {toolLink(
               "/calculators/percentage-calculator",
               "percentage calculator",
             )}{" "}
-            if you need quick arithmetic for score weighting in a class.
+            can still help with score weighting in a class.
           </p>
         </>
       ),
@@ -1607,6 +1618,223 @@ export const toolPageContent: Record<string, ToolPageContent> = {
         question: "Is this official academic guidance?",
         answer:
           "No. It is an educational estimate and should not replace official class policies or advice from your instructor or academic staff.",
+      },
+    ],
+  },
+  "final-grade-calculator": {
+    title: "Final Grade Calculator",
+    description:
+      "Estimate the exam score needed to reach a target course grade with a simple final grade calculator.",
+    eyebrow: "Education",
+    intro:
+      "Use this final grade calculator to estimate the exam score needed to reach a target course grade. It is a practical academic planning tool for checking what kind of finish would be required under a simplified weighting model.",
+    category: "Education",
+    path: "/calculators/final-grade-calculator",
+    applicationCategory: "EducationalApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This calculator uses four inputs: your current grade, the
+            percentage weight already completed, your target final grade, and
+            the weight of the final exam. It uses those values to solve for the
+            final exam score needed to bring the weighted course average to the
+            target you choose.
+          </p>
+          <p>
+            In other words, it works backward from the desired outcome. That
+            makes it useful when you are deciding how realistic a target may be
+            or when you want to understand whether your course average already
+            puts you close to the finish line. For broader multi-course
+            planning, the {toolLink("/calculators/gpa-calculator", "GPA calculator")} is a
+            natural companion.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The main result is the estimated score you would need on the final
+            exam to reach the target grade under the weights you entered. If
+            the required score is above 100, that usually signals the target
+            may not be achievable under a standard percentage system. If the
+            required score is zero or below, your current standing may already
+            be enough to reach the target.
+          </p>
+          <p>
+            This can reduce guesswork, but it is still just a model. Class
+            policies, rounding, extra credit, dropped assignments, and grading
+            adjustments can all affect what happens in the real course.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This calculator assumes the weights you enter match the course
+            grading structure and that the course average behaves in a simple
+            linear way. Many classes have extra rules, curve adjustments,
+            different rounding conventions, or category-level calculations that
+            are more complex.
+          </p>
+          <p>
+            Because of that, the result should be treated as an educational
+            estimate rather than a guaranteed academic outcome. It does not
+            provide academic advising, and it does not replace the instructor&apos;s
+            syllabus or gradebook rules.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this calculator when you want a quick sense of what score range
+            would be needed to reach a course goal. It is especially helpful
+            before finals, when planning study time, or when you are trying to
+            set realistic expectations.
+          </p>
+          <p>
+            It also pairs well with the{" "}
+            {toolLink("/calculators/gpa-calculator", "GPA calculator")}, the{" "}
+            {toolLink(
+              "/calculators/study-time-calculator",
+              "study time calculator",
+            )},
+            the {toolLink("/final-grade-calculator-guide", "final grade calculator guide")},
+            and the {toolLink("/education", "education hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "What if the required final exam score is over 100?",
+        answer:
+          "That usually means the target grade is not reachable under a standard percentage scale based on the inputs you entered.",
+      },
+      {
+        question: "What if the required score is below zero?",
+        answer:
+          "That suggests your current standing may already be enough to reach the target, assuming the weights and grading rules are accurate.",
+      },
+      {
+        question: "Does this calculator account for curves or extra credit?",
+        answer:
+          "No. It uses a simplified weighting model and does not include custom instructor policies unless you approximate them yourself.",
+      },
+      {
+        question: "Can I use this for any class?",
+        answer:
+          "You can use it as a rough estimate for many classes, but it is most reliable when the course uses clear percentage weights and conventional grading.",
+      },
+      {
+        question: "Is this official academic guidance?",
+        answer:
+          "No. It is an educational estimate and should not replace official class policies or advice from your instructor or academic staff.",
+      },
+    ],
+  },
+  "study-time-calculator": {
+    title: "Study Time Calculator",
+    description:
+      "Estimate a simple weekly study plan from subject count, study-hour goals, and available study days.",
+    eyebrow: "Education",
+    intro:
+      "Use this study time calculator to turn a weekly study-hours goal into a simple subject-and-day schedule. It is an educational planning tool, not a guarantee of academic results.",
+    category: "Education",
+    path: "/calculators/study-time-calculator",
+    applicationCategory: "EducationalApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This calculator starts with three core inputs: the number of
+            subjects you are balancing, the number of study hours you want to
+            complete each week, and the number of days you realistically have
+            available.
+          </p>
+          <p>
+            From there, it spreads the hours across days and subjects to create
+            a simple weekly outline. It is designed to support planning, not to
+            predict performance or replace a more detailed syllabus-based plan.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The daily hours result helps you picture what the week might look
+            like in practice. The session estimates and per-subject totals make
+            the plan more concrete so you can decide whether the target feels
+            realistic.
+          </p>
+          <p>
+            For many students, the most valuable part of the tool is not the
+            exact number. It is the moment where a vague idea becomes a schedule
+            that can actually be reviewed and adjusted.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This tool does not know subject difficulty, commute time, exam
+            proximity, attention span, or school-specific workload patterns.
+            It provides a rough planning frame rather than a personalized study
+            prescription.
+          </p>
+          <p>
+            It also does not guarantee grades, retention, or productivity.
+            Study quality, feedback, and consistency still matter as much as the
+            raw number of hours.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this calculator when you are trying to build a steadier weekly
+            routine, especially before exam pressure peaks. It is helpful when
+            paired with concrete academic goals rather than used in isolation.
+          </p>
+          <p>
+            Good companions include the{" "}
+            {toolLink(
+              "/how-many-hours-should-i-study",
+              "how many hours should I study guide",
+            )},
+            the {toolLink("/common-study-mistakes", "common study mistakes guide")},
+            the {toolLink("/calculators/final-grade-calculator", "final grade calculator")},
+            and the {toolLink("/education", "education hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Does this study time calculator guarantee better grades?",
+        answer:
+          "No. It helps structure time, but it does not guarantee academic outcomes.",
+      },
+      {
+        question: "Should every subject get the same time?",
+        answer:
+          "Not always. Some subjects may need more time depending on difficulty, deadlines, and your current standing.",
+      },
+      {
+        question: "Can I use this for exam weeks only?",
+        answer:
+          "Yes, but it is often even more useful when used earlier for steady weekly planning.",
+      },
+      {
+        question: "Why does the calculator show a daily average?",
+        answer:
+          "Because many students need to see whether the weekly goal actually fits into a realistic daily routine.",
+      },
+      {
+        question: "Is this official academic advice?",
+        answer:
+          "No. It is an educational planning tool only.",
       },
     ],
   },
