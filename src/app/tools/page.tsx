@@ -144,6 +144,34 @@ export default function ToolsPage() {
         <div className="mt-10">
           <FAQSection items={faqItems} />
         </div>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
+          {[
+            {
+              title: "Popular Tools",
+              description:
+                "Open a curated view of Dr.Utilio's strongest tool entry points with category filters and live search.",
+              href: "/popular-tools",
+            },
+            {
+              title: "New Tools",
+              description:
+                "See the latest additions in registry-driven order so you can spot what was added most recently.",
+              href: "/new-tools",
+            },
+          ].map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:border-emerald-400/40 hover:bg-slate-900/70"
+            >
+              <h2 className="text-xl font-semibold text-white">{item.title}</h2>
+              <p className="mt-3 text-sm leading-7 text-slate-300">
+                {item.description}
+              </p>
+            </a>
+          ))}
+        </div>
       </Container>
     </section>
   );

@@ -507,6 +507,12 @@ export const featuredCalculators = calculators.filter((calculator) =>
   ].includes(calculator.slug),
 );
 
+export const popularCalculators = calculators.filter(
+  (calculator) => calculator.status !== "Available now",
+);
+
+export const newestCalculators = [...calculators].reverse();
+
 export function getCalculatorBySlug(slug: string) {
   return calculators.find((calculator) => calculator.slug === slug);
 }

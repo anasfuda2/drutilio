@@ -209,6 +209,40 @@ export default function GuidesPage() {
             </section>
           ))}
         </div>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {[
+            {
+              title: "Popular Tools",
+              description:
+                "Move from educational reading into the platform's most-used interactive tools.",
+              href: "/popular-tools",
+            },
+            {
+              title: "New Tools",
+              description:
+                "Browse the newest registry additions after you finish exploring the guide clusters.",
+              href: "/new-tools",
+            },
+            {
+              title: "Popular PDF Tools",
+              description:
+                "Open the most useful PDF workflows in one place, from compression to page extraction.",
+              href: "/pdf-tools/popular",
+            },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:border-emerald-400/40 hover:bg-slate-900/70"
+            >
+              <h2 className="text-xl font-semibold text-white">{item.title}</h2>
+              <p className="mt-3 text-sm leading-7 text-slate-300">
+                {item.description}
+              </p>
+            </Link>
+          ))}
+        </div>
       </Container>
     </section>
   );

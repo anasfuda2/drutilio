@@ -167,6 +167,40 @@ export default function CategoriesPage() {
         <div className="mt-10">
           <FAQSection items={faqItems} />
         </div>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {[
+            {
+              title: "Popular Tools",
+              description:
+                "Go straight to the strongest discovery page for featured and popular tools across the platform.",
+              href: "/popular-tools",
+            },
+            {
+              title: "New Tools",
+              description:
+                "See the newest tool additions first using the live central registry order.",
+              href: "/new-tools",
+            },
+            {
+              title: "Popular PDF Tools",
+              description:
+                "Jump into the most useful PDF compression, merge, split, extract, rotate, and conversion tools.",
+              href: "/pdf-tools/popular",
+            },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-2xl border border-white/10 bg-slate-900/70 p-5 transition hover:border-emerald-400/40 hover:bg-slate-900"
+            >
+              <h2 className="text-xl font-semibold text-white">{item.title}</h2>
+              <p className="mt-3 text-sm leading-7 text-slate-300">
+                {item.description}
+              </p>
+            </Link>
+          ))}
+        </div>
       </Container>
     </section>
   );

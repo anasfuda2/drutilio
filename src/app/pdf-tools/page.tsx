@@ -217,6 +217,13 @@ export default function PdfToolsPage() {
               >
                 the PDF tools category page
               </Link>
+              {" "}or jump straight into{" "}
+              <Link
+                href="/pdf-tools/popular"
+                className="font-semibold text-emerald-300 hover:text-emerald-200"
+              >
+                popular PDF tools
+              </Link>
               .
             </p>
           </div>
