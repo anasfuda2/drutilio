@@ -125,7 +125,14 @@ export default function ZakatCalculatorUsaPage() {
             >
               zakat on retirement accounts
             </Link>{" "}
-            are especially relevant.
+            are especially relevant. You can also use the{" "}
+            <Link
+              href="/zakat"
+              className="font-semibold text-emerald-300 hover:text-emerald-200"
+            >
+              Zakat hub
+            </Link>{" "}
+            as the central starting point for this topic cluster.
           </p>
         </div>
 

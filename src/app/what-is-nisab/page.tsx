@@ -124,7 +124,15 @@ export default function WhatIsNisabPage() {
             >
               zakat on retirement accounts
             </Link>{" "}
-            will help with those specific areas.
+            will help with those specific areas. If you want the whole reading
+            path in one place, visit the{" "}
+            <Link
+              href="/zakat"
+              className="font-semibold text-emerald-300 hover:text-emerald-200"
+            >
+              Zakat hub
+            </Link>
+            .
           </p>
         </div>
 

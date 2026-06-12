@@ -108,7 +108,15 @@ export default function HowToCalculateZakatPage() {
             >
               compound interest calculator
             </Link>{" "}
-            may also be useful reference tools.
+            may also be useful reference tools. If you want the wider reading
+            path in one place, visit the{" "}
+            <Link
+              href="/zakat"
+              className="font-semibold text-emerald-300 hover:text-emerald-200"
+            >
+              Zakat hub
+            </Link>{" "}
+            for Drutilio&apos;s full cluster of calculator and guide pages.
           </p>
         </div>
 

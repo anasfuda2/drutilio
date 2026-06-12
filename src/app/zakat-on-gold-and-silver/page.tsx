@@ -119,7 +119,16 @@ export default function ZakatOnGoldAndSilverPage() {
             >
               zakat on retirement accounts
             </Link>{" "}
-            helps with another common modern asset category.
+            helps with another common modern asset category. You can also browse
+            the full{" "}
+            <Link
+              href="/zakat"
+              className="font-semibold text-emerald-300 hover:text-emerald-200"
+            >
+              Zakat hub
+            </Link>{" "}
+            for linked guides on nisab, business assets, common mistakes, and
+            US-focused examples.
           </p>
         </div>
 

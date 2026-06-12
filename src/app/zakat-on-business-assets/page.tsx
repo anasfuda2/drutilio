@@ -126,7 +126,14 @@ export default function ZakatOnBusinessAssetsPage() {
             >
               zakat on retirement accounts
             </Link>{" "}
-            can help round out the picture.
+            can help round out the picture. You can also browse the{" "}
+            <Link
+              href="/zakat"
+              className="font-semibold text-emerald-300 hover:text-emerald-200"
+            >
+              Zakat hub
+            </Link>{" "}
+            for the full set of linked guides and tools.
           </p>
         </div>
 

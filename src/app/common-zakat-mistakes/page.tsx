@@ -107,6 +107,13 @@ export default function CommonZakatMistakesPage() {
             >
               how to calculate zakat
             </Link>
+            . For a broader map of connected resources, see the{" "}
+            <Link
+              href="/zakat"
+              className="font-semibold text-emerald-300 hover:text-emerald-200"
+            >
+              Zakat hub
+            </Link>
             .
           </p>
         </div>

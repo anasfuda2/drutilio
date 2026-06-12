@@ -10,6 +10,7 @@ const staticRoutes = [
   "/privacy-policy",
   "/terms",
   "/disclaimer",
+  "/zakat",
   "/how-to-calculate-zakat",
   "/zakat-on-business-assets",
   "/zakat-on-stocks-and-etfs",

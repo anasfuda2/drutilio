@@ -113,7 +113,14 @@ export default function ZakatOnRetirementAccountsPage() {
               how to calculate zakat
             </Link>{" "}
             gives a wider overview of assets, debts, and common calculation
-            steps.
+            steps. For the full set of connected pages, the{" "}
+            <Link
+              href="/zakat"
+              className="font-semibold text-emerald-300 hover:text-emerald-200"
+            >
+              Zakat hub
+            </Link>{" "}
+            brings together calculators and asset-specific guides in one place.
           </p>
         </div>
 

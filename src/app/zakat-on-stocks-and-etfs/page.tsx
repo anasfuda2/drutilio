@@ -124,7 +124,14 @@ export default function ZakatOnStocksAndEtfsPage() {
             >
               zakat on gold and silver
             </Link>{" "}
-            can help with another common asset category.
+            can help with another common asset category. The{" "}
+            <Link
+              href="/zakat"
+              className="font-semibold text-emerald-300 hover:text-emerald-200"
+            >
+              Zakat hub
+            </Link>{" "}
+            also gives you a central place to compare the related guides.
           </p>
         </div>
 
