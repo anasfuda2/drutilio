@@ -43,6 +43,11 @@ const categoryLinks = [
     description: "GPA, final-grade, and study-planning tools and guides.",
   },
   {
+    href: "/pdf-tools/category",
+    label: "PDF Tools",
+    description: "PDF guides, image-to-PDF tools, and growing document workflows.",
+  },
+  {
     href: "/zakat",
     label: "Zakat",
     description: "Zakat calculators and educational Islamic finance content.",
@@ -63,7 +68,7 @@ const toolLinks = [
   {
     href: "/pdf-tools",
     label: "PDF Tools",
-    description: "Explore PDF guides and estimate-based document utilities.",
+    description: "Explore PDF guides and browser-based image conversion tools.",
   },
 ];
 

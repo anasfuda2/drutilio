@@ -13,7 +13,7 @@ import {
 } from "@/lib/structured-data";
 
 const description =
-  "Explore Dr.Utilio's PDF tools hub with educational PDF guides and a file size estimator for future document workflows.";
+  "Explore Dr.Utilio's PDF tools hub with browser-based image conversion tools, PDF workflow guides, and a file size estimator.";
 
 const breadcrumbs: BreadcrumbItem[] = [
   { label: "Home", href: "/" },
@@ -24,12 +24,12 @@ const faqItems: FAQItem[] = [
   {
     question: "What is currently available in Dr.Utilio's PDF tools hub?",
     answer:
-      "The hub currently includes educational PDF workflow guides and a lightweight file size estimator, with room for future document utilities.",
+      "The hub currently includes browser-based image-to-PDF tools, browser-based PDF merge and split tools, educational PDF workflow guides, and a lightweight file size estimator.",
   },
   {
     question: "Can Dr.Utilio process PDF uploads here yet?",
     answer:
-      "No. This cluster is educational and estimate-based for now. Server-side file processing is not implemented on these routes yet.",
+      "Not yet for server-side PDF upload workflows. The current live tools focus on browser-based image-to-PDF conversion, browser-based PDF merge and split, and estimate-based planning.",
   },
   {
     question: "What is the PDF File Size Estimator for?",
@@ -51,19 +51,55 @@ type PdfCard = {
 
 const pdfCards: PdfCard[] = [
   {
+    title: "Image to PDF",
+    description:
+      "Convert multiple images into one downloadable PDF directly in your browser.",
+    href: "/calculators/image-to-pdf",
+  },
+  {
+    title: "JPG to PDF",
+    description:
+      "Combine JPG files into a single browser-generated PDF with local processing.",
+    href: "/calculators/jpg-to-pdf",
+  },
+  {
+    title: "PNG to PDF",
+    description:
+      "Combine PNG files into a single browser-generated PDF without a server upload.",
+    href: "/calculators/png-to-pdf",
+  },
+  {
+    title: "Merge PDF",
+    description:
+      "Upload multiple PDFs, reorder them, and merge them into one downloadable file locally in your browser.",
+    href: "/calculators/merge-pdf",
+  },
+  {
+    title: "Split PDF",
+    description:
+      "Upload one PDF, define page ranges, and export separate PDF files locally in your browser.",
+    href: "/calculators/split-pdf",
+  },
+  {
+    title: "PDF Tools Category",
+    description:
+      "Browse the full PDF category directory with current and future PDF-focused tools.",
+    href: "/pdf-tools/category",
+  },
+  {
     title: "Compress PDF",
     description:
       "Learn what usually affects PDF compression quality and file size.",
     href: "/pdf-compression-guide",
   },
   {
-    title: "Merge PDF",
+    title: "Merge PDF Guide",
     description:
       "Understand what matters when combining multiple PDFs into one file.",
     href: "/merge-pdf-guide",
   },
   {
-    title: "Split PDF",
+    title: "Split PDF Guide",
     description:
       "Review how splitting large documents into smaller parts usually works.",
     href: "/split-pdf-guide",
@@ -79,6 +115,18 @@ const pdfCards: PdfCard[] = [
     description:
       "See what matters when turning images or scans into one PDF document.",
     href: "/image-to-pdf-guide",
+  },
+  {
+    title: "JPG to PDF Guide",
+    description:
+      "Learn the practical tradeoffs behind JPEG-based PDF workflows.",
+    href: "/jpg-to-pdf-guide",
+  },
+  {
+    title: "PNG to PDF Guide",
+    description:
+      "Learn how PNG-heavy documents behave in PDF conversion workflows.",
+    href: "/png-to-pdf-guide",
   },
   {
     title: "PDF File Size Estimator",
@@ -119,14 +167,25 @@ export default function PdfToolsPage() {
           <div className="mt-6 space-y-4 text-lg leading-8 text-slate-300">
             <p>
               Dr.Utilio&apos;s PDF tools hub is the foundation for current and
-              future document utilities. Right now it focuses on educational
-              workflow guides and a file-size estimator rather than live upload
-              processing.
+              future document utilities. It now includes browser-based image to
+              PDF converters, browser-based PDF merge and split tools,
+              educational workflow guides, and a file-size estimator.
             </p>
             <p>
               That makes it a useful place to understand what usually affects
               PDF size, merging, splitting, conversion quality, and image-based
-              document workflows before reaching for a specific tool.
+              document workflows while also giving you a first set of real
+              client-side file-conversion tools.
+            </p>
+            <p>
+              If you want a clean directory view of the PDF cluster, start with{" "}
+              <Link
+                href="/pdf-tools/category"
+                className="font-semibold text-emerald-300 hover:text-emerald-200"
+              >
+                the PDF tools category page
+              </Link>
+              .
             </p>
           </div>
         </div>

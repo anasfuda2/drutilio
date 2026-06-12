@@ -9,7 +9,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { buildBreadcrumbStructuredData } from "@/lib/structured-data";
 
 const description =
-  "Browse Dr.Utilio guides by topic, including tax, retirement, mortgage, health, education, and zakat.";
+  "Browse Dr.Utilio guides by topic, including tax, retirement, mortgage, health, education, PDF tools, and zakat.";
 
 const breadcrumbs: BreadcrumbItem[] = [
   { label: "Home", href: "/" },
@@ -98,6 +98,22 @@ const guideGroups: GuideGroup[] = [
       { title: "Study Time Calculator Guide", description: "See how weekly study goals turn into a workable schedule.", href: "/study-time-calculator-guide" },
       { title: "Common Study Mistakes", description: "Review planning mistakes that often undermine academic progress.", href: "/common-study-mistakes" },
       { title: "How Many Hours Should I Study?", description: "Think through study-hour planning with more realism.", href: "/how-many-hours-should-i-study" },
+    ],
+  },
+  {
+    title: "PDF Tools",
+    intro: "PDF workflow guides for compression, merging, splitting, conversion planning, and browser-based image-to-PDF tools.",
+    items: [
+      { title: "PDF Tools Hub", description: "Central landing page for Dr.Utilio's PDF tools foundation.", href: "/pdf-tools" },
+      { title: "Merge PDF Tool", description: "Use the live browser-based Merge PDF tool to combine multiple PDFs locally.", href: "/calculators/merge-pdf" },
+      { title: "Split PDF Tool", description: "Use the live browser-based Split PDF tool to export separate PDFs by page range.", href: "/calculators/split-pdf" },
+      { title: "PDF Compression Guide", description: "Learn what usually affects compression quality and file size.", href: "/pdf-compression-guide" },
+      { title: "Merge PDF Guide", description: "Understand what matters when combining multiple PDFs into one file.", href: "/merge-pdf-guide" },
+      { title: "Split PDF Guide", description: "Review how splitting a document into smaller parts usually works.", href: "/split-pdf-guide" },
+      { title: "PDF to Word Guide", description: "Learn what affects editability and layout quality in PDF-to-Word workflows.", href: "/pdf-to-word-guide" },
+      { title: "Image to PDF Guide", description: "See what matters when turning images or scans into one PDF document.", href: "/image-to-pdf-guide" },
+      { title: "JPG to PDF Guide", description: "Understand browser-based JPG to PDF workflows and the tradeoffs behind them.", href: "/jpg-to-pdf-guide" },
+      { title: "PNG to PDF Guide", description: "Understand browser-based PNG to PDF workflows and why file size can vary.", href: "/png-to-pdf-guide" },
     ],
   },
   {

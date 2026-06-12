@@ -13,7 +13,7 @@ import {
 } from "@/lib/structured-data";
 
 const description =
-  "Browse all major Dr.Utilio categories including finance, tax, retirement, mortgage, health, education, zakat, and converters.";
+  "Browse all major Dr.Utilio categories including finance, tax, retirement, mortgage, health, education, PDF tools, zakat, and converters.";
 
 const breadcrumbs: BreadcrumbItem[] = [
   { label: "Home", href: "/" },
@@ -85,6 +85,12 @@ const categories: CategoryCard[] = [
     description:
       "Find GPA, final-grade, and study-planning tools plus student-focused academic guides.",
     href: "/education",
+  },
+  {
+    title: "PDF Tools",
+    description:
+      "Explore browser-based image-to-PDF tools, PDF workflow guides, and the growing document-tools area.",
+    href: "/pdf-tools/category",
   },
   {
     title: "Zakat",

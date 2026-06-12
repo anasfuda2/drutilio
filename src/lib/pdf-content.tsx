@@ -70,12 +70,14 @@ export const pdfArticleContent: PdfArticleMap = {
         ),
       },
       {
-        title: "Related PDF guides",
+        title: "Related PDF Tools",
         content: (
           <>
             <p>
               Continue with the {pdfLink("/pdf-tools", "PDF tools hub")},{" "}
-              {pdfLink("/merge-pdf-guide", "merge PDF guide")}, and{" "}
+              {pdfLink("/pdf-tools/category", "PDF tools category")},{" "}
+              {pdfLink("/merge-pdf-guide", "merge PDF guide")},{" "}
+              {pdfLink("/split-pdf-guide", "split PDF guide")}, and{" "}
               {pdfLink("/image-to-pdf-guide", "image to PDF guide")} for the rest
               of the cluster.
             </p>
@@ -103,8 +105,10 @@ export const pdfArticleContent: PdfArticleMap = {
           easy to read and share.
         </p>
         <p>
-          This guide is educational only. Dr.Utilio is not processing uploaded
-          PDFs on this page yet.
+          Dr.Utilio now includes a working client-side{" "}
+          {pdfLink("/calculators/merge-pdf", "Merge PDF")} tool, so this guide
+          focuses on workflow decisions and edge cases rather than acting as a
+          placeholder.
         </p>
       </>
     ),
@@ -136,17 +140,29 @@ export const pdfArticleContent: PdfArticleMap = {
               )}{" "}
               are useful companions here.
             </p>
+            <p>
+              If you want the live browser-side workflow itself, use{" "}
+              {pdfLink("/calculators/merge-pdf", "Merge PDF")}.
+            </p>
           </>
         ),
       },
       {
-        title: "Where to go next",
+        title: "Related PDF Tools",
         content: (
           <>
             <p>
-              Visit the {pdfLink("/pdf-tools", "PDF tools hub")} and the{" "}
-              {pdfLink("/split-pdf-guide", "split PDF guide")} if you are
-              comparing opposite document workflows.
+              Visit {pdfLink("/calculators/merge-pdf", "Merge PDF")},{" "}
+              {pdfLink("/calculators/split-pdf", "Split PDF")},{" "}
+              the {pdfLink("/pdf-tools", "PDF tools hub")},{" "}
+              {pdfLink("/pdf-tools/category", "PDF tools category")},{" "}
+              {pdfLink("/split-pdf-guide", "split PDF guide")},{" "}
+              {pdfLink("/pdf-compression-guide", "PDF compression guide")}, and{" "}
+              {pdfLink(
+                "/calculators/pdf-file-size-estimator",
+                "PDF file size estimator",
+              )}{" "}
+              if you are comparing opposite document workflows.
             </p>
           </>
         ),
@@ -156,7 +172,7 @@ export const pdfArticleContent: PdfArticleMap = {
       { question: "Does merging always keep source quality unchanged?", answer: "Often yes, but downstream export or re-save behavior can still affect file size and readability." },
       { question: "Can merged files become much larger?", answer: "Yes, especially when the inputs are image-heavy or scan-heavy." },
       { question: "Should I check page order before sharing?", answer: "Yes. Order and duplicate pages are among the most common practical issues." },
-      { question: "Can Dr.Utilio merge PDFs on this page yet?", answer: "Not yet. This page is educational only for now." },
+      { question: "Can Dr.Utilio merge PDFs now?", answer: "Yes. Dr.Utilio now offers a working client-side Merge PDF tool that runs locally in the browser." },
     ],
   },
   "split-pdf-guide": {
@@ -171,8 +187,9 @@ export const pdfArticleContent: PdfArticleMap = {
           smaller parts that are easier to send, organize, or review.
         </p>
         <p>
-          This page is educational only. Dr.Utilio is not yet processing files
-          on this route.
+          Dr.Utilio now includes a working client-side{" "}
+          {pdfLink("/calculators/split-pdf", "Split PDF")} tool, so this guide
+          focuses on workflow planning rather than acting as a placeholder.
         </p>
       </>
     ),
@@ -198,16 +215,23 @@ export const pdfArticleContent: PdfArticleMap = {
               together, how the files should be named, and whether the resulting
               pieces will still make sense when opened on their own.
             </p>
+            <p>
+              If you want the live browser-side workflow itself, use{" "}
+              {pdfLink("/calculators/split-pdf", "Split PDF")}.
+            </p>
           </>
         ),
       },
       {
-        title: "Related PDF workflows",
+        title: "Related PDF Tools",
         content: (
           <>
             <p>
-              Compare this with the {pdfLink("/merge-pdf-guide", "merge PDF guide")}
-              , the {pdfLink("/pdf-tools", "PDF tools hub")}, and the{" "}
+              Compare {pdfLink("/calculators/split-pdf", "Split PDF")},{" "}
+              {pdfLink("/calculators/merge-pdf", "Merge PDF")}, and the{" "}
+              {pdfLink("/merge-pdf-guide", "merge PDF guide")}
+              , the {pdfLink("/pdf-tools", "PDF tools hub")}, the{" "}
+              {pdfLink("/pdf-tools/category", "PDF tools category")}, and the{" "}
               {pdfLink("/pdf-compression-guide", "PDF compression guide")}.
             </p>
           </>
@@ -218,7 +242,7 @@ export const pdfArticleContent: PdfArticleMap = {
       { question: "Does splitting reduce file size automatically?", answer: "It reduces the size of each output part, but not always in perfectly proportional ways." },
       { question: "Can page numbering become confusing after splitting?", answer: "Yes. It helps to rename outputs clearly so context is not lost." },
       { question: "Is splitting mainly about organization?", answer: "Often yes. Organization and shareability are the most common reasons." },
-      { question: "Can Dr.Utilio split PDFs on this route yet?", answer: "Not yet. This page is educational only for now." },
+      { question: "Can Dr.Utilio split PDFs now?", answer: "Yes. Dr.Utilio now offers a working client-side Split PDF tool that runs locally in the browser." },
     ],
   },
   "pdf-to-word-guide": {
@@ -267,13 +291,15 @@ export const pdfArticleContent: PdfArticleMap = {
         ),
       },
       {
-        title: "Where to go next",
+        title: "Related PDF Tools",
         content: (
           <>
             <p>
-              Continue with the {pdfLink("/pdf-tools", "PDF tools hub")} and the{" "}
-              {pdfLink("/image-to-pdf-guide", "image to PDF guide")} if your
-              workflow moves between scans and editable documents.
+              Continue with the {pdfLink("/pdf-tools", "PDF tools hub")},{" "}
+              {pdfLink("/pdf-tools/category", "PDF tools category")}, the{" "}
+              {pdfLink("/image-to-pdf-guide", "image to PDF guide")}, and the{" "}
+              {pdfLink("/merge-pdf-guide", "merge PDF guide")} if your workflow
+              moves between scans and editable documents.
             </p>
           </>
         ),
@@ -289,7 +315,7 @@ export const pdfArticleContent: PdfArticleMap = {
   "image-to-pdf-guide": {
     title: "Image to PDF Guide",
     description:
-      "Learn what usually matters when turning images into PDFs, including page order, image quality, and resulting file size.",
+      "Learn what usually matters when turning images into PDFs, including page order, image quality, browser-side conversion, and resulting file size.",
     path: "/image-to-pdf-guide",
     intro: (
       <>
@@ -299,8 +325,9 @@ export const pdfArticleContent: PdfArticleMap = {
           order, readability, and final file size.
         </p>
         <p>
-          This page is educational only. Dr.Utilio is not yet processing image
-          uploads into PDFs on this route.
+          Dr.Utilio now includes working client-side image-to-PDF tools, so
+          this guide focuses on the surrounding tradeoffs rather than serving
+          only as a placeholder page.
         </p>
       </>
     ),
@@ -314,6 +341,10 @@ export const pdfArticleContent: PdfArticleMap = {
               but it can also make the final PDF much larger. That is one reason
               a size estimate can be useful before export.
             </p>
+            <p>
+              If you want the working browser tool itself, use{" "}
+              {pdfLink("/calculators/image-to-pdf", "Image to PDF")}.
+            </p>
           </>
         ),
       },
@@ -326,20 +357,31 @@ export const pdfArticleContent: PdfArticleMap = {
               whether pages are in the right order, rotated correctly, and easy
               to review as a single document.
             </p>
+            <p>
+              Dr.Utilio&apos;s converter keeps the workflow in the browser and
+              lets you reorder pages before download, which is one of the most
+              important practical parts of an image-based PDF workflow.
+            </p>
           </>
         ),
       },
       {
-        title: "Related PDF tools",
+        title: "Related PDF Tools",
         content: (
           <>
             <p>
-              Use the{" "}
+              Use{" "}
+              {pdfLink("/calculators/image-to-pdf", "Image to PDF")},{" "}
+              {pdfLink("/calculators/jpg-to-pdf", "JPG to PDF")},{" "}
+              {pdfLink("/calculators/png-to-pdf", "PNG to PDF")},{" "}
+              the{" "}
               {pdfLink(
                 "/calculators/pdf-file-size-estimator",
                 "PDF file size estimator",
               )},
               the {pdfLink("/pdf-compression-guide", "PDF compression guide")},
+              the {pdfLink("/merge-pdf-guide", "merge PDF guide")},
+              the {pdfLink("/pdf-tools/category", "PDF tools category")},
               and the {pdfLink("/pdf-tools", "PDF tools hub")} as the next
               references.
             </p>
@@ -351,7 +393,142 @@ export const pdfArticleContent: PdfArticleMap = {
       { question: "Can image-based PDFs become very large?", answer: "Yes. Image count, quality, and page count can increase size quickly." },
       { question: "Does image order matter?", answer: "Yes. Order is one of the most important practical parts of the workflow." },
       { question: "Can low-quality images hurt readability?", answer: "Yes. Small or heavily compressed images can make text hard to read." },
-      { question: "Can Dr.Utilio convert images to PDFs here yet?", answer: "Not yet. This page is educational only for now." },
+      { question: "Can Dr.Utilio convert images to PDFs now?", answer: "Yes. Dr.Utilio now offers working client-side Image to PDF, JPG to PDF, and PNG to PDF tools that run in the browser." },
+    ],
+  },
+  "jpg-to-pdf-guide": {
+    title: "JPG to PDF Guide",
+    description:
+      "Learn how JPG to PDF workflows usually behave, including image quality tradeoffs, page order, and browser-side document creation.",
+    path: "/jpg-to-pdf-guide",
+    intro: (
+      <>
+        <p>
+          JPG to PDF workflows are common when photos, scans, or phone-camera
+          images need to be bundled into one shareable document.
+        </p>
+        <p>
+          This guide explains the practical tradeoffs while the working{" "}
+          {pdfLink("/calculators/jpg-to-pdf", "JPG to PDF")} converter handles
+          the actual browser-side export.
+        </p>
+      </>
+    ),
+    sections: [
+      {
+        title: "JPG is often efficient for photo-heavy pages",
+        content: (
+          <>
+            <p>
+              JPEG is commonly used for photo-heavy content because it can keep
+              file size lower than some other formats while still preserving a
+              usable visual result.
+            </p>
+          </>
+        ),
+      },
+      {
+        title: "Order and source quality still matter",
+        content: (
+          <>
+            <p>
+              Even when the conversion step is easy, the usefulness of the
+              final PDF depends on page order, legibility, lighting, cropping,
+              and whether the original images are clean enough to read.
+            </p>
+          </>
+        ),
+      },
+      {
+        title: "Related PDF Tools",
+        content: (
+          <>
+            <p>
+              Continue with {pdfLink("/calculators/jpg-to-pdf", "JPG to PDF")},
+              {pdfLink("/calculators/image-to-pdf", " Image to PDF")},{" "}
+              {pdfLink("/calculators/png-to-pdf", "PNG to PDF")},{" "}
+              {pdfLink("/pdf-tools", "the PDF tools hub")}, and{" "}
+              {pdfLink("/image-to-pdf-guide", "the Image to PDF guide")}.
+            </p>
+          </>
+        ),
+      },
+    ],
+    faqItems: [
+      { question: "When is JPG to PDF a good fit?", answer: "It is often a practical fit for photos, camera scans, and other JPEG-based image bundles." },
+      { question: "Does JPG usually keep file size lower than some lossless formats?", answer: "Often yes, especially for photo-heavy content, though exact results vary." },
+      { question: "Can I reorder JPG pages before download?", answer: "Yes. Dr.Utilio's JPG to PDF tool lets you rearrange the upload order before export." },
+      { question: "Is the browser doing the conversion locally?", answer: "Yes. The current tool is designed as a client-side local workflow." },
+    ],
+  },
+  "png-to-pdf-guide": {
+    title: "PNG to PDF Guide",
+    description:
+      "Learn how PNG to PDF workflows usually behave, especially for screenshots, diagrams, transparency, and image-heavy document size.",
+    path: "/png-to-pdf-guide",
+    intro: (
+      <>
+        <p>
+          PNG to PDF workflows are useful for screenshots, diagrams, forms, and
+          crisp image assets that need to be packaged into one PDF.
+        </p>
+        <p>
+          This guide explains the practical tradeoffs while the working{" "}
+          {pdfLink("/calculators/png-to-pdf", "PNG to PDF")} tool handles the
+          browser-side export itself.
+        </p>
+      </>
+    ),
+    sections: [
+      {
+        title: "PNG often favors sharp detail over smaller size",
+        content: (
+          <>
+            <p>
+              PNG is commonly used for screenshots, interface captures, charts,
+              or diagrams because it can preserve cleaner edges and text detail
+              than some photo-oriented formats.
+            </p>
+          </>
+        ),
+      },
+      {
+        title: "File size can climb quickly",
+        content: (
+          <>
+            <p>
+              The tradeoff is that PNG-based documents can become large,
+              especially when many pages are involved. That is why it can help
+              to compare the result against the{" "}
+              {pdfLink(
+                "/calculators/pdf-file-size-estimator",
+                "PDF File Size Estimator",
+              )}
+              .
+            </p>
+          </>
+        ),
+      },
+      {
+        title: "Related PDF Tools",
+        content: (
+          <>
+            <p>
+              Continue with {pdfLink("/calculators/png-to-pdf", "PNG to PDF")},
+              {pdfLink("/calculators/image-to-pdf", " Image to PDF")},{" "}
+              {pdfLink("/calculators/jpg-to-pdf", "JPG to PDF")},{" "}
+              {pdfLink("/pdf-tools", "the PDF tools hub")}, and{" "}
+              {pdfLink("/image-to-pdf-guide", "the Image to PDF guide")}.
+            </p>
+          </>
+        ),
+      },
+    ],
+    faqItems: [
+      { question: "When is PNG to PDF especially useful?", answer: "It is often useful for screenshots, diagrams, forms, and assets where crisp line detail matters." },
+      { question: "Can PNG-based PDFs be larger than expected?", answer: "Yes. PNG-heavy workflows can produce larger PDFs, especially across many pages." },
+      { question: "Can transparency affect PDF output?", answer: "Yes. Transparent PNGs may be flattened during browser-side conversion." },
+      { question: "Is Dr.Utilio's PNG to PDF workflow local to the browser?", answer: "Yes. The current converter is designed to run client-side in the browser." },
     ],
   },
 };

@@ -3130,6 +3130,521 @@ export const toolPageContent: Record<string, ToolPageContent> = {
       },
     ],
   },
+  "merge-pdf": {
+    title: "Merge PDF",
+    description:
+      "Merge multiple PDF files into one downloadable PDF with a client-side PDF merge tool that runs locally in your browser.",
+    eyebrow: "PDF Tools",
+    intro:
+      "Use this Merge PDF tool to upload multiple PDF files, arrange them in the order you want, and generate one merged PDF directly in your browser. Files stay local to your device during processing.",
+    category: "Everyday Tools",
+    path: "/calculators/merge-pdf",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This tool loads each selected PDF in the browser, copies the pages
+            in your chosen order, and writes them into one merged output file.
+            That makes it useful for combining forms, invoices, scanned
+            sections, slide exports, and multi-part document bundles.
+          </p>
+          <p>
+            Because the work happens locally, your files are not uploaded to a
+            server during the merge. You can also use the{" "}
+            {toolLink("/split-pdf-guide", "Split PDF guide")} and the{" "}
+            {toolLink("/pdf-tools", "PDF tools hub")} to compare related
+            document workflows.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            A successful result means the merged PDF is ready to download. The
+            summary shows how many source PDFs were combined, the known page
+            count where available, and the approximate size of the output file.
+          </p>
+          <p>
+            That helps you sanity-check whether the combined document is still
+            practical for sharing or uploading. If file size is a concern, the{" "}
+            {toolLink(
+              "/calculators/pdf-file-size-estimator",
+              "PDF File Size Estimator",
+            )}{" "}
+            can help you think through the likely tradeoffs.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This is a practical browser-based merge workflow, not a full PDF
+            editing suite. Advanced PDF features such as bookmarks, forms,
+            embedded attachments, internal metadata, and other specialized
+            document structures may not carry over exactly as they appeared in
+            every source file.
+          </p>
+          <p>
+            It is also not a server-side archival workflow. For very large or
+            highly specialized PDFs, browser memory limits can still matter.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use Merge PDF when you want to combine multiple existing PDFs into
+            one file for review, sharing, printing, or submission.
+          </p>
+          <p>
+            If you need the opposite workflow, where one large file is broken
+            into smaller pieces, use {toolLink("/calculators/split-pdf", "Split PDF")}
+            .
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Are my PDFs uploaded to a server during merging?",
+        answer:
+          "No. Files are processed locally in your browser and are never uploaded by this tool.",
+      },
+      {
+        question: "Can I reorder the PDFs before merging them?",
+        answer:
+          "Yes. You can move files up or down so the final merged PDF follows the order you want.",
+      },
+      {
+        question: "Will all PDF features stay identical after merging?",
+        answer:
+          "Not always. Core pages usually merge well, but advanced features such as bookmarks, forms, metadata, or attachments can vary.",
+      },
+      {
+        question: "Can I merge more than two PDF files?",
+        answer:
+          "Yes. You can merge multiple PDF files into one downloadable output.",
+      },
+      {
+        question: "Is this tool giving legal or professional document advice?",
+        answer:
+          "No. It is a browser-based utility tool only and does not provide legal, compliance, or records-management advice.",
+      },
+    ],
+  },
+  "split-pdf": {
+    title: "Split PDF",
+    description:
+      "Split a PDF by page ranges into separate downloadable files with a client-side PDF split tool that runs locally in your browser.",
+    eyebrow: "PDF Tools",
+    intro:
+      "Use this Split PDF tool to upload one PDF, define page ranges like 1-3 or 7-9, and export separate PDF files directly in your browser. Files stay local to your device during processing.",
+    category: "Everyday Tools",
+    path: "/calculators/split-pdf",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This tool reads one PDF in the browser, interprets the page ranges
+            you provide, and creates a separate PDF output for each range. That
+            can be useful for chapter extraction, form separation, batch scan
+            cleanup, or sharing only the pages someone actually needs.
+          </p>
+          <p>
+            Because the output is range-based, the most important input is
+            still planning the page groups clearly. The{" "}
+            {toolLink("/split-pdf-guide", "Split PDF guide")} is a good
+            companion if you want to think through that workflow more carefully.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            When the split succeeds, each requested range becomes its own
+            downloadable PDF. The result area shows how many outputs were
+            created and the approximate total size of those generated files.
+          </p>
+          <p>
+            That makes it easier to confirm that your page grouping worked the
+            way you intended before you download or share the outputs.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This is a practical browser-based split workflow, not a full PDF
+            editing environment. Advanced features such as forms, bookmarks,
+            attachments, or internal navigation may not behave identically in
+            every split output.
+          </p>
+          <p>
+            Very large PDFs may also run into browser memory limits depending on
+            the device and the document itself.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use Split PDF when one large file needs to become smaller, more
+            targeted PDFs for email, upload, internal routing, or record
+            organization.
+          </p>
+          <p>
+            If you need the opposite workflow, where several files become one,
+            use {toolLink("/calculators/merge-pdf", "Merge PDF")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Are my PDFs uploaded to a server during splitting?",
+        answer:
+          "No. Files are processed locally in your browser and are never uploaded by this tool.",
+      },
+      {
+        question: "How do I enter page ranges?",
+        answer:
+          "Use commas to separate outputs, such as 1-3, 4, 7-9. Each item becomes a separate downloadable PDF.",
+      },
+      {
+        question: "Can I split one PDF into several new PDFs at once?",
+        answer:
+          "Yes. Each page range you provide becomes its own separate output file.",
+      },
+      {
+        question: "Will advanced PDF features always carry over cleanly?",
+        answer:
+          "Not always. Basic page extraction usually works well, but forms, bookmarks, metadata, and other advanced features can vary.",
+      },
+      {
+        question: "Is this tool giving legal or professional document advice?",
+        answer:
+          "No. It is a browser-based utility tool only and does not provide legal, compliance, or records-management advice.",
+      },
+    ],
+  },
+  "image-to-pdf": {
+    title: "Image to PDF",
+    description:
+      "Convert multiple images into one downloadable PDF with a client-side image to PDF tool that runs locally in your browser.",
+    eyebrow: "PDF Tools",
+    intro:
+      "Use this Image to PDF tool to combine JPG, PNG, and other common image files into one PDF document without sending files to a server. You can upload multiple images, reorder the pages, and download the finished PDF directly from your browser.",
+    category: "Everyday Tools",
+    path: "/calculators/image-to-pdf",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This tool uses browser APIs to read your selected images, arrange
+            them in your chosen order, and generate a simple downloadable PDF.
+            Each uploaded image becomes a PDF page, which makes the tool useful
+            for scan bundles, receipts, worksheets, notes, and lightweight
+            document sharing.
+          </p>
+          <p>
+            Because the work happens locally, your files stay on your device
+            during conversion. If you want the broader directory for this tool
+            family, visit the {toolLink("/pdf-tools", "PDF tools hub")} or the{" "}
+            {toolLink("/pdf-tools/category", "PDF tools category")}.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The main result tells you when the PDF is ready and gives you a
+            download link. It also shows how many pages are included and the
+            approximate size of the generated PDF, which can help when you are
+            planning around upload limits or email attachments.
+          </p>
+          <p>
+            If file size matters before or after conversion, compare the result
+            with the{" "}
+            {toolLink(
+              "/calculators/pdf-file-size-estimator",
+              "PDF File Size Estimator",
+            )}{" "}
+            to understand how page count, image density, and quality can change
+            a PDF.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This tool is meant for practical client-side conversion, not
+            high-end document publishing. Output size, page scaling, print
+            results, and transparency handling can vary with browser behavior
+            and the source images you upload.
+          </p>
+          <p>
+            It also does not add OCR, editable text, signatures, or advanced
+            PDF features. For workflow education around compression, merging, or
+            conversion tradeoffs, continue into the{" "}
+            {toolLink("/image-to-pdf-guide", "Image to PDF guide")} and related
+            PDF guides.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this tool when you want a quick way to package images into one
+            PDF for sharing, printing, school submissions, internal reference,
+            or personal organization.
+          </p>
+          <p>
+            If you only need JPEG-specific or PNG-specific workflows, you can
+            also use the {toolLink("/calculators/jpg-to-pdf", "JPG to PDF")} or{" "}
+            {toolLink("/calculators/png-to-pdf", "PNG to PDF")} variants.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Are my images uploaded to a server?",
+        answer:
+          "No. The files are processed locally in your browser and are not uploaded to a server by this tool.",
+      },
+      {
+        question: "Can I reorder the images before downloading the PDF?",
+        answer:
+          "Yes. You can move uploaded images up or down so the PDF pages follow the order you want.",
+      },
+      {
+        question: "Does this tool support multiple image uploads?",
+        answer:
+          "Yes. You can upload multiple images in one batch and convert them into a single PDF document.",
+      },
+      {
+        question: "Will the PDF size always match the original image sizes?",
+        answer:
+          "Not exactly. The generated PDF size depends on page count, image dimensions, browser-side encoding, and how each page is placed into the PDF.",
+      },
+      {
+        question: "Is this a secure private workflow?",
+        answer:
+          "It is a local browser-based workflow, which means files stay on your device during conversion. You should still use your own judgment for sensitive documents.",
+      },
+    ],
+  },
+  "jpg-to-pdf": {
+    title: "JPG to PDF",
+    description:
+      "Combine multiple JPG or JPEG images into one downloadable PDF with a client-side JPG to PDF converter.",
+    eyebrow: "PDF Tools",
+    intro:
+      "Use this JPG to PDF converter to combine one or more JPG images into a single PDF directly in your browser. It supports multiple uploads, page reordering, and local processing without a server upload step.",
+    category: "Everyday Tools",
+    path: "/calculators/jpg-to-pdf",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            The converter accepts JPG and JPEG image files, arranges them into
+            your preferred order, and assembles a simple PDF in the browser.
+            That makes it useful for camera photos, scanned JPG exports, travel
+            paperwork, and lightweight document bundles.
+          </p>
+          <p>
+            If your source files are mixed rather than JPG-only, the broader{" "}
+            {toolLink("/calculators/image-to-pdf", "Image to PDF")} route gives
+            you a more flexible entry point.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            Once generated, the PDF result is ready for download and the tool
+            shows the page count plus an approximate output size. That can help
+            you check whether the document feels reasonable before sharing it.
+          </p>
+          <p>
+            For extra file-size context, compare your result with the{" "}
+            {toolLink(
+              "/calculators/pdf-file-size-estimator",
+              "PDF File Size Estimator",
+            )}{" "}
+            or browse the {toolLink("/pdf-tools", "PDF tools hub")} for related
+            guidance.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            The output is still an estimate-grade document workflow, not a
+            publishing or archival system. Browsers can differ in how they
+            encode and package image-heavy PDFs, so exact output size and
+            visual behavior can vary.
+          </p>
+          <p>
+            This tool also does not edit the images themselves beyond placing
+            them into PDF pages. If you need workflow education, the{" "}
+            {toolLink("/jpg-to-pdf-guide", "JPG to PDF guide")} covers the
+            practical tradeoffs in more detail.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use JPG to PDF when your source files are already photographs or
+            scans saved as JPEGs and you want a fast browser-based PDF export
+            without installing software.
+          </p>
+          <p>
+            If you are working with PNGs instead, the{" "}
+            {toolLink("/calculators/png-to-pdf", "PNG to PDF")} tool is the
+            better match.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "What image types does this converter accept?",
+        answer:
+          "This route is focused on JPG and JPEG files. If you need a mixed-image workflow, the broader Image to PDF tool is a better fit.",
+      },
+      {
+        question: "Can I combine several JPG files into one PDF?",
+        answer:
+          "Yes. The tool supports multiple uploads and combines them into a single downloadable PDF.",
+      },
+      {
+        question: "Is the conversion happening locally?",
+        answer:
+          "Yes. Files are processed locally in your browser and are not uploaded to a server by this tool.",
+      },
+      {
+        question: "Can I control the order of the PDF pages?",
+        answer:
+          "Yes. You can reorder the uploaded JPG files before generating the PDF.",
+      },
+      {
+        question: "Does this guarantee exact print output?",
+        answer:
+          "No. It is a practical browser-based converter, so scaling and file behavior can vary by device, browser, and source images.",
+      },
+    ],
+  },
+  "png-to-pdf": {
+    title: "PNG to PDF",
+    description:
+      "Convert multiple PNG images into one downloadable PDF with a client-side PNG to PDF converter.",
+    eyebrow: "PDF Tools",
+    intro:
+      "Use this PNG to PDF converter to upload multiple PNG files, arrange them into page order, and export a combined PDF in your browser. The workflow stays client-side and does not depend on a server upload.",
+    category: "Everyday Tools",
+    path: "/calculators/png-to-pdf",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            The tool reads PNG files in the browser, converts them into a
+            PDF-friendly image stream, and places each one on its own page.
+            That can be helpful for screenshots, diagrams, scanned notes, and
+            image-based handouts.
+          </p>
+          <p>
+            If you are comparing formats, the{" "}
+            {toolLink("/png-to-pdf-guide", "PNG to PDF guide")} explains why
+            PNG-heavy documents often behave differently from JPG-heavy ones.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            A successful result means the PDF is ready to download locally from
+            your browser. The summary also shows the number of pages and the
+            approximate generated file size so you can quickly sanity-check the
+            output.
+          </p>
+          <p>
+            If you want a more general image workflow, the{" "}
+            {toolLink("/calculators/image-to-pdf", "Image to PDF")} route can
+            handle a broader mix of files.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            PNG files often preserve sharp lines, text, or transparency, but
+            the PDF output still depends on browser rendering and PDF assembly
+            behavior. Transparency may be flattened during conversion, and the
+            final file size may still be larger than expected for image-heavy
+            documents.
+          </p>
+          <p>
+            This tool is meant for practical local conversion rather than exact
+            publishing control. If file size is your main concern, compare the
+            result against the{" "}
+            {toolLink(
+              "/calculators/pdf-file-size-estimator",
+              "PDF File Size Estimator",
+            )}
+            .
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use PNG to PDF when your images are screenshots, diagrams, or
+            artwork saved as PNG files and you want them packaged as a single
+            PDF for distribution or printing.
+          </p>
+          <p>
+            If your files are primarily photos, the{" "}
+            {toolLink("/calculators/jpg-to-pdf", "JPG to PDF")} route is often
+            the more natural fit.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Why use a PNG-specific PDF converter?",
+        answer:
+          "It is useful when your source files are already PNG screenshots, diagrams, or graphics and you want a cleaner route focused on that format.",
+      },
+      {
+        question: "Are PNG files uploaded anywhere during conversion?",
+        answer:
+          "No. The files are processed locally in your browser and are not uploaded to a server by this tool.",
+      },
+      {
+        question: "Can PNG transparency affect the PDF result?",
+        answer:
+          "Yes. Transparency can be flattened during conversion depending on how the browser renders the images into PDF-ready pages.",
+      },
+      {
+        question: "Can I reorder the PNG pages before download?",
+        answer:
+          "Yes. You can move uploaded images up or down before generating the PDF.",
+      },
+      {
+        question: "Is the output an exact publishing-grade PDF?",
+        answer:
+          "No. It is a practical local browser converter, so exact output details can vary by browser, device, and source images.",
+      },
+    ],
+  },
   "unit-converter": {
     title: "Unit Converter",
     description:

@@ -249,6 +249,22 @@ export const calculators: CalculatorItem[] = [
     status: "Available now",
   },
   {
+    slug: "merge-pdf",
+    title: "Merge PDF",
+    description:
+      "Merge multiple PDF files into one downloadable document locally in your browser.",
+    category: "Everyday Tools",
+    status: "Featured",
+  },
+  {
+    slug: "split-pdf",
+    title: "Split PDF",
+    description:
+      "Split one PDF into separate files by page ranges with local browser processing.",
+    category: "Everyday Tools",
+    status: "Popular",
+  },
+  {
     slug: "grade-calculator",
     title: "Grade Calculator",
     description:
@@ -305,6 +321,30 @@ export const calculators: CalculatorItem[] = [
     status: "Featured",
   },
   {
+    slug: "image-to-pdf",
+    title: "Image to PDF",
+    description:
+      "Turn multiple images into one browser-generated PDF without uploading files to a server.",
+    category: "Everyday Tools",
+    status: "Featured",
+  },
+  {
+    slug: "jpg-to-pdf",
+    title: "JPG to PDF",
+    description:
+      "Combine one or more JPG images into a downloadable PDF using a client-side workflow.",
+    category: "Everyday Tools",
+    status: "Popular",
+  },
+  {
+    slug: "png-to-pdf",
+    title: "PNG to PDF",
+    description:
+      "Combine one or more PNG images into a downloadable PDF in your browser.",
+    category: "Everyday Tools",
+    status: "Available now",
+  },
+  {
     slug: "unit-converter",
     title: "Unit Converter",
     description:
@@ -326,6 +366,8 @@ export const featuredCalculators = calculators.filter((calculator) =>
     "bmi-calculator",
     "final-grade-calculator",
     "age-calculator",
+    "image-to-pdf",
+    "merge-pdf",
     "gpa-calculator",
     "unit-converter",
   ].includes(calculator.slug),
