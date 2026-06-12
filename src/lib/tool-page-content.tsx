@@ -1838,6 +1838,106 @@ export const toolPageContent: Record<string, ToolPageContent> = {
       },
     ],
   },
+  "pdf-file-size-estimator": {
+    title: "PDF File Size Estimator",
+    description:
+      "Estimate approximate PDF file size from page count, image density, image quality, and document style assumptions.",
+    eyebrow: "PDF Tools",
+    intro:
+      "Use this PDF file size estimator to get a rough idea of how large a PDF might be before export or upload. It is an educational estimate only, not a file-processing tool or an exact measurement.",
+    category: "Everyday Tools",
+    path: "/calculators/pdf-file-size-estimator",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This estimator starts with the number of pages and then adjusts the
+            estimate using image density, image quality level, and whether the
+            document is more text-heavy or image-heavy.
+          </p>
+          <p>
+            That creates a rough file-size estimate for planning. It does not
+            inspect a real document. If you want the broader context around
+            size-reduction strategy, see the{" "}
+            {toolLink("/pdf-compression-guide", "PDF compression guide")} and
+            the {toolLink("/pdf-tools", "PDF tools hub")}.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The estimated MB and KB values are planning numbers. They help you
+            compare rough scenarios such as whether a text-heavy document will
+            likely stay small or whether an image-heavy export may be more
+            difficult to share.
+          </p>
+          <p>
+            They should not be treated as exact upload predictions. Real PDFs
+            can vary because of fonts, compression method, export engine, scan
+            settings, and embedded metadata.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This tool does not process, compress, or inspect an actual PDF. It
+            uses simplified assumptions only. Actual file size may differ
+            significantly from the estimate.
+          </p>
+          <p>
+            It also does not tell you what compression setting is best. It is a
+            planning aid, not a replacement for testing a real export workflow.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this estimator when you are planning a scan, export, upload, or
+            sharing workflow and want a fast rough size comparison before
+            handling real files.
+          </p>
+          <p>
+            Good companion pages include the{" "}
+            {toolLink("/pdf-tools", "PDF tools hub")},{" "}
+            {toolLink("/pdf-compression-guide", "PDF compression guide")},{" "}
+            {toolLink("/merge-pdf-guide", "merge PDF guide")}, and{" "}
+            {toolLink("/image-to-pdf-guide", "image to PDF guide")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Is the PDF file size estimator exact?",
+        answer:
+          "No. It is only a rough estimate based on simplified page and image assumptions.",
+      },
+      {
+        question: "Why can real PDF size differ from the estimate?",
+        answer:
+          "Because real file size depends on compression settings, fonts, metadata, scans, export tools, and the actual content inside the file.",
+      },
+      {
+        question: "Does this tool upload or inspect my file?",
+        answer:
+          "No. It does not process actual PDFs at this stage.",
+      },
+      {
+        question: "Can this help before compressing a PDF?",
+        answer:
+          "Yes. It can help you think through rough size expectations before trying a compression workflow.",
+      },
+      {
+        question: "Is this a file-processing tool?",
+        answer:
+          "No. It is an educational estimator only.",
+      },
+    ],
+  },
   "hijri-date-converter": {
     title: "Hijri Date Converter",
     description:

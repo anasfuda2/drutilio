@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { siteConfig } from "@/lib/site";
 
@@ -37,6 +38,11 @@ const categoryLinks = [
     description: "Wellness, body metrics, hydration, and calorie guides.",
   },
   {
+    href: "/education",
+    label: "Education",
+    description: "GPA, final-grade, and study-planning tools and guides.",
+  },
+  {
     href: "/zakat",
     label: "Zakat",
     description: "Zakat calculators and educational Islamic finance content.",
@@ -53,6 +59,11 @@ const toolLinks = [
     href: "/converters",
     label: "Converters",
     description: "Jump straight to date and unit conversion tools.",
+  },
+  {
+    href: "/pdf-tools",
+    label: "PDF Tools",
+    description: "Explore PDF guides and estimate-based document utilities.",
   },
 ];
 
@@ -83,6 +94,11 @@ const guideLinks = [
     description: "Calories, BMR, body fat, and healthy-weight explainers.",
   },
   {
+    href: "/education",
+    label: "Education Guides",
+    description: "GPA, finals, study-time, and academic-planning guides.",
+  },
+  {
     href: "/zakat",
     label: "Zakat Guides",
     description: "Zakat basics, nisab, and asset-specific articles.",
@@ -92,32 +108,90 @@ const guideLinks = [
 function DesktopMenu({
   label,
   items,
+  isOpen,
+  onToggle,
+  onClose,
 }: {
   label: string;
   items: Array<{ href: string; label: string; description: string }>;
+  isOpen: boolean;
+  onToggle: () => void;
+  onClose: () => void;
 }) {
+  const menuId = useId();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    function handlePointerDown(event: MouseEvent) {
+      if (!containerRef.current?.contains(event.target as Node)) {
+        onClose();
+      }
+    }
+
+    function handleFocusIn(event: FocusEvent) {
+      if (!containerRef.current?.contains(event.target as Node)) {
+        onClose();
+      }
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    }
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("focusin", handleFocusIn);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("focusin", handleFocusIn);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   return (
-    <details className="group relative">
-      <summary className="cursor-pointer list-none rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/5 hover:text-white">
+    <div className="relative" ref={containerRef}>
+      <button
+        type="button"
+        aria-expanded={isOpen}
+        aria-controls={menuId}
+        aria-haspopup="menu"
+        onClick={onToggle}
+        className="rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/5 hover:text-white"
+      >
         {label}
-      </summary>
-      <div className="absolute right-0 top-[calc(100%+0.75rem)] w-[22rem] rounded-2xl border border-white/10 bg-slate-950/95 p-3 shadow-2xl backdrop-blur">
-        <div className="grid gap-2">
-          {items.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-xl px-4 py-3 transition hover:bg-white/5"
-            >
-              <p className="text-sm font-semibold text-white">{item.label}</p>
-              <p className="mt-1 text-xs leading-5 text-slate-400">
-                {item.description}
-              </p>
-            </Link>
-          ))}
+      </button>
+      {isOpen ? (
+        <div
+          id={menuId}
+          role="menu"
+          className="absolute right-0 top-[calc(100%+0.75rem)] w-[22rem] rounded-2xl border border-white/10 bg-slate-950/95 p-3 shadow-2xl backdrop-blur"
+        >
+          <div className="grid gap-2">
+            {items.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                role="menuitem"
+                className="rounded-xl px-4 py-3 transition hover:bg-white/5 focus:bg-white/5 focus:outline-none"
+                onClick={onClose}
+              >
+                <p className="text-sm font-semibold text-white">{item.label}</p>
+                <p className="mt-1 text-xs leading-5 text-slate-400">
+                  {item.description}
+                </p>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
-    </details>
+      ) : null}
+    </div>
   );
 }
 
@@ -156,6 +230,18 @@ function MobileSection({
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [toolsOpen, setToolsOpen] = useState(false);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const closeMenusTimer = window.setTimeout(() => {
+      setMobileOpen(false);
+      setToolsOpen(false);
+    }, 0);
+
+    return () => window.clearTimeout(closeMenusTimer);
+  }, [pathname, searchParams]);
 
   return (
     <header className="sticky top-0 z-30 border-b border-white/10 bg-slate-950/85 backdrop-blur">
@@ -164,7 +250,10 @@ export function Header() {
           <Link
             href="/"
             className="flex max-w-xs flex-col"
-            onClick={() => setMobileOpen(false)}
+            onClick={() => {
+              setMobileOpen(false);
+              setToolsOpen(false);
+            }}
           >
             <span className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
               {siteConfig.name}
@@ -191,7 +280,13 @@ export function Header() {
             >
               Home
             </Link>
-            <DesktopMenu label="Tools" items={toolLinks} />
+            <DesktopMenu
+              label="Tools"
+              items={toolLinks}
+              isOpen={toolsOpen}
+              onToggle={() => setToolsOpen((open) => !open)}
+              onClose={() => setToolsOpen(false)}
+            />
             <Link
               href="/categories"
               className="rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/5 hover:text-white"

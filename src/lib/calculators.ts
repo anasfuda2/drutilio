@@ -241,6 +241,14 @@ export const calculators: CalculatorItem[] = [
     status: "Available now",
   },
   {
+    slug: "pdf-file-size-estimator",
+    title: "PDF File Size Estimator",
+    description:
+      "Estimate approximate PDF size from page count, image density, image quality, and document type assumptions.",
+    category: "Everyday Tools",
+    status: "Available now",
+  },
+  {
     slug: "grade-calculator",
     title: "Grade Calculator",
     description:
@@ -1241,6 +1249,46 @@ export function calculateStudyTimePlan({
       day: `Day ${index + 1}`,
       hours: hoursPerDay,
     })),
+  };
+}
+
+export function calculatePdfFileSizeEstimate({
+  numberOfPages,
+  averageImagesPerPage,
+  imageQualityLevel,
+  documentStyle,
+}: {
+  numberOfPages: number;
+  averageImagesPerPage: number;
+  imageQualityLevel: "low" | "medium" | "high";
+  documentStyle: "text-heavy" | "balanced" | "image-heavy";
+}) {
+  const pages = Math.max(1, Math.round(clampNonNegative(numberOfPages)));
+  const imagesPerPage = clampNonNegative(averageImagesPerPage);
+
+  const qualityMultiplier =
+    imageQualityLevel === "low"
+      ? 0.35
+      : imageQualityLevel === "medium"
+        ? 0.75
+        : 1.25;
+
+  const styleBasePerPageKb =
+    documentStyle === "text-heavy"
+      ? 45
+      : documentStyle === "balanced"
+        ? 120
+        : 220;
+
+  const imageKbPerImage = 180 * qualityMultiplier;
+  const estimatedPerPageKb = styleBasePerPageKb + imagesPerPage * imageKbPerImage;
+  const totalEstimatedKb = pages * estimatedPerPageKb;
+
+  return {
+    pages,
+    estimatedPerPageKb,
+    totalEstimatedKb,
+    totalEstimatedMb: totalEstimatedKb / 1024,
   };
 }
 
