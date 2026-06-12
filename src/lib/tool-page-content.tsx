@@ -1092,6 +1092,525 @@ export const toolPageContent: Record<string, ToolPageContent> = {
       },
     ],
   },
+  "hijri-date-converter": {
+    title: "Hijri Date Converter",
+    description:
+      "Convert Gregorian dates to approximate Hijri dates and Hijri dates to approximate Gregorian dates with a practical online converter.",
+    eyebrow: "Everyday Tools",
+    intro:
+      "Use this Hijri date converter to switch between Gregorian calendar dates and approximate Hijri calendar dates. It is especially useful for planning around Ramadan, Eid, travel, school calendars, and Islamic finance tasks such as tracking zakat anniversaries.",
+    category: "Everyday Tools",
+    path: "/calculators/hijri-date-converter",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This converter uses a tabular Islamic calendar model to estimate the
+            corresponding date in the other calendar system. You can enter a
+            Gregorian date to see an approximate Hijri date, or enter a Hijri
+            year, month, and day to see an approximate Gregorian equivalent.
+          </p>
+          <p>
+            Because observed Islamic dates may differ by moon sighting and local
+            religious authority, the result should be treated as an educational
+            estimate rather than an official calendar decision. If you are
+            planning around zakat timing, Ramadan, or a local mosque schedule,
+            the{" "}
+            {toolLink("/zakat", "zakat hub")} and{" "}
+            {toolLink("/calculators/zakat-calculator", "zakat calculator")} can
+            also be useful references.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The main result shows the estimated matching date in the other
+            calendar. When you convert to Hijri, the tool gives you the Hijri
+            day, month name, and year. When you convert to Gregorian, it also
+            shows the ISO date format and weekday for easier reference.
+          </p>
+          <p>
+            This makes the tool practical for personal planning, calendar
+            notes, and rough religious date tracking. It is not meant to settle
+            official start dates for fasting, celebrations, or local religious
+            observance.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            Islamic calendar dates can vary based on moon sighting, regional
+            practice, and the approach adopted by a local Islamic authority.
+            That means two reliable communities may still announce slightly
+            different practical dates around the same part of the month.
+          </p>
+          <p>
+            The converter also does not replace official school, court, travel,
+            embassy, or religious calendars. Use it as a planning tool, then
+            verify important dates with the relevant authority if exact local
+            observance matters.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this tool when you want a quick approximation for Islamic
+            months, zakat anniversaries, Ramadan planning, event scheduling, or
+            comparing dates across everyday documents and religious reference
+            points.
+          </p>
+          <p>
+            It pairs naturally with the{" "}
+            {toolLink("/hijri-to-gregorian", "Hijri to Gregorian guide")} and{" "}
+            {toolLink(
+              "/gregorian-to-hijri",
+              "Gregorian to Hijri guide",
+            )}{" "}
+            for more context, and with the{" "}
+            {toolLink("/calculators/date-difference-calculator", "date difference calculator")}{" "}
+            if you also need to measure the span between two dates.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Is this Hijri date converter exact?",
+        answer:
+          "No. It provides an approximate conversion based on a tabular Islamic calendar model, and actual observed dates may differ by moon sighting and local authority.",
+      },
+      {
+        question: "Can I convert both directions?",
+        answer:
+          "Yes. The tool supports Gregorian-to-Hijri and Hijri-to-Gregorian conversion in one place.",
+      },
+      {
+        question: "Why might my local mosque use a different date?",
+        answer:
+          "Local communities may follow different moon sighting methods or religious authorities, so practical observance dates can vary even when the arithmetic estimate is close.",
+      },
+      {
+        question: "Can I use this for zakat planning?",
+        answer:
+          "Yes, as a general planning aid. It can be useful when tracking a Hijri anniversary, but exact religious timing should still be checked with trusted local guidance when necessary.",
+      },
+      {
+        question: "Is this an official religious ruling?",
+        answer:
+          "No. It is an educational utility tool and not a substitute for official calendars or qualified religious guidance.",
+      },
+    ],
+  },
+  "federal-income-tax-calculator": {
+    title: "Federal Income Tax Calculator",
+    description:
+      "Estimate federal taxable income, standard-deduction tax, and effective rate with a simplified US federal income tax calculator.",
+    eyebrow: "Finance",
+    intro:
+      "Use this federal income tax calculator to estimate taxable income, bracket-based federal tax, and your effective rate under a simplified US framework. It is designed for educational planning, not for filing a return or replacing professional tax review.",
+    category: "Finance",
+    path: "/calculators/federal-income-tax-calculator",
+    applicationCategory: "FinanceApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This calculator starts with annual gross income, subtracts the
+            pre-tax deductions or adjustments you enter, applies the standard
+            deduction for the filing status you select, and then runs the
+            remaining taxable income through a simplified federal bracket model.
+          </p>
+          <p>
+            It also allows an estimate for tax credits, which reduce the
+            bracket-based tax result after the income calculation has already
+            been made. For a fuller conceptual walkthrough, read{" "}
+            {toolLink(
+              "/how-to-calculate-federal-income-tax",
+              "how to calculate federal income tax",
+            )}{" "}
+            and the broader {toolLink("/tax", "tax hub")}.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The estimated federal tax result is a planning figure, not a filing
+            figure. It helps you think through how taxable income, filing
+            status, and standard deduction assumptions interact. The marginal
+            rate shows the top bracket applied to your last taxable dollars,
+            while the effective rate shows estimated tax as a share of gross
+            income.
+          </p>
+          <p>
+            If you want to understand the language behind those results, move to{" "}
+            {toolLink(
+              "/federal-income-tax-brackets",
+              "federal income tax brackets",
+            )}{" "}
+            and{" "}
+            {toolLink(
+              "/taxable-income-vs-gross-income",
+              "taxable income vs. gross income",
+            )}
+            .
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This calculator uses a simplified standard-deduction approach. It
+            does not handle itemized deductions, capital gains, AMT, multiple
+            states, special credits, phaseouts, or the many return-specific
+            details that can change actual federal tax outcomes.
+          </p>
+          <p>
+            It is an educational estimate only and not legal, tax, or financial
+            advice. If you are dealing with a real filing decision, pair this
+            with the AGI guide, the refund guide, and qualified tax review where
+            needed.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this calculator when you want a fast estimate before reviewing a
+            paycheck change, comparing offers, adjusting withholding, or
+            pressure-testing a rough number from software. It is most useful
+            when you want a planning frame rather than an exact return answer.
+          </p>
+          <p>
+            Good companion reads are{" "}
+            {toolLink(
+              "/what-is-adjusted-gross-income",
+              "what adjusted gross income is",
+            )}
+            ,{" "}
+            {toolLink(
+              "/common-tax-filing-mistakes",
+              "common tax filing mistakes",
+            )}
+            ,{" "}
+            {toolLink(
+              "/tax-refund-calculator-guide",
+              "tax refund calculator guide",
+            )}
+            , and{" "}
+            {toolLink(
+              "/self-employment-tax-guide",
+              "self-employment tax guide",
+            )}{" "}
+            if business income is part of the story.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Does this federal income tax calculator replace tax software?",
+        answer:
+          "No. It is a simplified educational calculator and does not replace tax software, IRS instructions, or professional tax advice.",
+      },
+      {
+        question: "Does it use the standard deduction?",
+        answer:
+          "Yes. This estimate uses a standard-deduction framework rather than itemized deductions.",
+      },
+      {
+        question: "Does the marginal rate apply to all of my income?",
+        answer:
+          "No. The marginal rate reflects the top bracket reached by taxable income, while lower slices of taxable income are generally taxed at lower rates.",
+      },
+      {
+        question: "Can I use this for self-employment income too?",
+        answer:
+          "You can use it for rough federal income tax planning, but self-employment tax is a separate issue and should be reviewed with the self-employment tax calculator and guide.",
+      },
+      {
+        question: "Are the results official?",
+        answer:
+          "No. The results are estimates only and should not be treated as official federal tax calculations or professional advice.",
+      },
+    ],
+  },
+  "self-employment-tax-calculator": {
+    title: "Self-Employment Tax Calculator",
+    description:
+      "Estimate self-employment tax on net business income with a simplified calculator for freelancers, contractors, and small business owners.",
+    eyebrow: "Finance",
+    intro:
+      "Use this self-employment tax calculator to estimate the Social Security and Medicare portion of self-employment tax on net business income. It is built for educational planning and cash-flow awareness, not for filing decisions or professional tax advice.",
+    category: "Finance",
+    path: "/calculators/self-employment-tax-calculator",
+    applicationCategory: "FinanceApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This calculator starts with annual net self-employment income and
+            applies a simplified self-employment tax framework. It uses 92.35%
+            of net earnings as the working tax base, then estimates the Social
+            Security and Medicare portions that commonly make up self-employment
+            tax.
+          </p>
+          <p>
+            It does not attempt to calculate your full return. For the broader
+            context, pair this tool with{" "}
+            {toolLink(
+              "/self-employment-tax-guide",
+              "the self-employment tax guide",
+            )}{" "}
+            and{" "}
+            {toolLink(
+              "/how-to-calculate-federal-income-tax",
+              "how to calculate federal income tax",
+            )}
+            .
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The total self-employment tax estimate helps you see the extra layer
+            that often surprises freelancers and contractors. The deductible
+            half result is included because many people hear that concept before
+            they understand where it fits in the return.
+          </p>
+          <p>
+            This is why the tool works best as a reserve-planning aid. It shows
+            why net business income can produce a different tax feel than W-2
+            wages, even before the ordinary federal income tax calculation is
+            finished.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This estimate does not include every real-world wrinkle. It does not
+            handle entity-specific rules, Additional Medicare Tax, wage-base
+            interactions with outside employment, state taxes, or specialized
+            business circumstances.
+          </p>
+          <p>
+            The result is an educational estimate only. If you are filing for a
+            real business, use this as a planning checkpoint and not as a final
+            tax position.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this calculator when you are freelancing, contracting, or
+            earning side-gig income and want a quick sense of how much of your
+            net income may need to be set aside. It is especially useful before
+            you build a reserve habit or compare contractor income to W-2
+            income.
+          </p>
+          <p>
+            Strong companion reads are{" "}
+            {toolLink("/tax", "the tax hub")},{" "}
+            {toolLink(
+              "/common-tax-filing-mistakes",
+              "common tax filing mistakes",
+            )}
+            ,{" "}
+            {toolLink(
+              "/tax-refund-calculator-guide",
+              "tax refund calculator guide",
+            )}
+            ,{" "}
+            {toolLink(
+              "/what-is-adjusted-gross-income",
+              "what adjusted gross income is",
+            )}
+            ,{" "}
+            {toolLink(
+              "/taxable-income-vs-gross-income",
+              "taxable income vs. gross income",
+            )}
+            , and{" "}
+            {toolLink(
+              "/federal-income-tax-brackets",
+              "federal income tax brackets",
+            )}{" "}
+            if you are comparing multiple layers of tax.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Is self-employment tax the same as federal income tax?",
+        answer:
+          "No. Self-employment tax is a separate tax layer from ordinary federal income tax, even though both affect the year-end return.",
+      },
+      {
+        question: "Should I use net income or gross revenue here?",
+        answer:
+          "This calculator is designed for net self-employment income after ordinary business expenses, not raw top-line revenue.",
+      },
+      {
+        question: "Does this include every tax on freelance income?",
+        answer:
+          "No. It estimates self-employment tax only and does not replace full federal, state, or local tax calculations.",
+      },
+      {
+        question: "Can this help with reserve planning?",
+        answer:
+          "Yes. It is especially useful as a reserve-planning estimate so freelancers can set aside money more deliberately during the year.",
+      },
+      {
+        question: "Are the results official?",
+        answer:
+          "No. The results are estimates only and should not be treated as official tax advice or filing calculations.",
+      },
+    ],
+  },
+  "tax-refund-estimator": {
+    title: "Tax Refund Estimator",
+    description:
+      "Estimate whether federal withholding may produce a refund or amount due under a simplified US federal tax model.",
+    eyebrow: "Finance",
+    intro:
+      "Use this tax refund estimator to compare simplified estimated federal income tax against your federal withholding. It is a planning tool for understanding refund direction and rough size, not a filing tool or substitute for tax advice.",
+    category: "Finance",
+    path: "/calculators/tax-refund-estimator",
+    applicationCategory: "FinanceApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This estimator uses the same simplified federal income tax approach
+            as Drutilio&apos;s tax calculator. It estimates taxable income from
+            gross income, pre-tax deductions, filing status, and tax credits,
+            then compares that estimate with the federal withholding amount you
+            enter.
+          </p>
+          <p>
+            A positive difference is shown as an estimated refund. A negative
+            difference is shown as an estimated amount due. For the deeper logic
+            behind that comparison, read the{" "}
+            {toolLink(
+              "/tax-refund-calculator-guide",
+              "tax refund calculator guide",
+            )}{" "}
+            and{" "}
+            {toolLink(
+              "/how-to-calculate-federal-income-tax",
+              "how to calculate federal income tax",
+            )}
+            .
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The result is best read as a relationship between two things:
+            estimated federal liability and estimated withholding already paid
+            in. A larger refund does not automatically mean lower taxes, and a
+            smaller refund does not automatically mean a mistake. Often it
+            reflects how closely withholding matched the year-end estimate.
+          </p>
+          <p>
+            That is why this tool is useful for expectation setting. It helps
+            you interpret withholding more calmly before you react to a raw
+            refund number.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This estimator does not include every real-world return detail. It
+            does not handle itemized deductions, unusual credits, capital gains,
+            multi-state issues, contractor estimated payments, or other forms
+            that can materially change an actual refund.
+          </p>
+          <p>
+            Results are estimates only and should not be treated as legal,
+            professional, or filing advice. Refund outcomes often change when
+            late documents or additional income sources are added.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this estimator when you want a rough idea of whether current
+            withholding is likely to overshoot or undershoot a simplified
+            federal tax estimate. It is especially useful after a pay change, a
+            withholding change, or a midyear check-in.
+          </p>
+          <p>
+            Good follow-up reads are{" "}
+            {toolLink("/tax", "the tax hub")},{" "}
+            {toolLink(
+              "/common-tax-filing-mistakes",
+              "common tax filing mistakes",
+            )}
+            ,{" "}
+            {toolLink(
+              "/taxable-income-vs-gross-income",
+              "taxable income vs. gross income",
+            )}
+            ,{" "}
+            {toolLink(
+              "/what-is-adjusted-gross-income",
+              "what adjusted gross income is",
+            )}
+            ,{" "}
+            {toolLink(
+              "/federal-income-tax-brackets",
+              "federal income tax brackets",
+            )}
+            , and{" "}
+            {toolLink(
+              "/self-employment-tax-guide",
+              "self-employment tax guide",
+            )}{" "}
+            if side income is involved.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Does a big estimated refund mean I paid less tax?",
+        answer:
+          "Not necessarily. It often means more tax was withheld during the year than the simplified estimate suggests was necessary.",
+      },
+      {
+        question: "Can this estimator predict my exact refund?",
+        answer:
+          "No. It is a simplified educational estimate and many return-specific details can change the final result.",
+      },
+      {
+        question: "Why might I owe even if withholding seems high?",
+        answer:
+          "Additional income, reduced credits, side-gig earnings, or simplified assumptions can all change the final balance compared with withholding alone.",
+      },
+      {
+        question: "Should I use this before changing withholding?",
+        answer:
+          "Yes, it can be useful as a rough check before revisiting withholding, as long as you understand the estimate is simplified.",
+      },
+      {
+        question: "Are the results official?",
+        answer:
+          "No. The results are estimates only and should not be treated as professional tax advice or official filing calculations.",
+      },
+    ],
+  },
   "unit-converter": {
     title: "Unit Converter",
     description:

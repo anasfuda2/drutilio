@@ -5,6 +5,12 @@ export type ToolCategory =
   | "Education"
   | "Everyday Tools";
 
+export type TaxFilingStatus =
+  | "single"
+  | "married-filing-jointly"
+  | "married-filing-separately"
+  | "head-of-household";
+
 export type CalculatorItem = {
   slug: string;
   title: string;
@@ -89,6 +95,30 @@ export const calculators: CalculatorItem[] = [
     status: "Available now",
   },
   {
+    slug: "federal-income-tax-calculator",
+    title: "Federal Income Tax Calculator",
+    description:
+      "Estimate federal taxable income, bracket-based tax, and effective rate using a simplified US tax framework.",
+    category: "Finance",
+    status: "Featured",
+  },
+  {
+    slug: "self-employment-tax-calculator",
+    title: "Self-Employment Tax Calculator",
+    description:
+      "Estimate self-employment tax on net business income using a simplified US tax approach.",
+    category: "Finance",
+    status: "Popular",
+  },
+  {
+    slug: "tax-refund-estimator",
+    title: "Tax Refund Estimator",
+    description:
+      "Estimate whether federal withholding may lead to a refund or amount due under a simplified US tax model.",
+    category: "Finance",
+    status: "Available now",
+  },
+  {
     slug: "bmi-calculator",
     title: "BMI Calculator",
     description:
@@ -153,6 +183,14 @@ export const calculators: CalculatorItem[] = [
     status: "Available now",
   },
   {
+    slug: "hijri-date-converter",
+    title: "Hijri Date Converter",
+    description:
+      "Convert Gregorian dates to approximate Hijri dates and Hijri dates to approximate Gregorian dates.",
+    category: "Everyday Tools",
+    status: "Featured",
+  },
+  {
     slug: "unit-converter",
     title: "Unit Converter",
     description:
@@ -166,6 +204,7 @@ export const featuredCalculators = calculators.filter((calculator) =>
   [
     "mortgage-calculator",
     "compound-interest-calculator",
+    "federal-income-tax-calculator",
     "bmi-calculator",
     "age-calculator",
     "gpa-calculator",
@@ -250,6 +289,57 @@ export function formatMonthsAsYearsMonths(totalMonths: number) {
 function monthlyRateFromAnnual(annualRatePercent: number) {
   return clampNonNegative(annualRatePercent) / 100 / 12;
 }
+
+const standardDeductionByStatus: Record<TaxFilingStatus, number> = {
+  single: 15000,
+  "married-filing-jointly": 30000,
+  "married-filing-separately": 15000,
+  "head-of-household": 22500,
+};
+
+const taxBracketsByStatus: Record<
+  TaxFilingStatus,
+  Array<{ limit: number; rate: number }>
+> = {
+  single: [
+    { limit: 11925, rate: 0.1 },
+    { limit: 48475, rate: 0.12 },
+    { limit: 103350, rate: 0.22 },
+    { limit: 197300, rate: 0.24 },
+    { limit: 250525, rate: 0.32 },
+    { limit: 626350, rate: 0.35 },
+    { limit: Number.POSITIVE_INFINITY, rate: 0.37 },
+  ],
+  "married-filing-jointly": [
+    { limit: 23850, rate: 0.1 },
+    { limit: 96950, rate: 0.12 },
+    { limit: 206700, rate: 0.22 },
+    { limit: 394600, rate: 0.24 },
+    { limit: 501050, rate: 0.32 },
+    { limit: 751600, rate: 0.35 },
+    { limit: Number.POSITIVE_INFINITY, rate: 0.37 },
+  ],
+  "married-filing-separately": [
+    { limit: 11925, rate: 0.1 },
+    { limit: 48475, rate: 0.12 },
+    { limit: 103350, rate: 0.22 },
+    { limit: 197300, rate: 0.24 },
+    { limit: 250525, rate: 0.32 },
+    { limit: 375800, rate: 0.35 },
+    { limit: Number.POSITIVE_INFINITY, rate: 0.37 },
+  ],
+  "head-of-household": [
+    { limit: 17000, rate: 0.1 },
+    { limit: 64850, rate: 0.12 },
+    { limit: 103350, rate: 0.22 },
+    { limit: 197300, rate: 0.24 },
+    { limit: 250500, rate: 0.32 },
+    { limit: 626350, rate: 0.35 },
+    { limit: Number.POSITIVE_INFINITY, rate: 0.37 },
+  ],
+};
+
+const selfEmploymentSocialSecurityWageBase = 176100;
 
 function utcDateFromInput(value: string) {
   const [year, month, day] = value.split("-").map(Number);
@@ -881,4 +971,130 @@ function convertTemperature(value: number, fromUnit: string, toUnit: string) {
   if (toUnit === "K") return celsius + 273.15;
 
   return null;
+}
+
+function getBracketTax({
+  taxableIncome,
+  filingStatus,
+}: {
+  taxableIncome: number;
+  filingStatus: TaxFilingStatus;
+}) {
+  const income = Math.max(0, taxableIncome);
+  const brackets = taxBracketsByStatus[filingStatus];
+  let remaining = income;
+  let previousLimit = 0;
+  let totalTax = 0;
+  let marginalRate = 0;
+
+  for (const bracket of brackets) {
+    if (remaining <= 0) {
+      break;
+    }
+
+    const width = bracket.limit - previousLimit;
+    const taxedAmount = Math.min(remaining, width);
+
+    if (taxedAmount > 0) {
+      totalTax += taxedAmount * bracket.rate;
+      marginalRate = bracket.rate;
+      remaining -= taxedAmount;
+    }
+
+    previousLimit = bracket.limit;
+  }
+
+  return { totalTax, marginalRate };
+}
+
+export function estimateFederalIncomeTax({
+  filingStatus,
+  annualIncome,
+  preTaxDeductions,
+  taxCredits,
+}: {
+  filingStatus: TaxFilingStatus;
+  annualIncome: number;
+  preTaxDeductions: number;
+  taxCredits: number;
+}) {
+  const grossIncome = clampNonNegative(annualIncome);
+  const aboveTheLineAdjustments = clampNonNegative(preTaxDeductions);
+  const adjustedGrossIncome = Math.max(0, grossIncome - aboveTheLineAdjustments);
+  const standardDeduction = standardDeductionByStatus[filingStatus];
+  const taxableIncome = Math.max(0, adjustedGrossIncome - standardDeduction);
+  const bracketEstimate = getBracketTax({ taxableIncome, filingStatus });
+  const credits = clampNonNegative(taxCredits);
+  const estimatedTax = Math.max(0, bracketEstimate.totalTax - credits);
+
+  return {
+    grossIncome,
+    adjustedGrossIncome,
+    standardDeduction,
+    taxableIncome,
+    estimatedTax,
+    marginalRate: bracketEstimate.marginalRate,
+    effectiveRate: grossIncome > 0 ? estimatedTax / grossIncome : 0,
+    creditsApplied: Math.min(credits, bracketEstimate.totalTax),
+    assumptions:
+      "Simplified federal estimate using the standard deduction and ordinary-income bracket structure only.",
+  };
+}
+
+export function estimateSelfEmploymentTax({
+  netSelfEmploymentIncome,
+}: {
+  netSelfEmploymentIncome: number;
+}) {
+  const netIncome = clampNonNegative(netSelfEmploymentIncome);
+  const taxableBase = netIncome * 0.9235;
+  const socialSecurityTaxable = Math.min(
+    taxableBase,
+    selfEmploymentSocialSecurityWageBase,
+  );
+  const socialSecurityTax = socialSecurityTaxable * 0.124;
+  const medicareTax = taxableBase * 0.029;
+  const totalSelfEmploymentTax = socialSecurityTax + medicareTax;
+
+  return {
+    netIncome,
+    taxableBase,
+    socialSecurityTax,
+    medicareTax,
+    totalSelfEmploymentTax,
+    deductiblePortion: totalSelfEmploymentTax / 2,
+    assumptions:
+      "Simplified estimate using 92.35% of net earnings and standard Social Security and Medicare rates. Additional Medicare tax, wage interactions, and entity-specific rules are not included.",
+  };
+}
+
+export function estimateTaxRefund({
+  filingStatus,
+  annualIncome,
+  preTaxDeductions,
+  taxCredits,
+  federalWithholding,
+}: {
+  filingStatus: TaxFilingStatus;
+  annualIncome: number;
+  preTaxDeductions: number;
+  taxCredits: number;
+  federalWithholding: number;
+}) {
+  const taxEstimate = estimateFederalIncomeTax({
+    filingStatus,
+    annualIncome,
+    preTaxDeductions,
+    taxCredits,
+  });
+  const withholding = clampNonNegative(federalWithholding);
+  const overpayment = withholding - taxEstimate.estimatedTax;
+
+  return {
+    ...taxEstimate,
+    federalWithholding: withholding,
+    estimatedRefund: overpayment > 0 ? overpayment : 0,
+    estimatedAmountDue: overpayment < 0 ? Math.abs(overpayment) : 0,
+    isRefund: overpayment >= 0,
+  };
 }
