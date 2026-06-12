@@ -92,6 +92,7 @@ const zakatToolSlugs = new Set(["zakat-calculator"]);
 
 const pdfToolSlugs = new Set([
   "pdf-file-size-estimator",
+  "compress-pdf",
   "image-to-pdf",
   "jpg-to-pdf",
   "png-to-pdf",
@@ -132,6 +133,14 @@ export const categoryDescriptions: Record<ToolCategory, string> = {
 };
 
 export const calculators: CalculatorItem[] = [
+  {
+    slug: "compress-pdf",
+    title: "Compress PDF",
+    description:
+      "Create a lighter browser-generated PDF when practical using low, medium, or high compression settings.",
+    category: "Everyday Tools",
+    status: "Featured",
+  },
   {
     slug: "mortgage-calculator",
     title: "Mortgage Calculator",

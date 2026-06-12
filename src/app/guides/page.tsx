@@ -105,6 +105,7 @@ const guideGroups: GuideGroup[] = [
     intro: "PDF workflow guides for compression, merging, splitting, conversion planning, and browser-based image-to-PDF tools.",
     items: [
       { title: "PDF Tools Hub", description: "Central landing page for Dr.Utilio's PDF tools foundation.", href: "/pdf-tools" },
+      { title: "Compress PDF Tool", description: "Create a lighter browser-generated PDF when practical using local compression settings.", href: "/calculators/compress-pdf" },
       { title: "Merge PDF Tool", description: "Use the live browser-based Merge PDF tool to combine multiple PDFs locally.", href: "/calculators/merge-pdf" },
       { title: "Split PDF Tool", description: "Use the live browser-based Split PDF tool to export separate PDFs by page range.", href: "/calculators/split-pdf" },
       { title: "Extract PDF Pages Tool", description: "Create one smaller PDF containing only the selected page ranges you want to keep.", href: "/calculators/extract-pdf-pages" },

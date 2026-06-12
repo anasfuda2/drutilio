@@ -1938,6 +1938,108 @@ export const toolPageContent: Record<string, ToolPageContent> = {
       },
     ],
   },
+  "compress-pdf": {
+    title: "Compress PDF",
+    description:
+      "Compress a PDF locally in your browser with low, medium, or high compression levels using a browser-based PDF compressor.",
+    eyebrow: "PDF Tools",
+    intro:
+      "Use this Compress PDF tool to upload one PDF, choose a compression level, and generate a lighter downloadable PDF directly in your browser when practical. Files stay local to your device during processing.",
+    category: "Everyday Tools",
+    path: "/calculators/compress-pdf",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This browser-based compressor re-renders PDF pages and rebuilds the
+            output as a new PDF using image-based pages at different quality
+            levels. That approach can reduce size for many scan-heavy or
+            image-heavy PDFs without sending the document to a server.
+          </p>
+          <p>
+            Because the method depends on rebuilding page images, it is much
+            less effective for text-only PDFs and may reduce page sharpness or
+            searchability compared with the original document.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            A successful result means a new downloadable PDF has been created
+            using the selected compression level. The result summary compares
+            the source size, output size, and approximate size change so you
+            can judge whether the rebuild actually helped.
+          </p>
+          <p>
+            Sometimes the output will not shrink very much, and in some cases
+            it may even grow. That is normal for text-heavy or already
+            optimized PDFs.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This is a practical browser-only compression workflow, not a full
+            PDF optimization engine. It does not inspect every embedded asset
+            individually, and it does not guarantee smaller output for every
+            document.
+          </p>
+          <p>
+            Text-heavy PDFs, forms, bookmarks, attachments, OCR layers, and
+            other advanced PDF features can behave differently or lose fidelity
+            because the pages are rebuilt as compressed images.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use Compress PDF when you have a scan-heavy or image-heavy file
+            that needs a lighter copy for sharing, uploading, or storage.
+          </p>
+          <p>
+            If you only need a rough planning number instead of a rebuilt file,
+            compare the workflow with the{" "}
+            {toolLink(
+              "/calculators/pdf-file-size-estimator",
+              "PDF File Size Estimator",
+            )}{" "}
+            or browse the {toolLink("/pdf-tools", "PDF tools hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Are my PDFs uploaded to a server during compression?",
+        answer:
+          "No. Files are processed locally in your browser and are never uploaded by this tool.",
+      },
+      {
+        question: "Why might compression help more for scanned PDFs than text-only PDFs?",
+        answer:
+          "Scan-heavy PDFs often contain large page images, so rebuilding them at lower quality can reduce file size more noticeably than it would for text-heavy documents.",
+      },
+      {
+        question: "Can the compressed PDF ever be larger than the original?",
+        answer:
+          "Yes. Some PDFs are already optimized, and some text-heavy files may not shrink much or may even grow after browser-based rebuilding.",
+      },
+      {
+        question: "Will compression preserve searchability and advanced PDF features perfectly?",
+        answer:
+          "Not always. Because the pages are rebuilt as compressed images, text searchability, OCR layers, forms, bookmarks, and other advanced features can change.",
+      },
+      {
+        question: "Is this professional document, archival, or compliance advice?",
+        answer:
+          "No. It is a browser-based utility tool only and does not provide legal, compliance, archival, or records-management advice.",
+      },
+    ],
+  },
   "hijri-date-converter": {
     title: "Hijri Date Converter",
     description:

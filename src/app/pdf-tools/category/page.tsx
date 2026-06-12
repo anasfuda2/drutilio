@@ -25,6 +25,12 @@ type PdfCategoryCard = {
 
 const pdfCategoryCards: PdfCategoryCard[] = [
   {
+    title: "Compress PDF",
+    description:
+      "Create a lighter browser-generated PDF when practical using local compression settings.",
+    href: "/calculators/compress-pdf",
+  },
+  {
     title: "Image to PDF",
     description:
       "Convert multiple uploaded images into a downloadable PDF locally in your browser.",
@@ -79,7 +85,7 @@ const pdfCategoryCards: PdfCategoryCard[] = [
     href: "/calculators/pdf-to-png",
   },
   {
-    title: "Compress PDF",
+    title: "PDF Compression Guide",
     description:
       "Understand what affects compression quality and why file size usually involves tradeoffs.",
     href: "/pdf-compression-guide",
@@ -162,11 +168,11 @@ export default function PdfToolsCategoryPage() {
               easier to browse.
             </p>
             <p>
-              The current section now includes client-side image-conversion
-              tools, browser-based PDF merge, split, extract, and rotation
-              tools, browser-based PDF-to-image exports, plus educational PDF
-              guides. It does not perform server-side PDF upload processing
-              yet.
+              The current section now includes a browser-based PDF compressor,
+              client-side image-conversion tools, browser-based PDF merge,
+              split, extract, and rotation tools, browser-based PDF-to-image
+              exports, plus educational PDF guides. It does not perform
+              server-side PDF upload processing yet.
             </p>
           </div>
         </div>

@@ -29,9 +29,10 @@ export const pdfArticleContent: PdfArticleMap = {
           image quality, page count, fonts, and export settings.
         </p>
         <p>
-          This guide is educational only. Dr.Utilio is not processing files on
-          this page yet, so the goal here is to explain the concepts and help
-          you estimate the tradeoffs before using a compression workflow.
+          Dr.Utilio now includes a browser-based{" "}
+          {pdfLink("/calculators/compress-pdf", "Compress PDF")} tool, so this
+          guide focuses on understanding the tradeoffs behind compression
+          rather than pretending every PDF behaves the same way.
         </p>
       </>
     ),
@@ -75,6 +76,7 @@ export const pdfArticleContent: PdfArticleMap = {
           <>
             <p>
               Continue with the {pdfLink("/pdf-tools", "PDF tools hub")},{" "}
+              {pdfLink("/calculators/compress-pdf", "Compress PDF")},{" "}
               {pdfLink("/pdf-tools/category", "PDF tools category")},{" "}
               {pdfLink("/merge-pdf-guide", "merge PDF guide")},{" "}
               {pdfLink("/split-pdf-guide", "split PDF guide")}, and{" "}
@@ -89,7 +91,7 @@ export const pdfArticleContent: PdfArticleMap = {
       { question: "Does compression always reduce quality?", answer: "Often yes, especially when image-heavy documents are reduced aggressively." },
       { question: "Are text PDFs usually smaller than scan-heavy PDFs?", answer: "Usually yes, because scan-heavy files often embed larger image data." },
       { question: "Can PDF size estimates be exact?", answer: "No. They are usually rough because export settings and file content vary." },
-      { question: "Can Dr.Utilio compress PDFs on this page yet?", answer: "Not yet. This page is educational only at this stage." },
+      { question: "Can Dr.Utilio compress PDFs now?", answer: "Yes. Dr.Utilio now offers a working client-side Compress PDF tool that runs locally in the browser." },
     ],
   },
   "merge-pdf-guide": {
