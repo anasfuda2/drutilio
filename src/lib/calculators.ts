@@ -177,6 +177,46 @@ export const calculators: CalculatorItem[] = [
     status: "Popular",
   },
   {
+    slug: "calorie-calculator",
+    title: "Calorie Calculator",
+    description:
+      "Estimate maintenance calories and simple gain-or-loss targets using age, sex, height, weight, and activity assumptions.",
+    category: "Health",
+    status: "Featured",
+  },
+  {
+    slug: "bmr-calculator",
+    title: "BMR Calculator",
+    description:
+      "Estimate basal metabolic rate using a common BMR formula and simple body measurements.",
+    category: "Health",
+    status: "Popular",
+  },
+  {
+    slug: "body-fat-calculator",
+    title: "Body Fat Calculator",
+    description:
+      "Estimate body fat percentage using a simplified circumference-based method.",
+    category: "Health",
+    status: "Available now",
+  },
+  {
+    slug: "ideal-weight-calculator",
+    title: "Ideal Weight Calculator",
+    description:
+      "Estimate a reference weight using height, sex, and a healthy-BMI comparison range.",
+    category: "Health",
+    status: "Available now",
+  },
+  {
+    slug: "water-intake-calculator",
+    title: "Water Intake Calculator",
+    description:
+      "Estimate a simple daily water intake target using body weight and activity assumptions.",
+    category: "Health",
+    status: "Available now",
+  },
+  {
     slug: "gpa-calculator",
     title: "GPA Calculator",
     description:
@@ -258,6 +298,7 @@ export const featuredCalculators = calculators.filter((calculator) =>
     "federal-income-tax-calculator",
     "401k-calculator",
     "retirement-income-calculator",
+    "calorie-calculator",
     "bmi-calculator",
     "age-calculator",
     "gpa-calculator",
@@ -836,6 +877,38 @@ function getBmiCategory(bmi: number) {
   return "Obesity";
 }
 
+function inchesToCentimeters(totalInches: number) {
+  return clampNonNegative(totalInches) * 2.54;
+}
+
+function getBmrActivityMultiplier(activityLevel: string) {
+  const multipliers: Record<string, number> = {
+    sedentary: 1.2,
+    "lightly-active": 1.375,
+    "moderately-active": 1.55,
+    "very-active": 1.725,
+    "extra-active": 1.9,
+  };
+
+  return multipliers[activityLevel] ?? 1.2;
+}
+
+function getBodyFatCategory(bodyFatPercentage: number, sex: string) {
+  if (sex === "male") {
+    if (bodyFatPercentage < 6) return "Essential fat range";
+    if (bodyFatPercentage < 14) return "Athletic range";
+    if (bodyFatPercentage < 18) return "Fitness range";
+    if (bodyFatPercentage < 25) return "Average range";
+    return "Higher body fat range";
+  }
+
+  if (bodyFatPercentage < 14) return "Essential fat range";
+  if (bodyFatPercentage < 21) return "Athletic range";
+  if (bodyFatPercentage < 25) return "Fitness range";
+  if (bodyFatPercentage < 32) return "Average range";
+  return "Higher body fat range";
+}
+
 export function calculateCompoundInterest({
   principal,
   monthlyContribution,
@@ -874,6 +947,171 @@ export function calculateCompoundInterest({
     totalContributions,
     interestEarned: Math.max(0, balance - totalDeposits),
     totalMonths,
+  };
+}
+
+export function calculateBmr({
+  sex,
+  age,
+  weightKg,
+  heightCm,
+}: {
+  sex: "male" | "female";
+  age: number;
+  weightKg: number;
+  heightCm: number;
+}) {
+  const safeAge = clampNonNegative(age);
+  const safeWeightKg = clampNonNegative(weightKg);
+  const safeHeightCm = clampNonNegative(heightCm);
+
+  if (safeAge <= 0 || safeWeightKg <= 0 || safeHeightCm <= 0) {
+    return null;
+  }
+
+  const base = 10 * safeWeightKg + 6.25 * safeHeightCm - 5 * safeAge;
+  const bmr = sex === "male" ? base + 5 : base - 161;
+
+  return {
+    bmr,
+  };
+}
+
+export function calculateCalorieNeeds({
+  sex,
+  age,
+  weightKg,
+  heightCm,
+  activityLevel,
+}: {
+  sex: "male" | "female";
+  age: number;
+  weightKg: number;
+  heightCm: number;
+  activityLevel: string;
+}) {
+  const bmrResult = calculateBmr({ sex, age, weightKg, heightCm });
+
+  if (!bmrResult) {
+    return null;
+  }
+
+  const activityMultiplier = getBmrActivityMultiplier(activityLevel);
+  const maintenanceCalories = bmrResult.bmr * activityMultiplier;
+
+  return {
+    bmr: bmrResult.bmr,
+    maintenanceCalories,
+    mildWeightLossCalories: Math.max(1200, maintenanceCalories - 500),
+    mildWeightGainCalories: maintenanceCalories + 300,
+    activityMultiplier,
+  };
+}
+
+export function calculateBodyFatPercentage({
+  sex,
+  heightInches,
+  neckInches,
+  waistInches,
+  hipInches,
+}: {
+  sex: "male" | "female";
+  heightInches: number;
+  neckInches: number;
+  waistInches: number;
+  hipInches?: number;
+}) {
+  const height = clampNonNegative(heightInches);
+  const neck = clampNonNegative(neckInches);
+  const waist = clampNonNegative(waistInches);
+  const hip = clampNonNegative(hipInches ?? 0);
+
+  if (height <= 0 || neck <= 0 || waist <= 0) {
+    return null;
+  }
+
+  let bodyFatPercentage: number | null = null;
+
+  if (sex === "male") {
+    const logInput = waist - neck;
+    if (logInput <= 0) return null;
+    bodyFatPercentage =
+      86.01 * Math.log10(logInput) - 70.041 * Math.log10(height) + 36.76;
+  } else {
+    const logInput = waist + hip - neck;
+    if (hip <= 0 || logInput <= 0) return null;
+    bodyFatPercentage =
+      163.205 * Math.log10(logInput) -
+      97.684 * Math.log10(height) -
+      78.387;
+  }
+
+  if (!Number.isFinite(bodyFatPercentage)) {
+    return null;
+  }
+
+  return {
+    bodyFatPercentage,
+    category: getBodyFatCategory(bodyFatPercentage, sex),
+  };
+}
+
+export function calculateIdealWeight({
+  sex,
+  heightFeet,
+  heightInches,
+}: {
+  sex: "male" | "female";
+  heightFeet: number;
+  heightInches: number;
+}) {
+  const totalInches =
+    clampNonNegative(heightFeet) * 12 + clampNonNegative(heightInches);
+
+  if (totalInches <= 0) {
+    return null;
+  }
+
+  const inchesOverFiveFeet = totalInches - 60;
+  const devineBase = sex === "male" ? 50 : 45.5;
+  const devineKg = devineBase + Math.max(0, inchesOverFiveFeet) * 2.3;
+  const heightMeters = inchesToCentimeters(totalInches) / 100;
+  const healthyBmiLowKg = 18.5 * heightMeters * heightMeters;
+  const healthyBmiHighKg = 24.9 * heightMeters * heightMeters;
+
+  return {
+    devineKg,
+    devineLb: devineKg * 2.2046226218,
+    healthyBmiLowKg,
+    healthyBmiHighKg,
+    healthyBmiLowLb: healthyBmiLowKg * 2.2046226218,
+    healthyBmiHighLb: healthyBmiHighKg * 2.2046226218,
+  };
+}
+
+export function calculateWaterIntake({
+  weightPounds,
+  activityMinutes,
+}: {
+  weightPounds: number;
+  activityMinutes: number;
+}) {
+  const safeWeightPounds = clampNonNegative(weightPounds);
+  const safeActivityMinutes = clampNonNegative(activityMinutes);
+
+  if (safeWeightPounds <= 0) {
+    return null;
+  }
+
+  const baseOunces = safeWeightPounds * 0.5;
+  const activityOunces = (safeActivityMinutes / 30) * 12;
+  const totalOunces = baseOunces + activityOunces;
+
+  return {
+    totalOunces,
+    totalLiters: totalOunces * 0.0295735,
+    baseOunces,
+    activityOunces,
   };
 }
 

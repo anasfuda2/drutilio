@@ -1,8 +1,11 @@
+import type { ReactNode } from "react";
+
 type CalculatorResultProps = {
   title: string;
   value: string;
   detail?: string;
   warning?: string;
+  children?: ReactNode;
 };
 
 export function CalculatorResult({
@@ -10,6 +13,7 @@ export function CalculatorResult({
   value,
   detail,
   warning,
+  children,
 }: CalculatorResultProps) {
   return (
     <div className="rounded-2xl border border-emerald-400/20 bg-emerald-400/10 p-6">
@@ -27,6 +31,7 @@ export function CalculatorResult({
           {warning}
         </p>
       ) : null}
+      {children}
     </div>
   );
 }

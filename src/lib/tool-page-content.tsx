@@ -747,6 +747,524 @@ export const toolPageContent: Record<string, ToolPageContent> = {
       },
     ],
   },
+  "calorie-calculator": {
+    title: "Calorie Calculator",
+    description:
+      "Estimate maintenance calories and simple calorie targets using age, body size, sex, and activity assumptions.",
+    eyebrow: "Health",
+    intro:
+      "Use this calorie calculator to estimate maintenance calories and simplified gain-or-loss ranges. It is designed for educational planning only and should not be treated as medical or nutrition advice.",
+    category: "Health",
+    path: "/calculators/calorie-calculator",
+    applicationCategory: "HealthApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This calculator starts with a basal metabolic rate estimate and
+            then applies a broad activity multiplier to estimate total daily
+            energy needs. In plain language, it combines body size, age, sex,
+            and a rough movement assumption to estimate maintenance calories.
+          </p>
+          <p>
+            It also shows simplified lower and higher calorie targets so you
+            can compare a mild fat-loss or gain scenario without doing the math
+            manually. If you want to isolate the resting-energy piece on its
+            own, the {toolLink("/calculators/bmr-calculator", "BMR calculator")}{" "}
+            is the best companion tool.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The maintenance result is a planning estimate for roughly weight
+            stability under the selected assumptions. The gain and loss targets
+            are not personalized prescriptions. They are simple reference
+            points that can help you think through possible scenarios.
+          </p>
+          <p>
+            Because nutrition and body-composition questions rarely come down to
+            one number alone, many people also compare the result alongside the{" "}
+            {toolLink("/calculators/bmi-calculator", "BMI calculator")} and{" "}
+            {toolLink(
+              "/calculators/body-fat-calculator",
+              "body fat calculator",
+            )}
+            .
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This calculator uses formula-based estimates, not direct metabolic
+            measurement. Real energy needs can vary because of training volume,
+            body composition, medication, medical conditions, and day-to-day
+            routine differences.
+          </p>
+          <p>
+            It does not provide medical advice, diagnosis, or treatment
+            guidance. For personal health concerns, disordered eating history,
+            or individualized nutrition questions, consult a qualified
+            healthcare professional.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this tool when you want a structured calorie starting point for
+            general wellness planning, body-weight trend review, or educational
+            comparison across different activity levels.
+          </p>
+          <p>
+            It pairs naturally with{" "}
+            {toolLink(
+              "/how-many-calories-should-i-eat",
+              "how many calories you should eat",
+            )}
+            ,{" "}
+            {toolLink("/what-is-bmr", "what BMR means")}, and the{" "}
+            {toolLink("/health", "health hub")} for broader context.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Does this calorie calculator tell me exactly how much to eat?",
+        answer:
+          "No. It provides a useful estimate, not an exact prescription or a guarantee of results.",
+      },
+      {
+        question: "What is the difference between BMR and maintenance calories?",
+        answer:
+          "BMR is a resting-energy estimate, while maintenance calories add a rough activity assumption on top of that baseline.",
+      },
+      {
+        question: "Can two people with similar body size need different calories?",
+        answer:
+          "Yes. Formula estimates can differ from real needs because of lifestyle, training, body composition, and individual physiology.",
+      },
+      {
+        question: "Should I use this tool for a medical condition?",
+        answer:
+          "Not as a substitute for care. If you have a personal medical or nutrition concern, consult a qualified healthcare professional.",
+      },
+      {
+        question: "Is this nutrition or medical advice?",
+        answer:
+          "No. It is an educational estimate only.",
+      },
+    ],
+  },
+  "bmr-calculator": {
+    title: "BMR Calculator",
+    description:
+      "Estimate basal metabolic rate using age, sex, height, and weight with a simple online BMR calculator.",
+    eyebrow: "Health",
+    intro:
+      "Use this BMR calculator to estimate basal metabolic rate, which is a rough measure of resting energy needs. It is an educational tool for understanding metabolism concepts, not a medical assessment.",
+    category: "Health",
+    path: "/calculators/bmr-calculator",
+    applicationCategory: "HealthApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This tool uses a common BMR formula built from age, sex, height,
+            and weight. It estimates the energy your body may use at rest
+            before daily movement and exercise are layered on top.
+          </p>
+          <p>
+            That makes it a useful foundation for broader calorie planning. If
+            you want the next step beyond resting metabolism, use the{" "}
+            {toolLink("/calculators/calorie-calculator", "calorie calculator")}
+            .
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The result is a resting-energy estimate expressed in calories per
+            day. It is not the same thing as maintenance calories, because most
+            people burn more than their BMR once activity is included.
+          </p>
+          <p>
+            In practical use, the number is best treated as a baseline rather
+            than as a daily eating target by itself.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            Formula-based BMR estimates cannot capture every individual
+            difference. They do not directly measure metabolism, hormone status,
+            or clinical health conditions.
+          </p>
+          <p>
+            This calculator does not provide diagnosis or medical advice. For a
+            personalized interpretation, consult a qualified healthcare
+            professional.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this calculator when you want to understand the resting side of
+            calorie planning, compare scenarios, or learn how BMR fits into
+            total daily energy estimates.
+          </p>
+          <p>
+            It works well alongside{" "}
+            {toolLink("/what-is-bmr", "what BMR is")}, the{" "}
+            {toolLink("/calculators/calorie-calculator", "calorie calculator")},
+            and the {toolLink("/health", "health hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Is BMR the same as total calories burned in a day?",
+        answer:
+          "No. BMR is a resting estimate, while total daily energy use usually includes movement and activity.",
+      },
+      {
+        question: "Can online tools measure metabolism exactly?",
+        answer:
+          "No. They estimate metabolism with formulas rather than direct testing.",
+      },
+      {
+        question: "Why does age affect BMR?",
+        answer:
+          "Age is one of the common inputs used by formula-based estimates because energy needs often shift over time.",
+      },
+      {
+        question: "Should I base medical decisions on this result?",
+        answer:
+          "No. This is an educational estimate and not a substitute for professional care.",
+      },
+      {
+        question: "Is this medical advice?",
+        answer:
+          "No. It is a general educational calculator only.",
+      },
+    ],
+  },
+  "body-fat-calculator": {
+    title: "Body Fat Calculator",
+    description:
+      "Estimate body fat percentage using a simple circumference-based body fat calculator.",
+    eyebrow: "Health",
+    intro:
+      "Use this body fat calculator to estimate body fat percentage from body measurements. It is designed for educational reference and trend thinking, not for clinical diagnosis.",
+    category: "Health",
+    path: "/calculators/body-fat-calculator",
+    applicationCategory: "HealthApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This calculator uses a simplified circumference-based method that
+            relies on height plus neck, waist, and sometimes hip measurements.
+            It is commonly used for rough body-composition estimates when more
+            advanced testing is not available.
+          </p>
+          <p>
+            That makes it more composition-focused than the{" "}
+            {toolLink("/calculators/bmi-calculator", "BMI calculator")}, even
+            though it is still an estimate rather than a clinical measurement.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The result shows an estimated body fat percentage and a broad
+            reference category. That category is only meant to help you read the
+            estimate more easily. It is not a diagnosis and should not be used
+            as a standalone health judgment.
+          </p>
+          <p>
+            For broader context, pair it with{" "}
+            {toolLink(
+              "/bmi-vs-body-fat-percentage",
+              "BMI vs. body fat percentage",
+            )}{" "}
+            and the {toolLink("/health", "health hub")}.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            Home body-fat estimates can vary depending on measurement technique,
+            body shape, and the method used. Circumference formulas are useful
+            for rough context but should not be treated as exact.
+          </p>
+          <p>
+            This tool does not diagnose health conditions or provide medical
+            advice. If body-composition interpretation is tied to a medical or
+            treatment concern, consult a qualified healthcare professional.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this calculator when you want a rough body-composition-style
+            estimate, especially if BMI alone feels too broad for the question
+            you are asking.
+          </p>
+          <p>
+            It works well next to the{" "}
+            {toolLink("/calculators/bmi-calculator", "BMI calculator")}, the{" "}
+            {toolLink("/healthy-weight-guide", "healthy weight guide")}, and
+            the {toolLink("/health", "health hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Is body fat percentage more exact than BMI?",
+        answer:
+          "Not automatically. It can provide different context, but simplified body-fat methods are still estimates.",
+      },
+      {
+        question: "Do I need hip measurements?",
+        answer:
+          "Hip measurements are commonly used for women in circumference-based methods, while the simplified male method usually relies on neck and waist measurements.",
+      },
+      {
+        question: "Can tape-measure errors affect the result?",
+        answer:
+          "Yes. Small measurement differences can change the estimate, so consistency matters.",
+      },
+      {
+        question: "Should I treat the category as a diagnosis?",
+        answer:
+          "No. It is a broad reference label, not a clinical diagnosis.",
+      },
+      {
+        question: "Is this medical advice?",
+        answer:
+          "No. It is an educational estimate only.",
+      },
+    ],
+  },
+  "ideal-weight-calculator": {
+    title: "Ideal Weight Calculator",
+    description:
+      "Estimate a reference ideal weight and compare it with a healthy-BMI range using a simple ideal weight calculator.",
+    eyebrow: "Health",
+    intro:
+      "Use this ideal weight calculator to compare a reference ideal-weight estimate with a broad healthy-BMI range. It is meant for educational perspective rather than for defining one perfect target number.",
+    category: "Health",
+    path: "/calculators/ideal-weight-calculator",
+    applicationCategory: "HealthApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This calculator uses height and sex to estimate a common
+            formula-based reference weight. It also calculates a broad
+            healthy-BMI comparison range so you can see the difference between
+            one reference number and a wider range.
+          </p>
+          <p>
+            That side-by-side view is useful because healthy-weight discussions
+            are usually more nuanced than a single target. For the broader
+            explanation, read the{" "}
+            {toolLink("/healthy-weight-guide", "healthy weight guide")}.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The reference formula is just that: a reference. The BMI range is a
+            second frame of comparison. Neither output should be interpreted as
+            a personalized medical instruction.
+          </p>
+          <p>
+            Many people find it helpful to compare these numbers with the{" "}
+            {toolLink("/calculators/bmi-calculator", "BMI calculator")} and the{" "}
+            {toolLink(
+              "/calculators/body-fat-calculator",
+              "body fat calculator",
+            )}{" "}
+            rather than relying on one number alone.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            Ideal-weight formulas simplify human bodies into one reference
+            equation. They do not capture body composition, medical context,
+            strength, mobility, or how sustainable a given weight may be for an
+            individual person.
+          </p>
+          <p>
+            This calculator is educational only and not medical advice. For
+            individualized goals or health concerns, consult a qualified
+            healthcare professional.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this tool when you want perspective on common reference ranges
+            rather than an authoritative target. It can be especially helpful
+            when the question is “What range do these tools usually point to?”
+            rather than “What should I do medically?”
+          </p>
+          <p>
+            It belongs with the{" "}
+            {toolLink("/healthy-weight-guide", "healthy weight guide")} and the{" "}
+            {toolLink("/health", "health hub")} for the full context.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Is there one perfect ideal weight for everyone?",
+        answer:
+          "No. This calculator provides reference estimates, not one universally correct target.",
+      },
+      {
+        question: "Why does the calculator show a range as well as one number?",
+        answer:
+          "Because healthy-weight discussions are usually better framed as ranges and context, not only a single figure.",
+      },
+      {
+        question: "Can muscle mass make ideal-weight estimates less useful?",
+        answer:
+          "Yes. Body composition is one reason reference formulas should be interpreted cautiously.",
+      },
+      {
+        question: "Should I set medical goals from this result alone?",
+        answer:
+          "No. This is a general educational tool and not a substitute for individualized care.",
+      },
+      {
+        question: "Is this medical advice?",
+        answer:
+          "No. It is educational only.",
+      },
+    ],
+  },
+  "water-intake-calculator": {
+    title: "Water Intake Calculator",
+    description:
+      "Estimate a simple daily water target using body weight and activity assumptions with an online water intake calculator.",
+    eyebrow: "Health",
+    intro:
+      "Use this water intake calculator to estimate a simple daily hydration target from body weight and exercise time. It is a rough wellness planning tool, not a medical hydration prescription.",
+    category: "Health",
+    path: "/calculators/water-intake-calculator",
+    applicationCategory: "HealthApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This calculator starts with a body-weight-based estimate and then
+            adds a simple adjustment for exercise time. That creates a practical
+            hydration planning number without pretending to account for every
+            climate, training, or medical factor.
+          </p>
+          <p>
+            The output is useful for broad daily awareness. It is not a sports
+            medicine tool and it does not replace individualized hydration
+            guidance.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            The daily ounces and liters are rough targets for general planning.
+            They can help with routine-building, but they should not be read as
+            a guarantee that one number fits every person or every day.
+          </p>
+          <p>
+            If you are also looking at calorie intake or body metrics, the{" "}
+            {toolLink("/calculators/calorie-calculator", "calorie calculator")}{" "}
+            and {toolLink("/calculators/bmi-calculator", "BMI calculator")} are
+            useful companions within the same cluster.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            Hydration needs can change with weather, medication, illness,
+            pregnancy, training intensity, diet, and medical conditions. A
+            simple body-weight formula cannot fully reflect those differences.
+          </p>
+          <p>
+            This tool is not medical advice. For symptoms, fluid restrictions,
+            kidney issues, or other health concerns, consult a qualified
+            healthcare professional.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use this calculator when you want a quick hydration reference for
+            day-to-day planning, especially if you exercise regularly or prefer
+            a more structured intake target.
+          </p>
+          <p>
+            It pairs naturally with the{" "}
+            {toolLink("/health", "health hub")} and the{" "}
+            {toolLink(
+              "/common-weight-loss-mistakes",
+              "common weight-loss mistakes guide",
+            )}{" "}
+            when you are trying to avoid overinterpreting normal short-term
+            body fluctuations.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Does this calculator know exactly how much water I need?",
+        answer:
+          "No. It provides a rough estimate, not an exact medical recommendation.",
+      },
+      {
+        question: "Why does exercise increase the estimate?",
+        answer:
+          "Because movement and sweat loss can raise hydration needs in many situations.",
+      },
+      {
+        question: "Can climate change water needs?",
+        answer:
+          "Yes. Heat, humidity, altitude, and illness can all change hydration needs beyond this simple estimate.",
+      },
+      {
+        question: "Should I use this for a medical condition?",
+        answer:
+          "Not as a substitute for care. For medical questions, consult a qualified healthcare professional.",
+      },
+      {
+        question: "Is this medical advice?",
+        answer:
+          "No. It is an educational planning tool only.",
+      },
+    ],
+  },
   "compound-interest-calculator": {
     title: "Compound Interest Calculator",
     description:
