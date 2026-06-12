@@ -40,7 +40,7 @@ const faqItems: FAQItem[] = [
   {
     question: "Does the directory include PDF and conversion tools too?",
     answer:
-      "Yes. The directory includes browser-based PDF tools and general converters alongside planning, education, and health tools.",
+      "Yes. The directory includes browser-based PDF tools, browser-based image tools, and general converters alongside planning, education, and health tools.",
   },
   {
     question: "Are these tools interactive or just guide pages?",
@@ -81,6 +81,7 @@ function ToolsDirectoryFallback() {
                 "Health",
                 "Education",
                 "Zakat",
+                "Image Tools",
                 "PDF Tools",
                 "Converters",
               ].map((category) => (
@@ -158,6 +159,12 @@ export default function ToolsPage() {
               description:
                 "See the latest additions in registry-driven order so you can spot what was added most recently.",
               href: "/new-tools",
+            },
+            {
+              title: "Image Tools",
+              description:
+                "Jump into browser-based resizing, compression, format conversion, cropping, and rotation workflows.",
+              href: "/image-tools",
             },
           ].map((item) => (
             <a

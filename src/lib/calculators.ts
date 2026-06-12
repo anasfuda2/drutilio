@@ -13,6 +13,7 @@ export type ToolDirectoryCategory =
   | "Health"
   | "Education"
   | "Zakat"
+  | "Image Tools"
   | "PDF Tools"
   | "Converters";
 
@@ -40,6 +41,7 @@ export const toolDirectoryCategories: ToolDirectoryCategory[] = [
   "Health",
   "Education",
   "Zakat",
+  "Image Tools",
   "PDF Tools",
   "Converters",
 ];
@@ -62,6 +64,8 @@ export const toolDirectoryCategoryDescriptions: Record<
     "Student-focused tools for GPA tracking, final grade planning, and weekly study organization.",
   Zakat:
     "Zakat-focused tools for estimating zakatable assets and planning around common calculation scenarios.",
+  "Image Tools":
+    "Browser-based image utilities for resizing, compression, format conversion, cropping, and rotation.",
   "PDF Tools":
     "Browser-based PDF utilities for image conversion, merge, split, and document size planning.",
   Converters:
@@ -89,6 +93,16 @@ const mortgageToolSlugs = new Set([
 ]);
 
 const zakatToolSlugs = new Set(["zakat-calculator"]);
+
+const imageToolSlugs = new Set([
+  "image-resizer",
+  "image-compressor",
+  "jpg-to-png",
+  "png-to-jpg",
+  "webp-converter",
+  "crop-image",
+  "rotate-image",
+]);
 
 const pdfToolSlugs = new Set([
   "pdf-file-size-estimator",
@@ -133,6 +147,62 @@ export const categoryDescriptions: Record<ToolCategory, string> = {
 };
 
 export const calculators: CalculatorItem[] = [
+  {
+    slug: "image-resizer",
+    title: "Image Resizer",
+    description:
+      "Resize one image locally in your browser by fitting it within custom maximum dimensions.",
+    category: "Everyday Tools",
+    status: "Featured",
+  },
+  {
+    slug: "image-compressor",
+    title: "Image Compressor",
+    description:
+      "Compress one image locally in your browser using adjustable compression levels and export formats.",
+    category: "Everyday Tools",
+    status: "Popular",
+  },
+  {
+    slug: "jpg-to-png",
+    title: "JPG to PNG",
+    description:
+      "Convert a JPG or JPEG image into PNG format locally in your browser.",
+    category: "Everyday Tools",
+    status: "Available now",
+  },
+  {
+    slug: "png-to-jpg",
+    title: "PNG to JPG",
+    description:
+      "Convert a PNG image into JPG format locally in your browser.",
+    category: "Everyday Tools",
+    status: "Available now",
+  },
+  {
+    slug: "webp-converter",
+    title: "WebP Converter",
+    description:
+      "Convert JPG, PNG, or WebP images into another common image format locally in your browser.",
+    category: "Everyday Tools",
+    status: "Available now",
+  },
+  {
+    slug: "crop-image",
+    title: "Crop Image",
+    description:
+      "Crop one image locally in your browser using custom pixel bounds.",
+    category: "Everyday Tools",
+    status: "Popular",
+  },
+  {
+    slug: "rotate-image",
+    title: "Rotate Image",
+    description:
+      "Rotate one image by 90, 180, or 270 degrees locally in your browser.",
+    category: "Everyday Tools",
+    status: "Available now",
+  },
   {
     slug: "compress-pdf",
     title: "Compress PDF",
@@ -489,6 +559,8 @@ export const calculators: CalculatorItem[] = [
 
 export const featuredCalculators = calculators.filter((calculator) =>
   [
+    "image-resizer",
+    "image-compressor",
     "mortgage-calculator",
     "mortgage-affordability-calculator",
     "compound-interest-calculator",
@@ -538,6 +610,10 @@ export function getToolDirectoryCategory(
 
   if (zakatToolSlugs.has(calculator.slug)) {
     return "Zakat";
+  }
+
+  if (imageToolSlugs.has(calculator.slug)) {
+    return "Image Tools";
   }
 
   if (pdfToolSlugs.has(calculator.slug)) {

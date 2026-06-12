@@ -11,6 +11,7 @@ const staticRoutes = [
   "/categories",
   "/guides",
   "/converters",
+  "/image-tools",
   "/pdf-tools",
   "/pdf-tools/category",
   "/pdf-tools/popular",

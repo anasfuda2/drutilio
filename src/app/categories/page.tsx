@@ -87,6 +87,12 @@ const categories: CategoryCard[] = [
     href: "/education",
   },
   {
+    title: "Image Tools",
+    description:
+      "Open the image tools hub for browser-based resizing, compression, format conversion, cropping, and rotation.",
+    href: "/image-tools",
+  },
+  {
     title: "PDF Tools",
     description:
       "Explore browser-based image-to-PDF tools, PDF workflow guides, and the growing document-tools area.",

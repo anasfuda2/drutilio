@@ -18,7 +18,7 @@ import {
 } from "@/lib/structured-data";
 
 const description =
-  "Browse Dr.Utilio's most popular and featured tools across PDF, finance, tax, retirement, mortgage, health, education, zakat, and converters.";
+  "Browse Dr.Utilio's most popular and featured tools across PDF, image tools, finance, tax, retirement, mortgage, health, education, zakat, and converters.";
 
 const breadcrumbs: BreadcrumbItem[] = [
   { label: "Home", href: "/" },
@@ -81,6 +81,7 @@ function PopularToolsFallback() {
                 "Health",
                 "Education",
                 "Zakat",
+                "Image Tools",
                 "Converters",
               ].map((category) => (
                 <span

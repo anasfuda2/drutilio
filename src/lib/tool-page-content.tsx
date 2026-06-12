@@ -1838,6 +1838,508 @@ export const toolPageContent: Record<string, ToolPageContent> = {
       },
     ],
   },
+  "image-resizer": {
+    title: "Image Resizer",
+    description:
+      "Resize an image locally in your browser by fitting it within custom maximum dimensions.",
+    eyebrow: "Image Tools",
+    intro:
+      "Use this Image Resizer to upload one image, set the maximum width and height you want, and export a resized version directly in your browser. Images stay local to your device during processing.",
+    category: "Everyday Tools",
+    path: "/calculators/image-resizer",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This tool loads your image in the browser, redraws it on a canvas
+            within the size limits you set, and exports the smaller result
+            without sending the file to a server.
+          </p>
+          <p>
+            It is useful when you need lighter uploads, smaller website assets,
+            or images that fit stricter layout dimensions.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            A successful result means the image was resized to fit within the
+            width and height limits you chose. The result box shows the output
+            dimensions and approximate file size.
+          </p>
+          <p>
+            That makes it easier to see whether the resized file is more
+            practical for sharing or publishing.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This is a browser-based utility, not a professional image editor.
+            Very large source files can still be limited by browser memory, and
+            image quality may vary depending on the source format.
+          </p>
+          <p>
+            Resizing alone also does not guarantee better compression if the
+            source file was already optimized.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use Image Resizer when a file is visually too large for your layout
+            or heavier than it needs to be for sharing and upload workflows.
+          </p>
+          <p>
+            Related tools include {toolLink("/calculators/image-compressor", "Image Compressor")},
+            {" "}{toolLink("/calculators/crop-image", "Crop Image")}, and the{" "}
+            {toolLink("/image-tools", "Image Tools hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      { question: "Are images uploaded to a server while resizing?", answer: "No. Images are processed locally in your browser and are never uploaded by this tool." },
+      { question: "Does resizing always make a file much smaller?", answer: "Often it helps, but exact size savings depend on the original format, dimensions, and visual detail." },
+      { question: "Will the output keep the same aspect ratio?", answer: "Yes. The image is scaled to fit within the width and height limits while preserving its aspect ratio." },
+      { question: "Can this tool enlarge tiny images cleanly?", answer: "It can enlarge them, but enlarging does not create new detail and may make softness more obvious." },
+      { question: "Is this a professional publishing workflow?", answer: "No. It is a practical browser-based utility for everyday resizing tasks." },
+    ],
+  },
+  "image-compressor": {
+    title: "Image Compressor",
+    description:
+      "Compress an image locally in your browser using adjustable compression levels and export formats.",
+    eyebrow: "Image Tools",
+    intro:
+      "Use this Image Compressor to upload one image, choose a compression level, and export a lighter version locally in your browser. Images stay on your device during processing.",
+    category: "Everyday Tools",
+    path: "/calculators/image-compressor",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This tool redraws your image in the browser and exports it again at
+            a lower-quality compression setting. That can reduce file size
+            without needing a server-based workflow.
+          </p>
+          <p>
+            Results depend on the source image, its dimensions, and the output
+            format you choose.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            A successful result means a new downloadable image has been created
+            with the compression level you selected. The result area compares
+            source size and output size.
+          </p>
+          <p>
+            Sometimes the savings are substantial, and sometimes they are only
+            modest. That variation is normal.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            Compression is always a tradeoff. Lower file sizes can reduce
+            sharpness, introduce artifacts, or flatten subtle image detail.
+          </p>
+          <p>
+            Some already-optimized images may not shrink much, and some formats
+            behave better than others depending on the source.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use Image Compressor when you need lighter uploads, faster sharing,
+            or more practical image sizes for websites, documents, or email.
+          </p>
+          <p>
+            Good companions include {toolLink("/calculators/image-resizer", "Image Resizer")},
+            {" "}{toolLink("/calculators/webp-converter", "WebP Converter")}, and the{" "}
+            {toolLink("/image-tools", "Image Tools hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      { question: "Are images uploaded to a server while compressing?", answer: "No. Images are processed locally in your browser and are never uploaded by this tool." },
+      { question: "Will high compression always look worse?", answer: "Often yes. Higher compression can save more space, but visual artifacts and reduced sharpness become more likely." },
+      { question: "Why do some files shrink more than others?", answer: "The amount of savings depends on dimensions, visual detail, source format, and whether the original was already optimized." },
+      { question: "Can compression ever increase file size?", answer: "Yes. Some images are already highly optimized, and rebuilding them may not always reduce size." },
+      { question: "Is this tool a substitute for full design software?", answer: "No. It is a practical browser-based compressor for everyday file-size reduction." },
+    ],
+  },
+  "jpg-to-png": {
+    title: "JPG to PNG",
+    description:
+      "Convert a JPG or JPEG image into PNG format locally in your browser.",
+    eyebrow: "Image Tools",
+    intro:
+      "Use this JPG to PNG converter to upload one JPG image and export a PNG version directly in your browser. Images stay local to your device during processing.",
+    category: "Everyday Tools",
+    path: "/calculators/jpg-to-png",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This tool reads your JPG image in the browser, redraws it on a
+            canvas, and exports a PNG version without needing a server upload.
+          </p>
+          <p>
+            PNG can be useful when you want a widely supported image format
+            without JPG-style compression artifacts in the exported file.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            A successful result means a PNG version of your image is ready to
+            download. The result box shows the output dimensions and file size.
+          </p>
+          <p>
+            That gives you a quick way to compare whether PNG is practical for
+            your workflow.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            Converting JPG to PNG does not restore detail already lost to JPEG
+            compression. It changes the container format, not the history of
+            the source image.
+          </p>
+          <p>
+            PNG files can also become larger than JPG files, especially for
+            photo-heavy images.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use JPG to PNG when you need PNG output for compatibility,
+            workflow consistency, or image handling that fits better with the
+            rest of your project.
+          </p>
+          <p>
+            Related tools include {toolLink("/calculators/png-to-jpg", "PNG to JPG")},
+            {" "}{toolLink("/calculators/webp-converter", "WebP Converter")}, and the{" "}
+            {toolLink("/image-tools", "Image Tools hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      { question: "Are images uploaded to a server during conversion?", answer: "No. Images are processed locally in your browser and are never uploaded by this tool." },
+      { question: "Does converting JPG to PNG improve quality?", answer: "It does not restore lost detail. It mainly changes the output format." },
+      { question: "Why can PNG files be larger than JPG files?", answer: "PNG often stores image data differently, and photo-style images can end up much larger than their JPG versions." },
+      { question: "Can I use this on a phone?", answer: "Yes. The tool is built as a browser-based mobile-friendly workflow." },
+      { question: "Is this a photo-editing tool?", answer: "No. It is a focused browser-based format conversion utility." },
+    ],
+  },
+  "png-to-jpg": {
+    title: "PNG to JPG",
+    description:
+      "Convert a PNG image into JPG format locally in your browser.",
+    eyebrow: "Image Tools",
+    intro:
+      "Use this PNG to JPG converter to upload one PNG image and export a JPG version directly in your browser. Images stay local to your device during processing.",
+    category: "Everyday Tools",
+    path: "/calculators/png-to-jpg",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This tool reads your PNG image, redraws it on a canvas, and exports
+            a JPG version in the browser. Areas that need a background are
+            flattened against white for JPG output.
+          </p>
+          <p>
+            JPG is often practical when you want lighter files for photo-style
+            images or broader compatibility in familiar workflows.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            A successful result means the JPG file is ready to download. The
+            result box shows output size and dimensions so you can compare it to
+            the source.
+          </p>
+          <p>
+            That helps you decide whether the conversion is worth the tradeoff
+            for your use case.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            PNG transparency does not carry over into JPG. Transparent or
+            semi-transparent areas will be flattened onto a background color.
+          </p>
+          <p>
+            JPG is also a lossy format, so repeated re-exports can gradually
+            soften detail.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use PNG to JPG when you want lighter image files, common photo
+            compatibility, or a format that better suits sharing and upload
+            workflows.
+          </p>
+          <p>
+            Related tools include {toolLink("/calculators/jpg-to-png", "JPG to PNG")},
+            {" "}{toolLink("/calculators/image-compressor", "Image Compressor")}, and the{" "}
+            {toolLink("/image-tools", "Image Tools hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      { question: "Are images uploaded to a server during conversion?", answer: "No. Images are processed locally in your browser and are never uploaded by this tool." },
+      { question: "What happens to transparency when converting PNG to JPG?", answer: "JPG does not support transparency, so transparent areas are flattened onto a background color." },
+      { question: "Will JPG usually be smaller than PNG?", answer: "Often yes for photo-style images, but exact results depend on the source image and its visual content." },
+      { question: "Can this tool keep the original PNG exactly unchanged?", answer: "No. It creates a new JPG file rather than preserving the original format behavior." },
+      { question: "Is this a full graphics editor?", answer: "No. It is a browser-based conversion utility for one specific format workflow." },
+    ],
+  },
+  "webp-converter": {
+    title: "WebP Converter",
+    description:
+      "Convert JPG, PNG, or WebP images into another common image format locally in your browser.",
+    eyebrow: "Image Tools",
+    intro:
+      "Use this WebP Converter to upload one JPG, PNG, or WebP image and export it into JPG, PNG, or WebP format directly in your browser. Images stay local to your device during processing.",
+    category: "Everyday Tools",
+    path: "/calculators/webp-converter",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This tool reads your image locally, redraws it on a canvas, and
+            exports the file in a format you choose. That makes it useful for
+            switching between compatibility-focused formats and lighter web
+            formats.
+          </p>
+          <p>
+            It works entirely in the browser without a server upload step.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            A successful result means the converted image is ready to download
+            in the format you selected. The result box shows output dimensions
+            and file size.
+          </p>
+          <p>
+            That helps you compare whether the chosen format fits your current
+            workflow better than the source.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            Converting between formats does not guarantee better quality. Some
+            formats emphasize smaller size, while others emphasize broader
+            compatibility or sharper edge handling.
+          </p>
+          <p>
+            Some image characteristics, such as transparency support, can also
+            change depending on the chosen output.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use WebP Converter when you need to switch between familiar
+            publishing formats and more web-focused formats without leaving the
+            browser.
+          </p>
+          <p>
+            Good companions include {toolLink("/calculators/image-compressor", "Image Compressor")},
+            {" "}{toolLink("/calculators/image-resizer", "Image Resizer")}, and the{" "}
+            {toolLink("/image-tools", "Image Tools hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      { question: "Are images uploaded to a server during conversion?", answer: "No. Images are processed locally in your browser and are never uploaded by this tool." },
+      { question: "Can I convert from JPG or PNG into WebP?", answer: "Yes. The converter accepts JPG, PNG, and WebP input and lets you export into another common format." },
+      { question: "Does converting to WebP always make the file smaller?", answer: "Not always. It often helps, but exact results depend on image detail, dimensions, and the chosen output settings." },
+      { question: "Will transparency always be preserved?", answer: "That depends on the output format. PNG and WebP can support transparency more naturally than JPG." },
+      { question: "Is this a web optimization guarantee?", answer: "No. It is a practical browser-based converter, not a guarantee about final publishing performance." },
+    ],
+  },
+  "crop-image": {
+    title: "Crop Image",
+    description:
+      "Crop an image locally in your browser using custom pixel bounds.",
+    eyebrow: "Image Tools",
+    intro:
+      "Use this Crop Image tool to upload one image, define crop bounds in source-image pixels, and export the cropped result directly in your browser. Images stay local to your device during processing.",
+    category: "Everyday Tools",
+    path: "/calculators/crop-image",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This tool reads your image in the browser and keeps only the pixel
+            area you define with X, Y, width, and height values. It then
+            exports that cropped result as a new image.
+          </p>
+          <p>
+            It is useful when you want to remove excess borders, isolate part
+            of a screenshot, or tighten the framing of an uploaded image.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            A successful result means the selected crop area has been exported
+            as a new downloadable image. The result box shows the crop size and
+            output file size.
+          </p>
+          <p>
+            That makes it easier to confirm the file is ready before you reuse
+            or share it.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This tool uses numeric crop bounds rather than a full drag-and-drop
+            image editor. That keeps the workflow lightweight and browser-only,
+            but it is not meant to replace a full design tool.
+          </p>
+          <p>
+            Crop bounds also need to fit inside the source image dimensions, so
+            invalid values are rejected clearly.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use Crop Image when the most important task is trimming the image to
+            a smaller area before sharing, uploading, or continuing with another
+            formatting step.
+          </p>
+          <p>
+            Related tools include {toolLink("/calculators/rotate-image", "Rotate Image")},
+            {" "}{toolLink("/calculators/image-resizer", "Image Resizer")}, and the{" "}
+            {toolLink("/image-tools", "Image Tools hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      { question: "Are images uploaded to a server while cropping?", answer: "No. Images are processed locally in your browser and are never uploaded by this tool." },
+      { question: "What do the crop values mean?", answer: "X and Y set the top-left starting point of the crop in source-image pixels, while width and height define how much of the image to keep." },
+      { question: "Can I crop outside the original image bounds?", answer: "No. The crop area must stay inside the original image dimensions." },
+      { question: "Does cropping also resize the image?", answer: "Cropping changes the area you keep. It does not separately scale the cropped area unless another tool is used afterward." },
+      { question: "Is this a full photo editor?", answer: "No. It is a focused browser-based cropping utility for straightforward image trimming." },
+    ],
+  },
+  "rotate-image": {
+    title: "Rotate Image",
+    description:
+      "Rotate an image by 90, 180, or 270 degrees locally in your browser.",
+    eyebrow: "Image Tools",
+    intro:
+      "Use this Rotate Image tool to upload one image, choose a rotation angle, and export the rotated result directly in your browser. Images stay local to your device during processing.",
+    category: "Everyday Tools",
+    path: "/calculators/rotate-image",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This tool redraws your image on a canvas at a new orientation and
+            exports the rotated result without sending the file to a server.
+          </p>
+          <p>
+            It is useful for phone photos, scanned documents, screenshots, or
+            any image that opens sideways or upside down.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            A successful result means the rotated image is ready to download.
+            The result box shows the output dimensions, size, and chosen format.
+          </p>
+          <p>
+            That makes it easy to confirm the file is ready before you keep
+            working with it.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This is a browser-based rotation workflow, not a full image
+            editing suite. It is designed for practical file correction rather
+            than layered design work.
+          </p>
+          <p>
+            Some formats and source images may still change slightly when they
+            are re-exported through the browser.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use Rotate Image when the content is correct but the orientation is
+            wrong for sharing, publishing, or document assembly.
+          </p>
+          <p>
+            Related tools include {toolLink("/calculators/crop-image", "Crop Image")},
+            {" "}{toolLink("/calculators/image-resizer", "Image Resizer")}, and the{" "}
+            {toolLink("/image-tools", "Image Tools hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      { question: "Are images uploaded to a server during rotation?", answer: "No. Images are processed locally in your browser and are never uploaded by this tool." },
+      { question: "What rotation angles are supported?", answer: "You can rotate by 90, 180, or 270 degrees." },
+      { question: "Will the rotated image keep the same dimensions?", answer: "A 180-degree rotation keeps the same dimensions, while 90- and 270-degree rotations swap width and height." },
+      { question: "Is this useful for sideways phone photos?", answer: "Yes. That is one of the most practical everyday uses for the tool." },
+      { question: "Is this a design or retouching tool?", answer: "No. It is a focused browser-based rotation utility for straightforward orientation fixes." },
+    ],
+  },
   "pdf-file-size-estimator": {
     title: "PDF File Size Estimator",
     description:

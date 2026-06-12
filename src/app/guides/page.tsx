@@ -101,6 +101,20 @@ const guideGroups: GuideGroup[] = [
     ],
   },
   {
+    title: "Image Tools",
+    intro: "Browser-based image utilities for resizing, compression, format conversion, cropping, and rotation.",
+    items: [
+      { title: "Image Tools Hub", description: "Central landing page for Dr.Utilio's browser-based image utilities.", href: "/image-tools" },
+      { title: "Image Resizer", description: "Resize one image locally in your browser within custom maximum dimensions.", href: "/calculators/image-resizer" },
+      { title: "Image Compressor", description: "Create a lighter image locally in your browser using adjustable compression settings.", href: "/calculators/image-compressor" },
+      { title: "JPG to PNG", description: "Convert one JPG or JPEG image into PNG format locally in your browser.", href: "/calculators/jpg-to-png" },
+      { title: "PNG to JPG", description: "Convert one PNG image into JPG format locally in your browser.", href: "/calculators/png-to-jpg" },
+      { title: "WebP Converter", description: "Convert JPG, PNG, or WebP images into another common format locally in your browser.", href: "/calculators/webp-converter" },
+      { title: "Crop Image", description: "Crop one image using custom pixel bounds and export the trimmed result.", href: "/calculators/crop-image" },
+      { title: "Rotate Image", description: "Rotate one image by 90, 180, or 270 degrees locally in your browser.", href: "/calculators/rotate-image" },
+    ],
+  },
+  {
     title: "PDF Tools",
     intro: "PDF workflow guides for compression, merging, splitting, conversion planning, and browser-based image-to-PDF tools.",
     items: [
