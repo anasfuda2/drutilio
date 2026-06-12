@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   calculatePdfFileSizeEstimate,
   formatNumber,
@@ -10,12 +10,14 @@ import { CalculatorPanel } from "@/components/calculators/CalculatorPanel";
 import { CalculatorResult } from "@/components/calculators/CalculatorResult";
 import { CalculatorSelectField } from "@/components/calculators/CalculatorSelectField";
 import { ResultGrid } from "@/components/calculators/ResultGrid";
+import { trackToolExecutionSuccess } from "@/lib/analytics";
 
 export function PdfFileSizeEstimatorClient() {
   const [numberOfPages, setNumberOfPages] = useState(12);
   const [averageImagesPerPage, setAverageImagesPerPage] = useState(2);
   const [imageQualityLevel, setImageQualityLevel] = useState("medium");
   const [documentStyle, setDocumentStyle] = useState("balanced");
+  const hasTrackedInitialEstimate = useRef(false);
 
   const result = useMemo(
     () =>
@@ -27,6 +29,21 @@ export function PdfFileSizeEstimatorClient() {
       }),
     [averageImagesPerPage, documentStyle, imageQualityLevel, numberOfPages],
   );
+
+  useEffect(() => {
+    if (hasTrackedInitialEstimate.current) {
+      return;
+    }
+
+    hasTrackedInitialEstimate.current = true;
+    trackToolExecutionSuccess({
+      slug: "pdf-file-size-estimator",
+      name: "PDF File Size Estimator",
+      category: "PDF Tools",
+      path: "/calculators/pdf-file-size-estimator",
+      operation: "pdf-size-estimate",
+    });
+  }, []);
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">

@@ -9,6 +9,10 @@ import { CalculatorResult } from "@/components/calculators/CalculatorResult";
 import { CalculatorTextField } from "@/components/calculators/CalculatorTextField";
 import { ResultGrid } from "@/components/calculators/ResultGrid";
 import {
+  trackFileDownload,
+  trackToolExecutionSuccess,
+} from "@/lib/analytics";
+import {
   formatFileSize,
   inspectPdfFile,
   parsePageRanges,
@@ -194,6 +198,17 @@ export function PdfToImageClient({ format }: { format: OutputFormat }) {
 
       clearOutputs();
       setOutputs(nextOutputs);
+      trackToolExecutionSuccess({
+        slug: format === "jpg" ? "pdf-to-jpg" : "pdf-to-png",
+        name: format === "jpg" ? "PDF to JPG" : "PDF to PNG",
+        category: "PDF Tools",
+        path:
+          format === "jpg"
+            ? "/calculators/pdf-to-jpg"
+            : "/calculators/pdf-to-png",
+        operation: format === "jpg" ? "pdf-to-jpg" : "pdf-to-png",
+        outputCount: nextOutputs.length,
+      });
     } catch (conversionError) {
       setError(
         conversionError instanceof Error
@@ -369,6 +384,18 @@ export function PdfToImageClient({ format }: { format: OutputFormat }) {
                       <a
                         href={item.url}
                         download={item.fileName}
+                        onClick={() =>
+                          trackFileDownload({
+                            slug: format === "jpg" ? "pdf-to-jpg" : "pdf-to-png",
+                            name: format === "jpg" ? "PDF to JPG" : "PDF to PNG",
+                            category: "PDF Tools",
+                            path:
+                              format === "jpg"
+                                ? "/calculators/pdf-to-jpg"
+                                : "/calculators/pdf-to-png",
+                            fileType: format,
+                          })
+                        }
                         className="mt-3 inline-flex rounded-lg bg-emerald-400 px-3 py-2 text-xs font-semibold text-slate-950 transition hover:bg-emerald-300"
                       >
                         Download {format.toUpperCase()}

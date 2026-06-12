@@ -8,6 +8,10 @@ import { CalculatorPanel } from "@/components/calculators/CalculatorPanel";
 import { CalculatorResult } from "@/components/calculators/CalculatorResult";
 import { ResultGrid } from "@/components/calculators/ResultGrid";
 import {
+  trackFileDownload,
+  trackToolExecutionSuccess,
+} from "@/lib/analytics";
+import {
   formatImageFileSize,
   getExtensionForImageFormat,
   getImageFormatFromFile,
@@ -169,6 +173,14 @@ export function CropImageClient() {
         sizeBytes: result.blob.size,
         url: URL.createObjectURL(result.blob),
         width: result.width,
+      });
+      trackToolExecutionSuccess({
+        slug: "crop-image",
+        name: "Crop Image",
+        category: "Image Tools",
+        path: "/calculators/crop-image",
+        operation: "crop-image",
+        outputCount: 1,
       });
     } catch (cropError) {
       setError(
@@ -353,6 +365,16 @@ export function CropImageClient() {
               <a
                 href={output.url}
                 download={output.fileName}
+                onClick={() =>
+                  trackFileDownload({
+                    slug: "crop-image",
+                    name: "Crop Image",
+                    category: "Image Tools",
+                    path: "/calculators/crop-image",
+                    fileType:
+                      output.fileName.split(".").pop()?.toLowerCase() || "image",
+                  })
+                }
                 className="inline-flex items-center justify-center rounded-xl bg-emerald-400 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
               >
                 Download cropped image

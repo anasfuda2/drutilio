@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { AdPlaceholder } from "@/components/ads/AdPlaceholder";
 import { Container } from "@/components/layout/Container";
 
 type ContentPageProps = {
@@ -25,6 +26,10 @@ export function ContentPage({
             {title}
           </h1>
           <p className="mt-6 text-lg leading-8 text-slate-300">{intro}</p>
+        </div>
+
+        <div className="mt-10">
+          <AdPlaceholder placement="article-inline" />
         </div>
 
         <div className="mt-10 grid gap-6">

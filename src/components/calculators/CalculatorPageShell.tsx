@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { AdPlaceholder } from "@/components/ads/AdPlaceholder";
 import { Container } from "@/components/layout/Container";
 import { RelatedCalculators } from "@/components/calculators/RelatedCalculators";
 import { TrustStrip } from "@/components/calculators/TrustStrip";
@@ -75,6 +76,9 @@ export function CalculatorPageShell({
 
         <div className="mt-10">{calculator}</div>
         <TrustStrip />
+        <div className="mt-8">
+          <AdPlaceholder placement="between-sections" />
+        </div>
 
         <div className="mt-12 grid gap-6">
           <SectionCard title="How this calculator works">

@@ -5,6 +5,10 @@ import Link from "next/link";
 import { CalculatorPanel } from "@/components/calculators/CalculatorPanel";
 import { CalculatorResult } from "@/components/calculators/CalculatorResult";
 import { ResultGrid } from "@/components/calculators/ResultGrid";
+import {
+  trackFileDownload,
+  trackToolExecutionSuccess,
+} from "@/lib/analytics";
 import { formatFileSize, inspectPdfFile, mergePdfFiles } from "@/lib/pdf-browser-tools";
 
 type UploadedPdf = {
@@ -140,6 +144,14 @@ export function MergePdfClient() {
       replaceDownloadUrl(URL.createObjectURL(blob));
       setMergedPageCount(merged.pageCount);
       setOutputSize(blob.size);
+      trackToolExecutionSuccess({
+        slug: "merge-pdf",
+        name: "Merge PDF",
+        category: "PDF Tools",
+        path: "/calculators/merge-pdf",
+        operation: "merge-pdf",
+        outputCount: files.length,
+      });
     } catch (mergeError) {
       setError(
         mergeError instanceof Error
@@ -321,6 +333,15 @@ export function MergePdfClient() {
             <a
               href={downloadUrl}
               download="drutilio-merged.pdf"
+              onClick={() =>
+                trackFileDownload({
+                  slug: "merge-pdf",
+                  name: "Merge PDF",
+                  category: "PDF Tools",
+                  path: "/calculators/merge-pdf",
+                  fileType: "pdf",
+                })
+              }
               className="inline-flex rounded-xl bg-emerald-400 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Download merged PDF

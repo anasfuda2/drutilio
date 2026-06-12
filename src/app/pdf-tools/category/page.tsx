@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
 import { Container } from "@/components/layout/Container";
 import {
   Breadcrumbs,
@@ -150,6 +151,12 @@ export const metadata: Metadata = {
 export default function PdfToolsCategoryPage() {
   return (
     <section className="py-16 sm:py-20">
+      <AnalyticsTracker
+        type="category-visit"
+        category="PDF Tools"
+        path="/pdf-tools/category"
+        section="category-directory"
+      />
       <JsonLd data={buildBreadcrumbStructuredData(breadcrumbs)} />
 
       <Container>

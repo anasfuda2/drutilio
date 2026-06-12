@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { AdPlaceholder } from "@/components/ads/AdPlaceholder";
 import { Container } from "@/components/layout/Container";
 import {
   Breadcrumbs,
@@ -56,19 +57,25 @@ export function EducationArticlePage({
           </div>
         </div>
 
+        <div className="mt-10">
+          <AdPlaceholder placement="article-inline" />
+        </div>
+
         <div className="mt-10 grid gap-6">
-          {content.sections.map((section) => (
-            <section
-              key={section.title}
-              className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8"
-            >
-              <h2 className="text-2xl font-semibold tracking-tight text-white">
-                {section.title}
-              </h2>
-              <div className="mt-4 space-y-4 text-base leading-7 text-slate-300">
-                {section.content}
-              </div>
-            </section>
+          {content.sections.map((section, index) => (
+            <div key={section.title} className="grid gap-6">
+              <section className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8">
+                <h2 className="text-2xl font-semibold tracking-tight text-white">
+                  {section.title}
+                </h2>
+                <div className="mt-4 space-y-4 text-base leading-7 text-slate-300">
+                  {section.content}
+                </div>
+              </section>
+              {index === 1 ? (
+                <AdPlaceholder placement="article-inline" />
+              ) : null}
+            </div>
           ))}
 
           <FAQSection items={content.faqItems} />

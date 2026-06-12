@@ -7,6 +7,10 @@ import { CalculatorResult } from "@/components/calculators/CalculatorResult";
 import { CalculatorTextField } from "@/components/calculators/CalculatorTextField";
 import { ResultGrid } from "@/components/calculators/ResultGrid";
 import {
+  trackFileDownload,
+  trackToolExecutionSuccess,
+} from "@/lib/analytics";
+import {
   extractPdfPages,
   formatFileSize,
   inspectPdfFile,
@@ -114,6 +118,14 @@ export function ExtractPdfPagesClient() {
       setOutputPageCount(extracted.pageCount);
       setOutputSize(blob.size);
       setSelectedPagesLabel(extracted.selectedPages);
+      trackToolExecutionSuccess({
+        slug: "extract-pdf-pages",
+        name: "Extract PDF Pages",
+        category: "PDF Tools",
+        path: "/calculators/extract-pdf-pages",
+        operation: "extract-pdf-pages",
+        outputCount: extracted.pageCount,
+      });
     } catch (extractError) {
       setError(
         extractError instanceof Error
@@ -253,6 +265,16 @@ export function ExtractPdfPagesClient() {
             <a
               href={downloadUrl}
               download={outputName || "extracted-pages.pdf"}
+              onClick={() =>
+                trackFileDownload({
+                  slug: "extract-pdf-pages",
+                  name: "Extract PDF Pages",
+                  category: "PDF Tools",
+                  path: "/calculators/extract-pdf-pages",
+                  fileType: "pdf",
+                  outputCount: outputPageCount,
+                })
+              }
               className="inline-flex items-center justify-center rounded-xl bg-emerald-400 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Download extracted PDF

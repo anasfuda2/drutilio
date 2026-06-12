@@ -7,6 +7,10 @@ import { CalculatorResult } from "@/components/calculators/CalculatorResult";
 import { CalculatorTextField } from "@/components/calculators/CalculatorTextField";
 import { ResultGrid } from "@/components/calculators/ResultGrid";
 import {
+  trackFileDownload,
+  trackToolExecutionSuccess,
+} from "@/lib/analytics";
+import {
   formatFileSize,
   inspectPdfFile,
   splitPdfFile,
@@ -105,6 +109,14 @@ export function SplitPdfClient() {
         })),
       );
       setPageCount(result.totalPages);
+      trackToolExecutionSuccess({
+        slug: "split-pdf",
+        name: "Split PDF",
+        category: "PDF Tools",
+        path: "/calculators/split-pdf",
+        operation: "split-pdf",
+        outputCount: result.outputs.length,
+      });
     } catch (splitError) {
       setError(
         splitError instanceof Error
@@ -259,6 +271,16 @@ export function SplitPdfClient() {
                   key={item.fileName}
                   href={item.url}
                   download={item.fileName}
+                  onClick={() =>
+                    trackFileDownload({
+                      slug: "split-pdf",
+                      name: "Split PDF",
+                      category: "PDF Tools",
+                      path: "/calculators/split-pdf",
+                      fileType: "pdf",
+                      outputCount: item.pageCount,
+                    })
+                  }
                   className="rounded-xl border border-white/10 bg-slate-950/35 px-4 py-3 text-sm transition hover:bg-white/5"
                 >
                   <span className="block font-semibold text-white">

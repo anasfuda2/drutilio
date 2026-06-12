@@ -7,6 +7,10 @@ import { CalculatorPanel } from "@/components/calculators/CalculatorPanel";
 import { CalculatorResult } from "@/components/calculators/CalculatorResult";
 import { CalculatorSelectField } from "@/components/calculators/CalculatorSelectField";
 import { ResultGrid } from "@/components/calculators/ResultGrid";
+import {
+  trackFileDownload,
+  trackToolExecutionSuccess,
+} from "@/lib/analytics";
 import { buildPdfDocument, type PreparedPdfImage } from "@/lib/pdf-generator";
 import { formatFileSize, inspectPdfFile } from "@/lib/pdf-browser-tools";
 
@@ -215,6 +219,14 @@ export function CompressPdfClient() {
       setOutputName(`${baseName}-compressed-${level}.pdf`);
       setOutputPageCount(preparedPages.length);
       setOutputSize(blob.size);
+      trackToolExecutionSuccess({
+        slug: "compress-pdf",
+        name: "Compress PDF",
+        category: "PDF Tools",
+        path: "/calculators/compress-pdf",
+        operation: `compress-${level}`,
+        outputCount: preparedPages.length,
+      });
     } catch (compressionError) {
       setError(
         compressionError instanceof Error
@@ -371,6 +383,15 @@ export function CompressPdfClient() {
             <a
               href={downloadUrl}
               download={outputName || "compressed-document.pdf"}
+              onClick={() =>
+                trackFileDownload({
+                  slug: "compress-pdf",
+                  name: "Compress PDF",
+                  category: "PDF Tools",
+                  path: "/calculators/compress-pdf",
+                  fileType: "pdf",
+                })
+              }
               className="inline-flex items-center justify-center rounded-xl bg-emerald-400 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Download compressed PDF

@@ -9,6 +9,10 @@ import { CalculatorResult } from "@/components/calculators/CalculatorResult";
 import { CalculatorSelectField } from "@/components/calculators/CalculatorSelectField";
 import { ResultGrid } from "@/components/calculators/ResultGrid";
 import {
+  trackFileDownload,
+  trackToolExecutionSuccess,
+} from "@/lib/analytics";
+import {
   formatImageFileSize,
   getExtensionForImageFormat,
   getImageFormatFromFile,
@@ -130,6 +134,48 @@ function formatFromSelection(value: string): ImageOutputFormat {
   return "jpeg";
 }
 
+const analyticsConfig: Record<
+  ImageToolMode,
+  { category: string; name: string; path: string; slug: string }
+> = {
+  "image-resizer": {
+    category: "Image Tools",
+    name: "Image Resizer",
+    path: "/calculators/image-resizer",
+    slug: "image-resizer",
+  },
+  "image-compressor": {
+    category: "Image Tools",
+    name: "Image Compressor",
+    path: "/calculators/image-compressor",
+    slug: "image-compressor",
+  },
+  "jpg-to-png": {
+    category: "Image Tools",
+    name: "JPG to PNG",
+    path: "/calculators/jpg-to-png",
+    slug: "jpg-to-png",
+  },
+  "png-to-jpg": {
+    category: "Image Tools",
+    name: "PNG to JPG",
+    path: "/calculators/png-to-jpg",
+    slug: "png-to-jpg",
+  },
+  "webp-converter": {
+    category: "Image Tools",
+    name: "WebP Converter",
+    path: "/calculators/webp-converter",
+    slug: "webp-converter",
+  },
+  "rotate-image": {
+    category: "Image Tools",
+    name: "Rotate Image",
+    path: "/calculators/rotate-image",
+    slug: "rotate-image",
+  },
+};
+
 export function ImageTransformClient({ mode }: { mode: ImageToolMode }) {
   const [compressionLevel, setCompressionLevel] = useState<"low" | "medium" | "high">("medium");
   const [error, setError] = useState("");
@@ -148,6 +194,7 @@ export function ImageTransformClient({ mode }: { mode: ImageToolMode }) {
   const outputUrlRef = useRef("");
 
   const config = modeConfig[mode];
+  const analytics = analyticsConfig[mode];
 
   useEffect(() => {
     previewUrlRef.current = previewUrl;
@@ -293,6 +340,14 @@ export function ImageTransformClient({ mode }: { mode: ImageToolMode }) {
         sizeBytes: result.blob.size,
         url: URL.createObjectURL(result.blob),
         width: result.width,
+      });
+      trackToolExecutionSuccess({
+        slug: analytics.slug,
+        name: analytics.name,
+        category: analytics.category,
+        path: analytics.path,
+        operation: mode,
+        outputCount: 1,
       });
     } catch (processingError) {
       setError(
@@ -533,6 +588,15 @@ export function ImageTransformClient({ mode }: { mode: ImageToolMode }) {
               <a
                 href={output.url}
                 download={output.fileName}
+                onClick={() =>
+                  trackFileDownload({
+                    slug: analytics.slug,
+                    name: analytics.name,
+                    category: analytics.category,
+                    path: analytics.path,
+                    fileType: effectiveOutputFormat,
+                  })
+                }
                 className="inline-flex items-center justify-center rounded-xl bg-emerald-400 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
               >
                 Download processed image

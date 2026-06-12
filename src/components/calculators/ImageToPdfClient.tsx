@@ -6,6 +6,10 @@ import Image from "next/image";
 import { CalculatorPanel } from "@/components/calculators/CalculatorPanel";
 import { CalculatorResult } from "@/components/calculators/CalculatorResult";
 import { ResultGrid } from "@/components/calculators/ResultGrid";
+import {
+  trackFileDownload,
+  trackToolExecutionSuccess,
+} from "@/lib/analytics";
 import { buildPdfDocument, prepareImageForPdf } from "@/lib/pdf-generator";
 
 type ImageToPdfMode = "image" | "jpg" | "png";
@@ -114,6 +118,24 @@ export function ImageToPdfClient({ mode }: { mode: ImageToPdfMode }) {
   }, []);
 
   const config = modeConfig[mode];
+  const analytics =
+    mode === "jpg"
+      ? {
+          name: "JPG to PDF",
+          path: "/calculators/jpg-to-pdf",
+          slug: "jpg-to-pdf",
+        }
+      : mode === "png"
+        ? {
+            name: "PNG to PDF",
+            path: "/calculators/png-to-pdf",
+            slug: "png-to-pdf",
+          }
+        : {
+            name: "Image to PDF",
+            path: "/calculators/image-to-pdf",
+            slug: "image-to-pdf",
+          };
   const totalInputBytes = useMemo(
     () => items.reduce((sum, item) => sum + item.file.size, 0),
     [items],
@@ -207,6 +229,14 @@ export function ImageToPdfClient({ mode }: { mode: ImageToPdfMode }) {
 
       replaceDownloadUrl(nextUrl);
       setOutputSize(blob.size);
+      trackToolExecutionSuccess({
+        slug: analytics.slug,
+        name: analytics.name,
+        category: "PDF Tools",
+        path: analytics.path,
+        operation: "image-to-pdf",
+        outputCount: items.length,
+      });
     } catch (generationError) {
       setError(
         generationError instanceof Error
@@ -391,6 +421,15 @@ export function ImageToPdfClient({ mode }: { mode: ImageToPdfMode }) {
             <a
               href={downloadUrl}
               download={config.downloadName}
+              onClick={() =>
+                trackFileDownload({
+                  slug: analytics.slug,
+                  name: analytics.name,
+                  category: "PDF Tools",
+                  path: analytics.path,
+                  fileType: "pdf",
+                })
+              }
               className="inline-flex rounded-xl bg-emerald-400 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Download PDF

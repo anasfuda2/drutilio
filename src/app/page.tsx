@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AdPlaceholder } from "@/components/ads/AdPlaceholder";
 import { CalculatorCard } from "@/components/calculators/CalculatorCard";
 import { HomeToolSearchClient } from "@/components/home/HomeToolSearchClient";
 import { Container } from "@/components/layout/Container";
@@ -356,6 +357,10 @@ export default function Home() {
         </Container>
       </section>
 
+      <Container className="pt-8">
+        <AdPlaceholder placement="below-hero" />
+      </Container>
+
       <section className="py-16 sm:py-20">
         <Container>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -394,6 +399,10 @@ export default function Home() {
           </div>
         </Container>
       </section>
+
+      <Container className="pb-4">
+        <AdPlaceholder placement="between-sections" />
+      </Container>
 
       <section className="border-t border-white/10 py-16 sm:py-20">
         <Container>
@@ -522,6 +531,10 @@ export default function Home() {
           </div>
         </Container>
       </section>
+
+      <Container className="pb-4">
+        <AdPlaceholder placement="between-sections" />
+      </Container>
 
       <section className="border-t border-white/10 py-16 sm:py-20">
         <Container>

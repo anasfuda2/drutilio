@@ -14,6 +14,7 @@ export const siteConfig = {
   googleSiteVerification:
     process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
     "b7yfqTRAa3iCtGvNY_ACtsNx9ZaDg-z7V4qAJRVziJY",
+  adsEnabled: process.env.NEXT_PUBLIC_ENABLE_AD_PLACEHOLDERS === "true",
 };
 
 export function toAbsoluteUrl(path = "/") {

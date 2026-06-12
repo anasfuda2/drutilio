@@ -8,6 +8,10 @@ import { CalculatorSelectField } from "@/components/calculators/CalculatorSelect
 import { CalculatorTextField } from "@/components/calculators/CalculatorTextField";
 import { ResultGrid } from "@/components/calculators/ResultGrid";
 import {
+  trackFileDownload,
+  trackToolExecutionSuccess,
+} from "@/lib/analytics";
+import {
   formatFileSize,
   inspectPdfFile,
   rotatePdfFile,
@@ -119,6 +123,13 @@ export function RotatePdfClient() {
       setOutputSize(blob.size);
       setPageCount(rotated.totalPages);
       setRotatedPagesLabel(rotated.rotatedPages);
+      trackToolExecutionSuccess({
+        slug: "rotate-pdf",
+        name: "Rotate PDF",
+        category: "PDF Tools",
+        path: "/calculators/rotate-pdf",
+        operation: mode === "all" ? "rotate-all-pages" : "rotate-page-ranges",
+      });
     } catch (rotateError) {
       setError(
         rotateError instanceof Error
@@ -284,6 +295,15 @@ export function RotatePdfClient() {
             <a
               href={downloadUrl}
               download={outputName || "rotated-document.pdf"}
+              onClick={() =>
+                trackFileDownload({
+                  slug: "rotate-pdf",
+                  name: "Rotate PDF",
+                  category: "PDF Tools",
+                  path: "/calculators/rotate-pdf",
+                  fileType: "pdf",
+                })
+              }
               className="inline-flex items-center justify-center rounded-xl bg-emerald-400 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Download rotated PDF
