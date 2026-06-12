@@ -7,6 +7,11 @@ import { siteConfig } from "@/lib/site";
 
 const categoryLinks = [
   {
+    href: "/categories",
+    label: "All Categories",
+    description: "Browse every major Dr.Utilio topic hub in one place.",
+  },
+  {
     href: "/calculators?category=Finance",
     label: "Finance",
     description: "Money, loan, savings, and planning tools.",
@@ -45,13 +50,18 @@ const toolLinks = [
     description: "Browse the full Dr.Utilio calculator directory.",
   },
   {
-    href: "/calculators?q=converter",
+    href: "/converters",
     label: "Converters",
     description: "Jump straight to date and unit conversion tools.",
   },
 ];
 
 const guideLinks = [
+  {
+    href: "/guides",
+    label: "All Guides",
+    description: "Browse every educational guide hub and topic cluster.",
+  },
   {
     href: "/tax",
     label: "Tax Guides",
@@ -182,8 +192,18 @@ export function Header() {
               Home
             </Link>
             <DesktopMenu label="Tools" items={toolLinks} />
-            <DesktopMenu label="Categories" items={categoryLinks} />
-            <DesktopMenu label="Guides" items={guideLinks} />
+            <Link
+              href="/categories"
+              className="rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/5 hover:text-white"
+            >
+              Categories
+            </Link>
+            <Link
+              href="/guides"
+              className="rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/5 hover:text-white"
+            >
+              Guides
+            </Link>
           </nav>
         </div>
 
@@ -206,14 +226,29 @@ export function Header() {
                 items={toolLinks}
                 onNavigate={() => setMobileOpen(false)}
               />
+              <Link
+                href="/categories"
+                className="rounded-xl px-3 py-2 text-sm font-medium text-white transition hover:bg-white/5"
+                onClick={() => setMobileOpen(false)}
+              >
+                Categories
+              </Link>
+              <Link
+                href="/guides"
+                className="rounded-xl px-3 py-2 text-sm font-medium text-white transition hover:bg-white/5"
+                onClick={() => setMobileOpen(false)}
+              >
+                Guides
+              </Link>
+
               <MobileSection
-                title="Categories"
-                items={categoryLinks}
+                title="Category Highlights"
+                items={categoryLinks.slice(1)}
                 onNavigate={() => setMobileOpen(false)}
               />
               <MobileSection
-                title="Guides"
-                items={guideLinks}
+                title="Guide Highlights"
+                items={guideLinks.slice(1)}
                 onNavigate={() => setMobileOpen(false)}
               />
             </nav>
