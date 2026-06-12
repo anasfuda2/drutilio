@@ -13,7 +13,7 @@ import {
 } from "@/lib/structured-data";
 
 const description =
-  "Explore Dr.Utilio's PDF tools hub with browser-based image conversion tools, PDF workflow guides, and a file size estimator.";
+  "Explore Dr.Utilio's PDF tools hub with browser-based conversion tools, PDF workflow guides, and a file size estimator.";
 
 const breadcrumbs: BreadcrumbItem[] = [
   { label: "Home", href: "/" },
@@ -24,12 +24,12 @@ const faqItems: FAQItem[] = [
   {
     question: "What is currently available in Dr.Utilio's PDF tools hub?",
     answer:
-      "The hub currently includes browser-based image-to-PDF tools, browser-based PDF merge and split tools, educational PDF workflow guides, and a lightweight file size estimator.",
+      "The hub currently includes browser-based image-to-PDF tools, browser-based PDF merge and split tools, browser-based PDF-to-image tools, educational PDF workflow guides, and a lightweight file size estimator.",
   },
   {
     question: "Can Dr.Utilio process PDF uploads here yet?",
     answer:
-      "Not yet for server-side PDF upload workflows. The current live tools focus on browser-based image-to-PDF conversion, browser-based PDF merge and split, and estimate-based planning.",
+      "Not yet for server-side PDF upload workflows. The current live tools focus on browser-based image-to-PDF conversion, browser-based PDF merge and split, browser-based PDF-to-image exports, and estimate-based planning.",
   },
   {
     question: "What is the PDF File Size Estimator for?",
@@ -79,6 +79,18 @@ const pdfCards: PdfCard[] = [
     description:
       "Upload one PDF, define page ranges, and export separate PDF files locally in your browser.",
     href: "/calculators/split-pdf",
+  },
+  {
+    title: "PDF to JPG",
+    description:
+      "Render selected PDF pages as downloadable JPG image files locally in your browser.",
+    href: "/calculators/pdf-to-jpg",
+  },
+  {
+    title: "PDF to PNG",
+    description:
+      "Render selected PDF pages as downloadable PNG image files locally in your browser.",
+    href: "/calculators/pdf-to-png",
   },
   {
     title: "PDF Tools Category",
@@ -169,7 +181,8 @@ export default function PdfToolsPage() {
               Dr.Utilio&apos;s PDF tools hub is the foundation for current and
               future document utilities. It now includes browser-based image to
               PDF converters, browser-based PDF merge and split tools,
-              educational workflow guides, and a file-size estimator.
+              browser-based PDF-to-image tools, educational workflow guides,
+              and a file-size estimator.
             </p>
             <p>
               That makes it a useful place to understand what usually affects

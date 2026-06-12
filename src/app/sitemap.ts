@@ -4,6 +4,7 @@ import { toAbsoluteUrl } from "@/lib/site";
 
 const staticRoutes = [
   "",
+  "/tools",
   "/calculators",
   "/categories",
   "/guides",

@@ -3329,6 +3329,196 @@ export const toolPageContent: Record<string, ToolPageContent> = {
       },
     ],
   },
+  "pdf-to-jpg": {
+    title: "PDF to JPG",
+    description:
+      "Convert selected PDF pages into downloadable JPG images with a browser-based PDF to JPG tool that runs locally on your device.",
+    eyebrow: "PDF Tools",
+    intro:
+      "Use this PDF to JPG converter to upload one PDF, choose the pages you want, and render those pages as JPG image files directly in your browser. Files stay local to your device during processing.",
+    category: "Everyday Tools",
+    path: "/calculators/pdf-to-jpg",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This tool loads your PDF in the browser, renders the selected pages
+            onto canvas elements, and encodes each rendered page as a JPG file.
+            That makes it useful when you need visual page previews, shareable
+            page images, or image-based extracts from a larger PDF.
+          </p>
+          <p>
+            Because the conversion happens locally, your PDF is not uploaded to
+            a server while pages are rendered. If you need a lossless-style
+            image export instead, use {toolLink("/calculators/pdf-to-png", "PDF to PNG")}.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            A successful result means each selected page has been rendered as
+            its own JPG download. The result summary shows how many image files
+            are ready and the approximate total output size.
+          </p>
+          <p>
+            That helps you judge whether the export is practical for email,
+            documentation, reviews, or image-based reuse.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This is a browser-based rendering workflow, not a print-proof image
+            pipeline. Fine typography, transparency, annotations, and color
+            handling can vary depending on the PDF and the browser.
+          </p>
+          <p>
+            JPG also involves lossy encoding, which can make it less ideal than
+            PNG when the source PDF needs extra sharpness for diagrams or text.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use PDF to JPG when you want lighter image files from selected PDF
+            pages for previews, chat attachments, slide decks, or quick visual
+            reference.
+          </p>
+          <p>
+            If you want sharper image output for diagrams or screenshots, try{" "}
+            {toolLink("/calculators/pdf-to-png", "PDF to PNG")}. For the broader
+            document cluster, visit {toolLink("/pdf-tools", "the PDF tools hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Are my PDF files uploaded to a server?",
+        answer:
+          "No. Files are processed locally in your browser and are never uploaded by this tool.",
+      },
+      {
+        question: "Can I choose only certain pages to convert?",
+        answer:
+          "Yes. You can enter page ranges such as 1-3, 5 to render only the pages you want.",
+      },
+      {
+        question: "Why choose JPG instead of PNG?",
+        answer:
+          "JPG is often useful when you want smaller image files and the output is mainly for visual sharing rather than the sharpest possible page capture.",
+      },
+      {
+        question: "Will the converted images look exactly like the original PDF?",
+        answer:
+          "Not always. Rendering, compression, and color handling can vary by browser and by the source PDF itself.",
+      },
+      {
+        question: "Is this professional publishing advice?",
+        answer:
+          "No. It is a browser-based utility tool and does not provide printing, archival, or publishing advice.",
+      },
+    ],
+  },
+  "pdf-to-png": {
+    title: "PDF to PNG",
+    description:
+      "Convert selected PDF pages into downloadable PNG images with a browser-based PDF to PNG tool that runs locally on your device.",
+    eyebrow: "PDF Tools",
+    intro:
+      "Use this PDF to PNG converter to upload one PDF, choose the pages you want, and render those pages as PNG image files directly in your browser. Files stay local to your device during processing.",
+    category: "Everyday Tools",
+    path: "/calculators/pdf-to-png",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This tool loads your PDF in the browser, renders the selected pages
+            onto canvas elements, and exports each rendered page as a PNG file.
+            That can be especially useful for diagrams, forms, screenshots, or
+            other cases where crisp lines and text matter.
+          </p>
+          <p>
+            Because the conversion stays local to your browser, your PDF is not
+            uploaded to a server during the workflow.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            A successful result means each selected page has been rendered as
+            its own PNG download. The result summary shows how many output files
+            are ready and the approximate total size of those image exports.
+          </p>
+          <p>
+            That makes it easier to evaluate whether the output is practical
+            for documentation, markup, visual review, or reuse in another
+            design workflow.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This is still a browser-based rendering workflow, not a full
+            desktop publishing pipeline. Fine typography, color, annotations,
+            and advanced PDF features can still vary depending on the document
+            and the browser.
+          </p>
+          <p>
+            PNG files can also become much larger than JPG files, especially if
+            many pages are exported at once.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use PDF to PNG when you want sharper page images from a PDF for
+            diagrams, screenshots, visual notes, or documentation steps.
+          </p>
+          <p>
+            If you want smaller image files instead, compare the output against{" "}
+            {toolLink("/calculators/pdf-to-jpg", "PDF to JPG")}. For the
+            broader cluster, visit {toolLink("/pdf-tools", "the PDF tools hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Are my PDF files uploaded to a server?",
+        answer:
+          "No. Files are processed locally in your browser and are never uploaded by this tool.",
+      },
+      {
+        question: "Can I convert only specific pages?",
+        answer:
+          "Yes. You can choose page ranges such as 1-3, 5 to render only the pages you want.",
+      },
+      {
+        question: "Why use PNG instead of JPG?",
+        answer:
+          "PNG is often useful when you want sharper output for diagrams, forms, and screenshots, even though the files may be larger.",
+      },
+      {
+        question: "Will PNG files always look identical to the PDF?",
+        answer:
+          "Not always. Rendering, color handling, and transparency behavior can still vary by browser and by the source PDF.",
+      },
+      {
+        question: "Is this professional publishing advice?",
+        answer:
+          "No. It is a browser-based utility tool and does not provide printing, archival, or publishing advice.",
+      },
+    ],
+  },
   "image-to-pdf": {
     title: "Image to PDF",
     description:

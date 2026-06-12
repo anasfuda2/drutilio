@@ -5,6 +5,17 @@ export type ToolCategory =
   | "Education"
   | "Everyday Tools";
 
+export type ToolDirectoryCategory =
+  | "Finance"
+  | "Tax"
+  | "Retirement"
+  | "Mortgage"
+  | "Health"
+  | "Education"
+  | "Zakat"
+  | "PDF Tools"
+  | "Converters";
+
 export type TaxFilingStatus =
   | "single"
   | "married-filing-jointly"
@@ -20,6 +31,85 @@ export type CalculatorItem = {
   category: ToolCategory;
   status: CalculatorStatus;
 };
+
+export const toolDirectoryCategories: ToolDirectoryCategory[] = [
+  "Finance",
+  "Tax",
+  "Retirement",
+  "Mortgage",
+  "Health",
+  "Education",
+  "Zakat",
+  "PDF Tools",
+  "Converters",
+];
+
+export const toolDirectoryCategoryDescriptions: Record<
+  ToolDirectoryCategory,
+  string
+> = {
+  Finance:
+    "Core money tools for loans, savings, interest, and everyday personal finance planning.",
+  Tax:
+    "US tax-related estimate tools for federal income, self-employment tax, and refund planning.",
+  Retirement:
+    "Retirement planning tools for long-range saving, employer plans, IRAs, and income scenarios.",
+  Mortgage:
+    "Home-buying and mortgage planning tools for affordability, payments, refinance, and closing costs.",
+  Health:
+    "Educational wellness tools for calories, BMR, hydration, body composition, and healthy-weight reference points.",
+  Education:
+    "Student-focused tools for GPA tracking, final grade planning, and weekly study organization.",
+  Zakat:
+    "Zakat-focused tools for estimating zakatable assets and planning around common calculation scenarios.",
+  "PDF Tools":
+    "Browser-based PDF utilities for image conversion, merge, split, and document size planning.",
+  Converters:
+    "General-purpose conversion tools for dates, units, percentages, and everyday quick calculations.",
+};
+
+const taxToolSlugs = new Set([
+  "federal-income-tax-calculator",
+  "self-employment-tax-calculator",
+  "tax-refund-estimator",
+]);
+
+const retirementToolSlugs = new Set([
+  "retirement-calculator",
+  "401k-calculator",
+  "ira-calculator",
+  "retirement-income-calculator",
+]);
+
+const mortgageToolSlugs = new Set([
+  "mortgage-calculator",
+  "mortgage-affordability-calculator",
+  "mortgage-refinance-calculator",
+  "closing-costs-calculator",
+]);
+
+const zakatToolSlugs = new Set(["zakat-calculator"]);
+
+const pdfToolSlugs = new Set([
+  "pdf-file-size-estimator",
+  "image-to-pdf",
+  "jpg-to-pdf",
+  "png-to-pdf",
+  "merge-pdf",
+  "split-pdf",
+  "pdf-to-jpg",
+  "pdf-to-png",
+]);
+
+const converterToolSlugs = new Set([
+  "hijri-date-converter",
+  "unit-converter",
+  "age-calculator",
+  "date-difference-calculator",
+  "percentage-calculator",
+  "percentage-increase-calculator",
+  "percentage-decrease-calculator",
+]);
 
 export const toolCategories: ToolCategory[] = [
   "Finance",
@@ -265,6 +355,22 @@ export const calculators: CalculatorItem[] = [
     status: "Popular",
   },
   {
+    slug: "pdf-to-jpg",
+    title: "PDF to JPG",
+    description:
+      "Render selected PDF pages as downloadable JPG images with local browser processing.",
+    category: "Everyday Tools",
+    status: "Available now",
+  },
+  {
+    slug: "pdf-to-png",
+    title: "PDF to PNG",
+    description:
+      "Render selected PDF pages as downloadable PNG images with local browser processing.",
+    category: "Everyday Tools",
+    status: "Available now",
+  },
+  {
     slug: "grade-calculator",
     title: "Grade Calculator",
     description:
@@ -368,6 +474,7 @@ export const featuredCalculators = calculators.filter((calculator) =>
     "age-calculator",
     "image-to-pdf",
     "merge-pdf",
+    "pdf-to-jpg",
     "gpa-calculator",
     "unit-converter",
   ].includes(calculator.slug),
@@ -379,6 +486,44 @@ export function getCalculatorBySlug(slug: string) {
 
 export function getCalculatorsByCategory(category: ToolCategory) {
   return calculators.filter((calculator) => calculator.category === category);
+}
+
+export function getToolDirectoryCategory(
+  calculator: CalculatorItem,
+): ToolDirectoryCategory {
+  if (taxToolSlugs.has(calculator.slug)) {
+    return "Tax";
+  }
+
+  if (retirementToolSlugs.has(calculator.slug)) {
+    return "Retirement";
+  }
+
+  if (mortgageToolSlugs.has(calculator.slug)) {
+    return "Mortgage";
+  }
+
+  if (zakatToolSlugs.has(calculator.slug)) {
+    return "Zakat";
+  }
+
+  if (pdfToolSlugs.has(calculator.slug)) {
+    return "PDF Tools";
+  }
+
+  if (calculator.category === "Health") {
+    return "Health";
+  }
+
+  if (calculator.category === "Education") {
+    return "Education";
+  }
+
+  if (converterToolSlugs.has(calculator.slug)) {
+    return "Converters";
+  }
+
+  return "Finance";
 }
 
 export function getRelatedCalculators(

@@ -9,7 +9,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { buildBreadcrumbStructuredData } from "@/lib/structured-data";
 
 const description =
-  "Browse the PDF Tools category on Dr.Utilio, including browser-based image conversion tools, PDF guides, and the PDF size estimator.";
+  "Browse the PDF Tools category on Dr.Utilio, including browser-based conversion tools, PDF guides, and the PDF size estimator.";
 
 const breadcrumbs: BreadcrumbItem[] = [
   { label: "Home", href: "/" },
@@ -53,6 +53,18 @@ const pdfCategoryCards: PdfCategoryCard[] = [
     description:
       "Upload one PDF, define page ranges, and export separate PDF files locally in the browser.",
     href: "/calculators/split-pdf",
+  },
+  {
+    title: "PDF to JPG",
+    description:
+      "Render selected PDF pages as downloadable JPG image files in your browser.",
+    href: "/calculators/pdf-to-jpg",
+  },
+  {
+    title: "PDF to PNG",
+    description:
+      "Render selected PDF pages as downloadable PNG image files in your browser.",
+    href: "/calculators/pdf-to-png",
   },
   {
     title: "Compress PDF",
@@ -139,8 +151,9 @@ export default function PdfToolsCategoryPage() {
             </p>
             <p>
               The current section now includes client-side image-conversion
-              tools, browser-based PDF merge and split, plus educational PDF
-              guides. It does not perform server-side PDF upload processing yet.
+              tools, browser-based PDF merge and split, browser-based PDF-to-image
+              exports, plus educational PDF guides. It does not perform
+              server-side PDF upload processing yet.
             </p>
           </div>
         </div>

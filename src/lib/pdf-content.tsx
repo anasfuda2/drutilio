@@ -297,6 +297,8 @@ export const pdfArticleContent: PdfArticleMap = {
             <p>
               Continue with the {pdfLink("/pdf-tools", "PDF tools hub")},{" "}
               {pdfLink("/pdf-tools/category", "PDF tools category")}, the{" "}
+              {pdfLink("/calculators/pdf-to-jpg", "PDF to JPG")},{" "}
+              {pdfLink("/calculators/pdf-to-png", "PDF to PNG")}, the{" "}
               {pdfLink("/image-to-pdf-guide", "image to PDF guide")}, and the{" "}
               {pdfLink("/merge-pdf-guide", "merge PDF guide")} if your workflow
               moves between scans and editable documents.
@@ -374,6 +376,8 @@ export const pdfArticleContent: PdfArticleMap = {
               {pdfLink("/calculators/image-to-pdf", "Image to PDF")},{" "}
               {pdfLink("/calculators/jpg-to-pdf", "JPG to PDF")},{" "}
               {pdfLink("/calculators/png-to-pdf", "PNG to PDF")},{" "}
+              {pdfLink("/calculators/pdf-to-jpg", "PDF to JPG")},{" "}
+              {pdfLink("/calculators/pdf-to-png", "PDF to PNG")},{" "}
               the{" "}
               {pdfLink(
                 "/calculators/pdf-file-size-estimator",

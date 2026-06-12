@@ -56,6 +56,11 @@ const categoryLinks = [
 
 const toolLinks = [
   {
+    href: "/tools",
+    label: "All Tools",
+    description: "Browse the full Dr.Utilio tools directory grouped by platform category.",
+  },
+  {
     href: "/calculators",
     label: "Calculators",
     description: "Browse the full Dr.Utilio calculator directory.",
