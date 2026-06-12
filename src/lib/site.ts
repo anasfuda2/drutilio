@@ -4,7 +4,7 @@ const defaultSiteUrl =
     : "https://finance-calculators-hub.vercel.app";
 
 export const siteConfig = {
-  name: "Drutilio",
+  name: "Dr.Utilio",
   subtitle: "Smart online tools and calculators",
   siteUrl:
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") || defaultSiteUrl,
