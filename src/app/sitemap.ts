@@ -11,6 +11,13 @@ const staticRoutes = [
   "/terms",
   "/disclaimer",
   "/how-to-calculate-zakat",
+  "/zakat-on-business-assets",
+  "/zakat-on-stocks-and-etfs",
+  "/what-is-nisab",
+  "/common-zakat-mistakes",
+  "/zakat-calculator-usa",
+  "/zakat-on-retirement-accounts",
+  "/zakat-on-gold-and-silver",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
