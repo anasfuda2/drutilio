@@ -3329,6 +3329,202 @@ export const toolPageContent: Record<string, ToolPageContent> = {
       },
     ],
   },
+  "extract-pdf-pages": {
+    title: "Extract PDF Pages",
+    description:
+      "Extract selected PDF pages into one downloadable PDF with a browser-based page extraction tool that runs locally on your device.",
+    eyebrow: "PDF Tools",
+    intro:
+      "Use this Extract PDF Pages tool to upload one PDF, choose page ranges like 1-3 or 1-2,5,8-10, and generate a new PDF containing only those pages. Files stay local to your device during processing.",
+    category: "Everyday Tools",
+    path: "/calculators/extract-pdf-pages",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This tool reads one PDF in the browser, validates the page ranges
+            you enter, and copies only those pages into a new output PDF. That
+            makes it useful when you want to keep just a chapter, a few forms,
+            a limited set of exhibits, or selected report pages.
+          </p>
+          <p>
+            Because the workflow is local, your PDF is not uploaded to a
+            server during extraction. It also pairs naturally with{" "}
+            {toolLink("/calculators/split-pdf", "Split PDF")} and{" "}
+            {toolLink("/calculators/merge-pdf", "Merge PDF")} if you are
+            reorganizing documents more broadly.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            A successful result means one new downloadable PDF has been
+            created using only the page ranges you selected. The result summary
+            shows how many pages made it into the output and the approximate
+            size of the extracted file.
+          </p>
+          <p>
+            That helps you confirm that the smaller document is ready for
+            sharing, printing, or storing without keeping the full original
+            file attached.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This is a practical browser-based extraction workflow, not a full
+            PDF editorial environment. Advanced PDF features such as bookmarks,
+            forms, attachments, or internal links may not behave identically in
+            the extracted output.
+          </p>
+          <p>
+            Very large files can also run into browser memory limits depending
+            on the device and document complexity.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use Extract PDF Pages when you want a smaller PDF containing only
+            the pages that matter for review, submission, or record-keeping.
+          </p>
+          <p>
+            If you want separate output PDFs for each range, use{" "}
+            {toolLink("/calculators/split-pdf", "Split PDF")}. For more
+            related document tools, visit the{" "}
+            {toolLink("/pdf-tools", "PDF tools hub")} or the{" "}
+            {toolLink("/pdf-tools/category", "PDF tools category")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Are my PDFs uploaded to a server during extraction?",
+        answer:
+          "No. Files are processed locally in your browser and are never uploaded by this tool.",
+      },
+      {
+        question: "What page range formats can I use?",
+        answer:
+          "You can use formats such as 1-3, 2,4,7, or 1-2,5,8-10 to choose exactly which pages stay in the output.",
+      },
+      {
+        question: "Does this tool create one PDF or many PDFs?",
+        answer:
+          "This tool creates one downloadable PDF containing all selected pages in the order defined by your range input.",
+      },
+      {
+        question: "Will forms, bookmarks, or attachments always transfer perfectly?",
+        answer:
+          "Not always. Core page extraction usually works well, but advanced PDF features can vary after extraction.",
+      },
+      {
+        question: "Is this legal, records, or compliance advice?",
+        answer:
+          "No. It is a browser-based utility tool only and does not provide legal, compliance, or records-management advice.",
+      },
+    ],
+  },
+  "rotate-pdf": {
+    title: "Rotate PDF",
+    description:
+      "Rotate all pages or selected page ranges in a PDF with a browser-based PDF rotation tool that runs locally on your device.",
+    eyebrow: "PDF Tools",
+    intro:
+      "Use this Rotate PDF tool to upload one PDF, choose an angle of 90, 180, or 270 degrees, and rotate either the whole document or selected page ranges directly in your browser. Files stay local to your device during processing.",
+    category: "Everyday Tools",
+    path: "/calculators/rotate-pdf",
+    applicationCategory: "UtilitiesApplication",
+    sections: {
+      howItWorks: (
+        <>
+          <p>
+            This tool loads a PDF in the browser and applies page rotation to
+            either every page or only the page ranges you specify. That is
+            useful when scans arrive sideways, mixed-orientation reports need a
+            cleanup pass, or selected pages should be turned for easier review.
+          </p>
+          <p>
+            The processing stays local to your browser, so the uploaded PDF is
+            not sent to a server while pages are rotated.
+          </p>
+        </>
+      ),
+      resultMeans: (
+        <>
+          <p>
+            A successful result means the rotated PDF is ready to download. The
+            summary shows the source page count, the rotation angle you applied,
+            and the approximate size of the output file.
+          </p>
+          <p>
+            That gives you a quick way to confirm the document is ready before
+            you send or store it.
+          </p>
+        </>
+      ),
+      limitations: (
+        <>
+          <p>
+            This is a practical browser-based rotation workflow, not a full
+            PDF editing suite. Advanced features such as form behavior,
+            bookmarks, attachments, or special document metadata may not behave
+            identically after rotation.
+          </p>
+          <p>
+            Very large PDFs can still be limited by browser memory, especially
+            on lighter mobile devices.
+          </p>
+        </>
+      ),
+      whenToUse: (
+        <>
+          <p>
+            Use Rotate PDF when pages are sideways or upside down and you want
+            a clean output file without installing desktop software.
+          </p>
+          <p>
+            If you need to keep only certain pages afterward, pair this with{" "}
+            {toolLink("/calculators/extract-pdf-pages", "Extract PDF Pages")} or{" "}
+            {toolLink("/calculators/split-pdf", "Split PDF")}. For the wider
+            cluster, visit {toolLink("/pdf-tools", "PDF tools hub")}.
+          </p>
+        </>
+      ),
+    },
+    faqItems: [
+      {
+        question: "Are my PDFs uploaded to a server during rotation?",
+        answer:
+          "No. Files are processed locally in your browser and are never uploaded by this tool.",
+      },
+      {
+        question: "Can I rotate only selected pages instead of the whole PDF?",
+        answer:
+          "Yes. You can choose either all pages or selected page ranges.",
+      },
+      {
+        question: "What rotation angles are supported?",
+        answer:
+          "You can rotate by 90, 180, or 270 degrees.",
+      },
+      {
+        question: "Can I use page ranges like 1-3 or 5,7-9?",
+        answer:
+          "Yes. The tool validates common page range formats such as 1-3, 5, or 7-9 when you choose selected ranges.",
+      },
+      {
+        question: "Is this publishing, legal, or archival advice?",
+        answer:
+          "No. It is a browser-based utility tool and does not provide legal, records, archival, or publishing advice.",
+      },
+    ],
+  },
   "pdf-to-jpg": {
     title: "PDF to JPG",
     description:

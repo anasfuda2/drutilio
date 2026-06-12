@@ -55,6 +55,18 @@ const pdfCategoryCards: PdfCategoryCard[] = [
     href: "/calculators/split-pdf",
   },
   {
+    title: "Extract PDF Pages",
+    description:
+      "Create one smaller PDF using only the selected pages you want to keep.",
+    href: "/calculators/extract-pdf-pages",
+  },
+  {
+    title: "Rotate PDF",
+    description:
+      "Rotate all pages or chosen page ranges directly in your browser.",
+    href: "/calculators/rotate-pdf",
+  },
+  {
     title: "PDF to JPG",
     description:
       "Render selected PDF pages as downloadable JPG image files in your browser.",
@@ -151,9 +163,10 @@ export default function PdfToolsCategoryPage() {
             </p>
             <p>
               The current section now includes client-side image-conversion
-              tools, browser-based PDF merge and split, browser-based PDF-to-image
-              exports, plus educational PDF guides. It does not perform
-              server-side PDF upload processing yet.
+              tools, browser-based PDF merge, split, extract, and rotation
+              tools, browser-based PDF-to-image exports, plus educational PDF
+              guides. It does not perform server-side PDF upload processing
+              yet.
             </p>
           </div>
         </div>

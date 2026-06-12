@@ -107,6 +107,8 @@ const guideGroups: GuideGroup[] = [
       { title: "PDF Tools Hub", description: "Central landing page for Dr.Utilio's PDF tools foundation.", href: "/pdf-tools" },
       { title: "Merge PDF Tool", description: "Use the live browser-based Merge PDF tool to combine multiple PDFs locally.", href: "/calculators/merge-pdf" },
       { title: "Split PDF Tool", description: "Use the live browser-based Split PDF tool to export separate PDFs by page range.", href: "/calculators/split-pdf" },
+      { title: "Extract PDF Pages Tool", description: "Create one smaller PDF containing only the selected page ranges you want to keep.", href: "/calculators/extract-pdf-pages" },
+      { title: "Rotate PDF Tool", description: "Rotate all pages or selected page ranges locally in the browser.", href: "/calculators/rotate-pdf" },
       { title: "PDF to JPG Tool", description: "Render selected PDF pages into downloadable JPG files locally in the browser.", href: "/calculators/pdf-to-jpg" },
       { title: "PDF to PNG Tool", description: "Render selected PDF pages into downloadable PNG files locally in the browser.", href: "/calculators/pdf-to-png" },
       { title: "PDF Compression Guide", description: "Learn what usually affects compression quality and file size.", href: "/pdf-compression-guide" },

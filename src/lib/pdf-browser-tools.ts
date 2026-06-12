@@ -1,10 +1,23 @@
-import { PDFDocument } from "pdf-lib";
+import { degrees, PDFDocument } from "pdf-lib";
 
 export type SplitPdfOutput = {
   bytes: Uint8Array;
   fileName: string;
   label: string;
   pageCount: number;
+};
+
+export type ExtractPdfOutput = {
+  bytes: Uint8Array;
+  fileName: string;
+  pageCount: number;
+  selectedPages: string;
+};
+
+export type RotatePdfOptions = {
+  mode: "all" | "ranges";
+  rangeInput?: string;
+  rotation: 90 | 180 | 270;
 };
 
 export function formatFileSize(bytes: number) {
@@ -148,6 +161,74 @@ export async function splitPdfFile(file: File, rangeInput: string) {
 
   return {
     outputs,
+    totalPages,
+  };
+}
+
+export async function extractPdfPages(
+  file: File,
+  rangeInput: string,
+): Promise<ExtractPdfOutput> {
+  const sourceBytes = await file.arrayBuffer();
+  const sourcePdf = await PDFDocument.load(sourceBytes);
+  const totalPages = sourcePdf.getPageCount();
+  const ranges = parsePageRanges(rangeInput, totalPages);
+  const outputPdf = await PDFDocument.create();
+  const selectedIndexes = ranges.flatMap((range) =>
+    Array.from(
+      { length: range.end - range.start + 1 },
+      (_, index) => range.start - 1 + index,
+    ),
+  );
+  const copiedPages = await outputPdf.copyPages(sourcePdf, selectedIndexes);
+
+  copiedPages.forEach((page) => outputPdf.addPage(page));
+
+  const baseName = sanitizeBaseName(file.name) || "extracted-pages";
+  const selectedPages = ranges.map((range) => range.label).join(", ");
+
+  return {
+    bytes: await outputPdf.save(),
+    fileName: `${baseName}-pages-${selectedPages.replace(/[^0-9,-]+/g, "")}.pdf`,
+    pageCount: copiedPages.length,
+    selectedPages,
+  };
+}
+
+export async function rotatePdfFile(file: File, options: RotatePdfOptions) {
+  const sourceBytes = await file.arrayBuffer();
+  const pdf = await PDFDocument.load(sourceBytes);
+  const totalPages = pdf.getPageCount();
+  const ranges =
+    options.mode === "ranges"
+      ? parsePageRanges(options.rangeInput ?? "", totalPages)
+      : [];
+
+  const selectedPageIndexes =
+    options.mode === "all"
+      ? pdf.getPageIndices()
+      : ranges.flatMap((range) =>
+          Array.from(
+            { length: range.end - range.start + 1 },
+            (_, index) => range.start - 1 + index,
+          ),
+        );
+
+  selectedPageIndexes.forEach((pageIndex) => {
+    const page = pdf.getPage(pageIndex);
+    const nextRotation = (page.getRotation().angle + options.rotation) % 360;
+    page.setRotation(degrees(nextRotation));
+  });
+
+  const baseName = sanitizeBaseName(file.name) || "rotated-document";
+
+  return {
+    bytes: await pdf.save(),
+    fileName: `${baseName}-rotated-${options.rotation}.pdf`,
+    rotatedPages:
+      options.mode === "all"
+        ? "All pages"
+        : ranges.map((range) => range.label).join(", "),
     totalPages,
   };
 }

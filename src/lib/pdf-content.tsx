@@ -154,6 +154,8 @@ export const pdfArticleContent: PdfArticleMap = {
             <p>
               Visit {pdfLink("/calculators/merge-pdf", "Merge PDF")},{" "}
               {pdfLink("/calculators/split-pdf", "Split PDF")},{" "}
+              {pdfLink("/calculators/extract-pdf-pages", "Extract PDF Pages")},{" "}
+              {pdfLink("/calculators/rotate-pdf", "Rotate PDF")},{" "}
               the {pdfLink("/pdf-tools", "PDF tools hub")},{" "}
               {pdfLink("/pdf-tools/category", "PDF tools category")},{" "}
               {pdfLink("/split-pdf-guide", "split PDF guide")},{" "}
@@ -228,6 +230,7 @@ export const pdfArticleContent: PdfArticleMap = {
           <>
             <p>
               Compare {pdfLink("/calculators/split-pdf", "Split PDF")},{" "}
+              {pdfLink("/calculators/extract-pdf-pages", "Extract PDF Pages")},{" "}
               {pdfLink("/calculators/merge-pdf", "Merge PDF")}, and the{" "}
               {pdfLink("/merge-pdf-guide", "merge PDF guide")}
               , the {pdfLink("/pdf-tools", "PDF tools hub")}, the{" "}

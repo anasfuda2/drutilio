@@ -81,6 +81,18 @@ const pdfCards: PdfCard[] = [
     href: "/calculators/split-pdf",
   },
   {
+    title: "Extract PDF Pages",
+    description:
+      "Keep only selected pages in one smaller downloadable PDF with local browser processing.",
+    href: "/calculators/extract-pdf-pages",
+  },
+  {
+    title: "Rotate PDF",
+    description:
+      "Rotate all pages or selected page ranges in one PDF directly in your browser.",
+    href: "/calculators/rotate-pdf",
+  },
+  {
     title: "PDF to JPG",
     description:
       "Render selected PDF pages as downloadable JPG image files locally in your browser.",
@@ -180,9 +192,9 @@ export default function PdfToolsPage() {
             <p>
               Dr.Utilio&apos;s PDF tools hub is the foundation for current and
               future document utilities. It now includes browser-based image to
-              PDF converters, browser-based PDF merge and split tools,
-              browser-based PDF-to-image tools, educational workflow guides,
-              and a file-size estimator.
+              PDF converters, browser-based PDF merge, split, extract, and
+              rotation tools, browser-based PDF-to-image tools, educational
+              workflow guides, and a file-size estimator.
             </p>
             <p>
               That makes it a useful place to understand what usually affects

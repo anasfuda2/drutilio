@@ -97,6 +97,8 @@ const pdfToolSlugs = new Set([
   "png-to-pdf",
   "merge-pdf",
   "split-pdf",
+  "extract-pdf-pages",
+  "rotate-pdf",
   "pdf-to-jpg",
   "pdf-to-png",
 ]);
@@ -353,6 +355,22 @@ export const calculators: CalculatorItem[] = [
       "Split one PDF into separate files by page ranges with local browser processing.",
     category: "Everyday Tools",
     status: "Popular",
+  },
+  {
+    slug: "extract-pdf-pages",
+    title: "Extract PDF Pages",
+    description:
+      "Create one smaller PDF containing only selected page ranges with local browser processing.",
+    category: "Everyday Tools",
+    status: "Available now",
+  },
+  {
+    slug: "rotate-pdf",
+    title: "Rotate PDF",
+    description:
+      "Rotate all pages or selected page ranges in one PDF with local browser processing.",
+    category: "Everyday Tools",
+    status: "Available now",
   },
   {
     slug: "pdf-to-jpg",
