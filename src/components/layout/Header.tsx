@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { siteConfig } from "@/lib/site";
 
@@ -232,7 +232,6 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     const closeMenusTimer = window.setTimeout(() => {
@@ -241,7 +240,7 @@ export function Header() {
     }, 0);
 
     return () => window.clearTimeout(closeMenusTimer);
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   return (
     <header className="sticky top-0 z-30 border-b border-white/10 bg-slate-950/85 backdrop-blur">
