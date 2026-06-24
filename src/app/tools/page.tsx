@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { PopularToolsStrip } from "@/components/calculators/PopularToolsStrip";
 import { Container } from "@/components/layout/Container";
 import {
   Breadcrumbs,
@@ -133,6 +134,22 @@ export default function ToolsPage() {
             health, education, zakat, PDF, and converter workflows without
             hopping through multiple hubs first.
           </p>
+        </div>
+
+        <div className="mt-8">
+          <PopularToolsStrip
+            title="Popular Tools"
+            slugs={[
+              "merge-pdf",
+              "compress-pdf",
+              "image-compressor",
+              "mortgage-calculator",
+              "zakat-calculator",
+              "federal-income-tax-calculator",
+            ]}
+            href="/popular-tools"
+            hrefLabel="View popular tools"
+          />
         </div>
 
         <Suspense fallback={<ToolsDirectoryFallback />}>

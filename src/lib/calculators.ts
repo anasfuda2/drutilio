@@ -637,15 +637,65 @@ export function getToolDirectoryCategory(
 
 export function getRelatedCalculators(
   currentSlug: string,
-  limit = 3,
+  limit = 6,
 ): CalculatorItem[] {
   const currentTool = getCalculatorBySlug(currentSlug);
+  const currentDirectoryCategory = currentTool
+    ? getToolDirectoryCategory(currentTool)
+    : null;
+
+  const relatedDirectoryCategories: Partial<
+    Record<ToolDirectoryCategory, ToolDirectoryCategory[]>
+  > = {
+    Finance: ["Mortgage", "Tax", "Retirement", "Zakat"],
+    Tax: ["Finance", "Retirement", "Mortgage"],
+    Retirement: ["Finance", "Tax", "Mortgage"],
+    Mortgage: ["Finance", "Tax", "Retirement"],
+    Zakat: ["Finance"],
+    Health: ["Health"],
+    Education: ["Education"],
+    "Image Tools": ["Converters"],
+    "PDF Tools": ["Converters", "Image Tools"],
+    Converters: ["Image Tools", "PDF Tools"],
+  };
 
   return calculators
     .filter((calculator) => calculator.slug !== currentSlug)
     .sort((left, right) => {
-      const leftScore = left.category === currentTool?.category ? 0 : 1;
-      const rightScore = right.category === currentTool?.category ? 0 : 1;
+      const leftDirectoryCategory = getToolDirectoryCategory(left);
+      const rightDirectoryCategory = getToolDirectoryCategory(right);
+
+      function score(calculator: CalculatorItem, directoryCategory: ToolDirectoryCategory) {
+        if (directoryCategory === currentDirectoryCategory) {
+          return 0;
+        }
+
+        if (
+          currentDirectoryCategory &&
+          relatedDirectoryCategories[currentDirectoryCategory]?.includes(
+            directoryCategory,
+          )
+        ) {
+          return 1;
+        }
+
+        if (calculator.category === currentTool?.category) {
+          return 2;
+        }
+
+        if (calculator.status === "Featured") {
+          return 3;
+        }
+
+        if (calculator.status === "Popular") {
+          return 4;
+        }
+
+        return 5;
+      }
+
+      const leftScore = score(left, leftDirectoryCategory);
+      const rightScore = score(right, rightDirectoryCategory);
 
       if (leftScore !== rightScore) {
         return leftScore - rightScore;

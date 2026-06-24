@@ -61,6 +61,16 @@ const toolLinks = [
     description: "Browse the full Dr.Utilio tools directory grouped by platform category.",
   },
   {
+    href: "/popular-tools",
+    label: "Popular Tools",
+    description: "Start with the strongest tools across the platform.",
+  },
+  {
+    href: "/new-tools",
+    label: "New Tools",
+    description: "See the newest additions in registry-driven order.",
+  },
+  {
     href: "/calculators",
     label: "Calculators",
     description: "Browse the full Dr.Utilio calculator directory.",
@@ -73,7 +83,12 @@ const toolLinks = [
   {
     href: "/pdf-tools",
     label: "PDF Tools",
-    description: "Explore PDF guides and browser-based image conversion tools.",
+    description: "Explore live browser-based PDF workflows and guides.",
+  },
+  {
+    href: "/image-tools",
+    label: "Image Tools",
+    description: "Open browser-based image resizing, conversion, and editing tools.",
   },
 ];
 
@@ -184,15 +199,19 @@ function DesktopMenu({
           className="absolute right-0 top-[calc(100%+0.75rem)] w-[22rem] rounded-2xl border border-white/10 bg-slate-950/95 p-3 shadow-2xl backdrop-blur"
         >
           <div className="grid gap-2">
-            {items.map((item) => (
+            {items.map((item, index) => (
               <Link
                 key={item.href}
                 href={item.href}
                 role="menuitem"
-                className="rounded-xl px-4 py-3 transition hover:bg-white/5 focus:bg-white/5 focus:outline-none"
+                className={`rounded-xl px-4 py-3 transition hover:bg-white/5 focus:bg-white/5 focus:outline-none ${
+                  index === 0 ? "border border-emerald-400/20 bg-emerald-400/10" : ""
+                }`}
                 onClick={onClose}
               >
-                <p className="text-sm font-semibold text-white">{item.label}</p>
+                <p className={`text-sm font-semibold ${index === 0 ? "text-emerald-100" : "text-white"}`}>
+                  {item.label}
+                </p>
                 <p className="mt-1 text-xs leading-5 text-slate-400">
                   {item.description}
                 </p>
@@ -308,6 +327,23 @@ export function Header() {
             >
               Guides
             </Link>
+            <div className="hidden items-center gap-1 xl:flex">
+              {[
+                { href: "/tools", label: "All Tools" },
+                { href: "/popular-tools", label: "Popular" },
+                { href: "/new-tools", label: "New" },
+                { href: "/pdf-tools", label: "PDF" },
+                { href: "/image-tools", label: "Image" },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-full border border-white/10 px-3 py-2 text-sm font-medium text-slate-300 transition hover:border-emerald-400/30 hover:bg-white/5 hover:text-white"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
           </nav>
         </div>
 
@@ -324,6 +360,25 @@ export function Header() {
               >
                 Home
               </Link>
+
+              <div className="grid gap-2">
+                {[
+                  { href: "/tools", label: "All Tools" },
+                  { href: "/popular-tools", label: "Popular Tools" },
+                  { href: "/new-tools", label: "New Tools" },
+                  { href: "/pdf-tools", label: "PDF Tools" },
+                  { href: "/image-tools", label: "Image Tools" },
+                ].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
 
               <MobileSection
                 title="Tools"

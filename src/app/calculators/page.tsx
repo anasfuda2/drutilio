@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { CalculatorsDirectoryClient } from "@/components/calculators/CalculatorsDirectoryClient";
+import { PopularToolsStrip } from "@/components/calculators/PopularToolsStrip";
 import { Container } from "@/components/layout/Container";
 import {
   calculators,
@@ -81,6 +82,22 @@ export default function CalculatorsPage() {
             tools, and quick calculation helpers that are easy to use on any
             device.
           </p>
+        </div>
+
+        <div className="mt-8">
+          <PopularToolsStrip
+            title="Popular tools"
+            slugs={[
+              "mortgage-calculator",
+              "merge-pdf",
+              "image-compressor",
+              "bmi-calculator",
+              "gpa-calculator",
+              "age-calculator",
+            ]}
+            href="/tools"
+            hrefLabel="Browse all tools"
+          />
         </div>
 
         <Suspense fallback={<CalculatorsDirectoryFallback />}>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
+import { PopularToolsStrip } from "@/components/calculators/PopularToolsStrip";
 import { Container } from "@/components/layout/Container";
 import {
   Breadcrumbs,
@@ -134,6 +135,22 @@ export default function ImageToolsPage() {
               tasks without a server upload step.
             </p>
           </div>
+        </div>
+
+        <div className="mt-8">
+          <PopularToolsStrip
+            title="Popular Image Tools"
+            slugs={[
+              "image-compressor",
+              "image-resizer",
+              "crop-image",
+              "rotate-image",
+              "jpg-to-png",
+              "png-to-jpg",
+            ]}
+            href="/tools?category=Image%20Tools"
+            hrefLabel="Browse image tools"
+          />
         </div>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">

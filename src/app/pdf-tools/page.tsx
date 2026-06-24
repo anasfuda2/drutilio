@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
+import { PopularToolsStrip } from "@/components/calculators/PopularToolsStrip";
 import { Container } from "@/components/layout/Container";
 import {
   Breadcrumbs,
@@ -233,6 +234,22 @@ export default function PdfToolsPage() {
               .
             </p>
           </div>
+        </div>
+
+        <div className="mt-8">
+          <PopularToolsStrip
+            title="Popular PDF Tools"
+            slugs={[
+              "compress-pdf",
+              "merge-pdf",
+              "split-pdf",
+              "extract-pdf-pages",
+              "rotate-pdf",
+              "pdf-to-jpg",
+            ]}
+            href="/pdf-tools/popular"
+            hrefLabel="View popular PDF tools"
+          />
         </div>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
