@@ -25,12 +25,12 @@ export function CalculatorField({
 }: CalculatorFieldProps) {
   return (
     <label className="block">
-      <span className="mb-2 block text-sm font-medium text-slate-200">
+      <span className="mb-2 block text-sm font-semibold text-slate-100">
         {label}
       </span>
-      <div className="flex items-center rounded-xl border border-white/10 bg-slate-950/60 focus-within:border-emerald-400/60">
+      <div className="flex items-center rounded-2xl border border-white/10 bg-slate-950/60 focus-within:border-emerald-400/60 focus-within:ring-2 focus-within:ring-emerald-400/15">
         {prefix ? (
-          <span className="pl-4 text-sm font-medium text-slate-400">
+          <span className="pl-4 text-sm font-semibold text-slate-300">
             {prefix}
           </span>
         ) : null}
@@ -45,10 +45,10 @@ export function CalculatorField({
             const nextValue = Number(event.target.value);
             onChange(Number.isFinite(nextValue) && nextValue >= 0 ? nextValue : 0);
           }}
-          className="w-full bg-transparent px-4 py-3 text-base text-white outline-none placeholder:text-slate-500"
+          className="w-full bg-transparent px-4 py-3.5 text-lg font-medium tabular-nums text-white outline-none placeholder:text-slate-500"
         />
         {suffix ? (
-          <span className="pr-4 text-sm font-medium text-slate-400">
+          <span className="pr-4 text-sm font-semibold text-slate-300">
             {suffix}
           </span>
         ) : null}

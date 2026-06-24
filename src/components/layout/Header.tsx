@@ -6,54 +6,6 @@ import { usePathname } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { siteConfig } from "@/lib/site";
 
-const categoryLinks = [
-  {
-    href: "/categories",
-    label: "All Categories",
-    description: "Browse every major Dr.Utilio topic hub in one place.",
-  },
-  {
-    href: "/calculators?category=Finance",
-    label: "Finance",
-    description: "Money, loan, savings, and planning tools.",
-  },
-  {
-    href: "/tax",
-    label: "Tax",
-    description: "US tax guides and estimate-based tax tools.",
-  },
-  {
-    href: "/retirement",
-    label: "Retirement",
-    description: "Long-range retirement planning and income tools.",
-  },
-  {
-    href: "/mortgage",
-    label: "Mortgage",
-    description: "Home buying, refinancing, and closing-cost planning.",
-  },
-  {
-    href: "/health",
-    label: "Health",
-    description: "Wellness, body metrics, hydration, and calorie guides.",
-  },
-  {
-    href: "/education",
-    label: "Education",
-    description: "GPA, final-grade, and study-planning tools and guides.",
-  },
-  {
-    href: "/pdf-tools/category",
-    label: "PDF Tools",
-    description: "PDF guides, image-to-PDF tools, and growing document workflows.",
-  },
-  {
-    href: "/zakat",
-    label: "Zakat",
-    description: "Zakat calculators and educational Islamic finance content.",
-  },
-];
-
 const toolLinks = [
   {
     href: "/tools",
@@ -61,72 +13,54 @@ const toolLinks = [
     description: "Browse the full Dr.Utilio tools directory grouped by platform category.",
   },
   {
-    href: "/popular-tools",
-    label: "Popular Tools",
-    description: "Start with the strongest tools across the platform.",
-  },
-  {
-    href: "/new-tools",
-    label: "New Tools",
-    description: "See the newest additions in registry-driven order.",
-  },
-  {
-    href: "/calculators",
-    label: "Calculators",
-    description: "Browse the full Dr.Utilio calculator directory.",
-  },
-  {
-    href: "/converters",
-    label: "Converters",
-    description: "Jump straight to date and unit conversion tools.",
-  },
-  {
     href: "/pdf-tools",
     label: "PDF Tools",
-    description: "Explore live browser-based PDF workflows and guides.",
+    description: "Open live browser-based PDF tools for merge, split, compress, convert, and export tasks.",
   },
   {
     href: "/image-tools",
     label: "Image Tools",
-    description: "Open browser-based image resizing, conversion, and editing tools.",
+    description: "Use browser-based image resizing, compression, conversion, cropping, and rotation tools.",
   },
-];
-
-const guideLinks = [
   {
-    href: "/guides",
-    label: "All Guides",
-    description: "Browse every educational guide hub and topic cluster.",
+    href: "/calculators?category=Finance",
+    label: "Finance Calculators",
+    description: "Jump into money, loan, savings, and planning calculators.",
   },
   {
     href: "/tax",
-    label: "Tax Guides",
-    description: "Educational filing and federal tax explainers.",
-  },
-  {
-    href: "/retirement",
-    label: "Retirement Guides",
-    description: "Saving, IRA, 401(k), and retirement-income education.",
+    label: "Tax Calculators",
+    description: "Go directly to tax estimate tools and the tax hub.",
   },
   {
     href: "/mortgage",
-    label: "Mortgage Guides",
-    description: "Affordability, preapproval, points, and closing costs.",
+    label: "Mortgage Calculators",
+    description: "Open mortgage, affordability, refinance, and closing-cost tools quickly.",
+  },
+  {
+    href: "/retirement",
+    label: "Retirement Calculators",
+    description: "Use retirement, 401(k), IRA, and income-planning tools.",
   },
   {
     href: "/health",
-    label: "Health Guides",
-    description: "Calories, BMR, body fat, and healthy-weight explainers.",
+    label: "Health Calculators",
+    description: "Open BMI, BMR, calorie, hydration, and body-composition tools.",
   },
   {
     href: "/education",
-    label: "Education Guides",
-    description: "GPA, finals, study-time, and academic-planning guides.",
+    label: "Education Tools",
+    description: "Go straight to GPA, final-grade, study-time, and academic planning tools.",
   },
   {
     href: "/zakat",
-    label: "Zakat Guides",
-    description: "Zakat basics, nisab, and asset-specific articles.",
+    label: "Zakat Tools",
+    description: "Open zakat-focused tools and the zakat guidance hub.",
+  },
+  {
+    href: "/converters",
+    label: "Converters",
+    description: "Jump straight to date, unit, percentage, and calendar conversion tools.",
   },
 ];
 
@@ -316,34 +250,11 @@ export function Header() {
               onClose={() => setToolsOpen(false)}
             />
             <Link
-              href="/categories"
-              className="rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/5 hover:text-white"
-            >
-              Categories
-            </Link>
-            <Link
               href="/guides"
               className="rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/5 hover:text-white"
             >
               Guides
             </Link>
-            <div className="hidden items-center gap-1 xl:flex">
-              {[
-                { href: "/tools", label: "All Tools" },
-                { href: "/popular-tools", label: "Popular" },
-                { href: "/new-tools", label: "New" },
-                { href: "/pdf-tools", label: "PDF" },
-                { href: "/image-tools", label: "Image" },
-              ].map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-full border border-white/10 px-3 py-2 text-sm font-medium text-slate-300 transition hover:border-emerald-400/30 hover:bg-white/5 hover:text-white"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
           </nav>
         </div>
 
@@ -361,37 +272,11 @@ export function Header() {
                 Home
               </Link>
 
-              <div className="grid gap-2">
-                {[
-                  { href: "/tools", label: "All Tools" },
-                  { href: "/popular-tools", label: "Popular Tools" },
-                  { href: "/new-tools", label: "New Tools" },
-                  { href: "/pdf-tools", label: "PDF Tools" },
-                  { href: "/image-tools", label: "Image Tools" },
-                ].map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-white transition hover:bg-white/10"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-
               <MobileSection
                 title="Tools"
                 items={toolLinks}
                 onNavigate={() => setMobileOpen(false)}
               />
-              <Link
-                href="/categories"
-                className="rounded-xl px-3 py-2 text-sm font-medium text-white transition hover:bg-white/5"
-                onClick={() => setMobileOpen(false)}
-              >
-                Categories
-              </Link>
               <Link
                 href="/guides"
                 className="rounded-xl px-3 py-2 text-sm font-medium text-white transition hover:bg-white/5"
@@ -399,17 +284,6 @@ export function Header() {
               >
                 Guides
               </Link>
-
-              <MobileSection
-                title="Category Highlights"
-                items={categoryLinks.slice(1)}
-                onNavigate={() => setMobileOpen(false)}
-              />
-              <MobileSection
-                title="Guide Highlights"
-                items={guideLinks.slice(1)}
-                onNavigate={() => setMobileOpen(false)}
-              />
             </nav>
           </div>
         ) : null}

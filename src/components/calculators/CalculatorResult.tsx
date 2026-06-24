@@ -61,11 +61,11 @@ export function CalculatorResult({
             </button>
           ) : null}
         </div>
-        <p className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+        <p className="mt-4 text-4xl font-semibold tracking-tight tabular-nums text-white sm:text-5xl lg:text-6xl">
           {value}
         </p>
         {detail ? (
-          <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-100">
+          <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-100">
             {detail}
           </p>
         ) : null}

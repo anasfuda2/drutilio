@@ -16,7 +16,9 @@ export function ResultGrid({ items }: ResultGridProps) {
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
             {item.label}
           </p>
-          <p className="mt-2 text-xl font-semibold text-white">{item.value}</p>
+          <p className="mt-2 text-2xl font-semibold tabular-nums text-white">
+            {item.value}
+          </p>
         </div>
       ))}
     </div>

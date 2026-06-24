@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { CalculatorCard } from "@/components/calculators/CalculatorCard";
 import type {
@@ -35,6 +35,9 @@ export function ToolsDirectoryClient({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const resultsRef = useRef<HTMLElement | null>(null);
+  const resultsHeadingRef = useRef<HTMLHeadingElement>(null);
+  const shouldRevealResultsRef = useRef(false);
 
   const activeCategory = parseCategoryFilter(
     searchParams.get("category"),
@@ -121,6 +124,23 @@ export function ToolsDirectoryClient({
     [directoryCategories],
   );
 
+  useEffect(() => {
+    if (!shouldRevealResultsRef.current || typeof window === "undefined") {
+      return;
+    }
+
+    shouldRevealResultsRef.current = false;
+
+    if (window.innerWidth >= 768) {
+      return;
+    }
+
+    resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.setTimeout(() => {
+      resultsHeadingRef.current?.focus();
+    }, 220);
+  }, [activeCategory, searchQuery]);
+
   return (
     <div className="mt-12 space-y-10">
       <section className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8">
@@ -142,7 +162,10 @@ export function ToolsDirectoryClient({
                     key={category}
                     type="button"
                     aria-pressed={isActive}
-                    onClick={() => updateQueryParams({ category })}
+                    onClick={() => {
+                      shouldRevealResultsRef.current = true;
+                      updateQueryParams({ category });
+                    }}
                     className={[
                       "inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition",
                       isActive
@@ -193,7 +216,10 @@ export function ToolsDirectoryClient({
       </section>
 
       {filteredTools.length === 0 ? (
-        <section className="rounded-3xl border border-dashed border-white/10 bg-slate-950/30 p-8 text-center">
+        <section
+          ref={resultsRef}
+          className="rounded-3xl border border-dashed border-white/10 bg-slate-950/30 p-8 text-center"
+        >
           <h2 className="text-2xl font-semibold tracking-tight text-white">
             No tools match that search yet.
           </h2>
@@ -209,13 +235,20 @@ export function ToolsDirectoryClient({
           );
 
           return (
-            <section key={category}>
+            <section
+              key={category}
+              ref={category === visibleCategories[0] ? resultsRef : undefined}
+            >
               <div className="max-w-3xl">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
                   {category}
                 </p>
                 <div className="mt-3 flex flex-wrap items-center gap-3">
-                  <h2 className="text-3xl font-semibold tracking-tight text-white">
+                  <h2
+                    ref={category === visibleCategories[0] ? resultsHeadingRef : undefined}
+                    tabIndex={-1}
+                    className="scroll-mt-24 text-3xl font-semibold tracking-tight text-white outline-none"
+                  >
                     {category} tools
                   </h2>
                   <span className="rounded-full border border-white/10 bg-slate-950/50 px-3 py-1 text-sm font-medium text-slate-300">
