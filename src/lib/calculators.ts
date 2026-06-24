@@ -72,6 +72,22 @@ export const toolDirectoryCategoryDescriptions: Record<
     "General-purpose conversion tools for dates, units, percentages, and everyday quick calculations.",
 };
 
+export const toolDirectoryCategoryPaths: Record<
+  ToolDirectoryCategory,
+  string
+> = {
+  Finance: "/calculators?category=Finance",
+  Tax: "/tax",
+  Retirement: "/retirement",
+  Mortgage: "/mortgage",
+  Health: "/health",
+  Education: "/education",
+  Zakat: "/zakat",
+  "Image Tools": "/image-tools",
+  "PDF Tools": "/pdf-tools",
+  Converters: "/converters",
+};
+
 const taxToolSlugs = new Set([
   "federal-income-tax-calculator",
   "self-employment-tax-calculator",
@@ -593,6 +609,14 @@ export function getCalculatorsByCategory(category: ToolCategory) {
   return calculators.filter((calculator) => calculator.category === category);
 }
 
+export function getCalculatorsByDirectoryCategory(
+  directoryCategory: ToolDirectoryCategory,
+) {
+  return calculators.filter(
+    (calculator) => getToolDirectoryCategory(calculator) === directoryCategory,
+  );
+}
+
 export function getToolDirectoryCategory(
   calculator: CalculatorItem,
 ): ToolDirectoryCategory {
@@ -704,6 +728,20 @@ export function getRelatedCalculators(
       return left.title.localeCompare(right.title);
     })
     .slice(0, limit);
+}
+
+export function getSiblingCalculators(currentSlug: string) {
+  const currentTool = getCalculatorBySlug(currentSlug);
+
+  if (!currentTool) {
+    return [];
+  }
+
+  const currentDirectoryCategory = getToolDirectoryCategory(currentTool);
+
+  return getCalculatorsByDirectoryCategory(currentDirectoryCategory).filter(
+    (calculator) => calculator.slug !== currentSlug,
+  );
 }
 
 export function clampNonNegative(value: number) {

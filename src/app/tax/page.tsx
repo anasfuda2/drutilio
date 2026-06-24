@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
+import { ToolNavigationBar } from "@/components/navigation/ToolNavigationBar";
 import {
   Breadcrumbs,
   type BreadcrumbItem,
@@ -11,6 +12,7 @@ import {
   buildBreadcrumbStructuredData,
   buildFaqStructuredData,
 } from "@/lib/structured-data";
+import { getCalculatorsByDirectoryCategory } from "@/lib/calculators";
 
 const description =
   "Explore Drutilio's US tax hub with guides on federal income tax, tax brackets, AGI, refund planning, filing mistakes, and self-employment tax.";
@@ -158,6 +160,11 @@ export const metadata: Metadata = {
 };
 
 export default function TaxHubPage() {
+  const taxToolItems = getCalculatorsByDirectoryCategory("Tax").map((tool) => ({
+    href: `/calculators/${tool.slug}`,
+    label: tool.title,
+  }));
+
   return (
     <section className="py-16 sm:py-20">
       <JsonLd data={buildFaqStructuredData(faqItems)} />
@@ -172,6 +179,7 @@ export default function TaxHubPage() {
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
             Tax hub
           </h1>
+          <ToolNavigationBar title="Tax tools" items={taxToolItems} />
           <div className="mt-6 space-y-4 text-lg leading-8 text-slate-300">
             <p>
               Drutilio&apos;s tax hub is built to make US tax concepts easier to

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
 import { PopularToolsStrip } from "@/components/calculators/PopularToolsStrip";
 import { Container } from "@/components/layout/Container";
+import { ToolNavigationBar } from "@/components/navigation/ToolNavigationBar";
 import {
   Breadcrumbs,
   type BreadcrumbItem,
@@ -13,6 +14,7 @@ import {
   buildBreadcrumbStructuredData,
   buildFaqStructuredData,
 } from "@/lib/structured-data";
+import { getCalculatorsByDirectoryCategory } from "@/lib/calculators";
 
 const description =
   "Explore Dr.Utilio's browser-based Image Tools hub with resizing, compression, format conversion, cropping, and rotation tools.";
@@ -104,6 +106,13 @@ export const metadata: Metadata = {
 };
 
 export default function ImageToolsPage() {
+  const imageToolItems = getCalculatorsByDirectoryCategory("Image Tools").map(
+    (tool) => ({
+      href: `/calculators/${tool.slug}`,
+      label: tool.title,
+    }),
+  );
+
   return (
     <section className="py-16 sm:py-20">
       <AnalyticsTracker
@@ -123,6 +132,7 @@ export default function ImageToolsPage() {
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
             Browser-based image tools
           </h1>
+          <ToolNavigationBar title="Image tools" items={imageToolItems} />
           <div className="mt-6 space-y-4 text-lg leading-8 text-slate-300">
             <p>
               Dr.Utilio&apos;s Image Tools hub is the home for browser-based

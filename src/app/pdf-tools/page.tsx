@@ -3,6 +3,7 @@ import Link from "next/link";
 import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
 import { PopularToolsStrip } from "@/components/calculators/PopularToolsStrip";
 import { Container } from "@/components/layout/Container";
+import { ToolNavigationBar } from "@/components/navigation/ToolNavigationBar";
 import {
   Breadcrumbs,
   type BreadcrumbItem,
@@ -13,6 +14,7 @@ import {
   buildBreadcrumbStructuredData,
   buildFaqStructuredData,
 } from "@/lib/structured-data";
+import { getCalculatorsByDirectoryCategory } from "@/lib/calculators";
 
 const description =
   "Explore Dr.Utilio's PDF tools hub with browser-based conversion tools, PDF workflow guides, and a file size estimator.";
@@ -182,6 +184,13 @@ export const metadata: Metadata = {
 };
 
 export default function PdfToolsPage() {
+  const pdfToolItems = getCalculatorsByDirectoryCategory("PDF Tools").map(
+    (tool) => ({
+      href: `/calculators/${tool.slug}`,
+      label: tool.title,
+    }),
+  );
+
   return (
     <section className="py-16 sm:py-20">
       <AnalyticsTracker
@@ -201,6 +210,7 @@ export default function PdfToolsPage() {
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
             PDF tools hub
           </h1>
+          <ToolNavigationBar title="PDF tools" items={pdfToolItems} />
           <div className="mt-6 space-y-4 text-lg leading-8 text-slate-300">
             <p>
               Dr.Utilio&apos;s PDF tools hub is the foundation for current and

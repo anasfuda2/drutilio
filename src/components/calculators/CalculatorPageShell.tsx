@@ -3,13 +3,16 @@ import { AdPlaceholder } from "@/components/ads/AdPlaceholder";
 import { Container } from "@/components/layout/Container";
 import { RelatedCalculators } from "@/components/calculators/RelatedCalculators";
 import { TrustStrip } from "@/components/calculators/TrustStrip";
+import { ToolNavigationBar } from "@/components/navigation/ToolNavigationBar";
 import {
   BreadcrumbItem,
   Breadcrumbs,
 } from "@/components/navigation/Breadcrumbs";
 import {
   getCalculatorBySlug,
+  getSiblingCalculators,
   getToolDirectoryCategory,
+  toolDirectoryCategoryPaths,
 } from "@/lib/calculators";
 
 type CalculatorPageShellProps = {
@@ -66,7 +69,7 @@ export function CalculatorPageShell({
   const registryItem = getCalculatorBySlug(slug);
   const directoryCategory = registryItem
     ? getToolDirectoryCategory(registryItem)
-    : "Tools";
+    : null;
   const shortIntro = intro.split(/(?<=[.!?])\s+/)[0] || intro;
 
   const benefitChips = (() => {
@@ -82,6 +85,11 @@ export function CalculatorPageShell({
 
     return [...baseChips, "Educational estimate", "Fast to compare"];
   })();
+
+  const siblingTools = getSiblingCalculators(slug).map((tool) => ({
+    href: `/calculators/${tool.slug}`,
+    label: tool.title,
+  }));
 
   return (
     <section className="py-10 sm:py-12 lg:py-14">
@@ -108,6 +116,19 @@ export function CalculatorPageShell({
               </span>
             ))}
           </div>
+
+          {directoryCategory ? (
+            <ToolNavigationBar
+              title={`More ${directoryCategory} tools`}
+              items={[
+                {
+                  href: toolDirectoryCategoryPaths[directoryCategory],
+                  label: `All ${directoryCategory}`,
+                },
+                ...siblingTools,
+              ]}
+            />
+          ) : null}
         </div>
 
         <div

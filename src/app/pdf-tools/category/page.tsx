@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
 import { Container } from "@/components/layout/Container";
+import { ToolNavigationBar } from "@/components/navigation/ToolNavigationBar";
 import {
   Breadcrumbs,
   type BreadcrumbItem,
 } from "@/components/navigation/Breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildBreadcrumbStructuredData } from "@/lib/structured-data";
+import { getCalculatorsByDirectoryCategory } from "@/lib/calculators";
 
 const description =
   "Browse the PDF Tools category on Dr.Utilio, including browser-based conversion tools, PDF guides, and the PDF size estimator.";
@@ -149,6 +151,13 @@ export const metadata: Metadata = {
 };
 
 export default function PdfToolsCategoryPage() {
+  const pdfToolItems = getCalculatorsByDirectoryCategory("PDF Tools").map(
+    (tool) => ({
+      href: `/calculators/${tool.slug}`,
+      label: tool.title,
+    }),
+  );
+
   return (
     <section className="py-16 sm:py-20">
       <AnalyticsTracker
@@ -168,6 +177,7 @@ export default function PdfToolsCategoryPage() {
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
             Browse PDF tools
           </h1>
+          <ToolNavigationBar title="PDF tools" items={pdfToolItems} />
           <div className="mt-6 space-y-4 text-lg leading-8 text-slate-300">
             <p>
               This category page collects Dr.Utilio&apos;s PDF-focused guides and

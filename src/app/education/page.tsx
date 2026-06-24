@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
+import { ToolNavigationBar } from "@/components/navigation/ToolNavigationBar";
 import {
   Breadcrumbs,
   type BreadcrumbItem,
@@ -11,6 +12,7 @@ import {
   buildBreadcrumbStructuredData,
   buildFaqStructuredData,
 } from "@/lib/structured-data";
+import { getCalculatorsByDirectoryCategory } from "@/lib/calculators";
 
 const description =
   "Explore Dr.Utilio's education hub with GPA tools, final-grade planning, study-time scheduling, and educational guides for students.";
@@ -161,6 +163,13 @@ export const metadata: Metadata = {
 };
 
 export default function EducationHubPage() {
+  const educationToolItems = getCalculatorsByDirectoryCategory("Education").map(
+    (tool) => ({
+      href: `/calculators/${tool.slug}`,
+      label: tool.title,
+    }),
+  );
+
   return (
     <section className="py-16 sm:py-20">
       <JsonLd data={buildFaqStructuredData(faqItems)} />
@@ -175,6 +184,10 @@ export default function EducationHubPage() {
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
             Education hub
           </h1>
+          <ToolNavigationBar
+            title="Education tools"
+            items={educationToolItems}
+          />
           <div className="mt-6 space-y-4 text-lg leading-8 text-slate-300">
             <p>
               Dr.Utilio&apos;s education hub brings together the main academic

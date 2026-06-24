@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentSection } from "@/components/content/ContentSection";
 import { Container } from "@/components/layout/Container";
+import { ToolNavigationBar } from "@/components/navigation/ToolNavigationBar";
 import {
   Breadcrumbs,
   type BreadcrumbItem,
@@ -12,6 +13,7 @@ import {
   buildBreadcrumbStructuredData,
   buildFaqStructuredData,
 } from "@/lib/structured-data";
+import { getCalculatorsByDirectoryCategory } from "@/lib/calculators";
 
 const description =
   "Explore Drutilio's zakat hub with a zakat calculator, practical guides on nisab, gold, retirement accounts, stocks, business assets, and common zakat mistakes for Muslims in the US, Canada, UK, and Australia.";
@@ -160,6 +162,13 @@ export const metadata: Metadata = {
 };
 
 export default function ZakatHubPage() {
+  const zakatToolItems = getCalculatorsByDirectoryCategory("Zakat").map(
+    (tool) => ({
+      href: `/calculators/${tool.slug}`,
+      label: tool.title,
+    }),
+  );
+
   return (
     <section className="py-16 sm:py-20">
       <JsonLd data={buildFaqStructuredData(faqItems)} />
@@ -174,6 +183,7 @@ export default function ZakatHubPage() {
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
             Zakat hub
           </h1>
+          <ToolNavigationBar title="Zakat tools" items={zakatToolItems} />
           <p className="mt-6 text-lg leading-8 text-slate-300">
             Drutilio&apos;s zakat hub is a central place to learn the basics of
             zakat, estimate your numbers with a calculator, and explore common

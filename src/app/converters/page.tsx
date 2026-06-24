@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
+import { ToolNavigationBar } from "@/components/navigation/ToolNavigationBar";
 import {
   Breadcrumbs,
   type BreadcrumbItem,
@@ -11,6 +12,7 @@ import {
   buildBreadcrumbStructuredData,
   buildFaqStructuredData,
 } from "@/lib/structured-data";
+import { getCalculatorsByDirectoryCategory } from "@/lib/calculators";
 
 const description =
   "Explore Dr.Utilio's converters hub for date, unit, age, and future file and format conversion tools.";
@@ -102,6 +104,13 @@ export const metadata: Metadata = {
 };
 
 export default function ConvertersPage() {
+  const converterToolItems = getCalculatorsByDirectoryCategory("Converters").map(
+    (tool) => ({
+      href: `/calculators/${tool.slug}`,
+      label: tool.title,
+    }),
+  );
+
   return (
     <section className="py-16 sm:py-20">
       <JsonLd data={buildFaqStructuredData(faqItems)} />
@@ -116,6 +125,10 @@ export default function ConvertersPage() {
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
             Converters hub
           </h1>
+          <ToolNavigationBar
+            title="Converter tools"
+            items={converterToolItems}
+          />
           <div className="mt-6 space-y-4 text-lg leading-8 text-slate-300">
             <p>
               Dr.Utilio&apos;s converters hub brings together practical tools for

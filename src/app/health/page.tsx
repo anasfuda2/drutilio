@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
+import { ToolNavigationBar } from "@/components/navigation/ToolNavigationBar";
 import {
   Breadcrumbs,
   type BreadcrumbItem,
@@ -11,6 +12,7 @@ import {
   buildBreadcrumbStructuredData,
   buildFaqStructuredData,
 } from "@/lib/structured-data";
+import { getCalculatorsByDirectoryCategory } from "@/lib/calculators";
 
 const description =
   "Explore Drutilio's health hub with educational wellness calculators and guides covering calories, BMR, body fat, healthy weight, hydration, and common planning mistakes.";
@@ -161,6 +163,13 @@ export const metadata: Metadata = {
 };
 
 export default function HealthHubPage() {
+  const healthToolItems = getCalculatorsByDirectoryCategory("Health").map(
+    (tool) => ({
+      href: `/calculators/${tool.slug}`,
+      label: tool.title,
+    }),
+  );
+
   return (
     <section className="py-16 sm:py-20">
       <JsonLd data={buildFaqStructuredData(faqItems)} />
@@ -175,6 +184,7 @@ export default function HealthHubPage() {
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
             Health hub
           </h1>
+          <ToolNavigationBar title="Health tools" items={healthToolItems} />
           <div className="mt-6 space-y-4 text-lg leading-8 text-slate-300">
             <p>
               Drutilio&apos;s health hub brings together practical wellness

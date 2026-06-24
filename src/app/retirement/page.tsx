@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
+import { ToolNavigationBar } from "@/components/navigation/ToolNavigationBar";
 import {
   Breadcrumbs,
   type BreadcrumbItem,
@@ -11,6 +12,7 @@ import {
   buildBreadcrumbStructuredData,
   buildFaqStructuredData,
 } from "@/lib/structured-data";
+import { getCalculatorsByDirectoryCategory } from "@/lib/calculators";
 
 const description =
   "Explore Drutilio's retirement hub with calculators and educational guides on 401(k)s, IRAs, savings rates, retirement income, and withdrawal planning.";
@@ -185,6 +187,13 @@ export const metadata: Metadata = {
 };
 
 export default function RetirementHubPage() {
+  const retirementToolItems = getCalculatorsByDirectoryCategory(
+    "Retirement",
+  ).map((tool) => ({
+    href: `/calculators/${tool.slug}`,
+    label: tool.title,
+  }));
+
   return (
     <section className="py-16 sm:py-20">
       <JsonLd data={buildFaqStructuredData(faqItems)} />
@@ -199,6 +208,10 @@ export default function RetirementHubPage() {
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
             Retirement hub
           </h1>
+          <ToolNavigationBar
+            title="Retirement tools"
+            items={retirementToolItems}
+          />
           <div className="mt-6 space-y-4 text-lg leading-8 text-slate-300">
             <p>
               Drutilio&apos;s retirement hub brings together the main retirement
