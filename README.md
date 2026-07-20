@@ -21,7 +21,7 @@ cp .env.example .env.local
 Example local values:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SITE_URL=https://www.drutilio.net
 NEXT_PUBLIC_CONTACT_EMAIL=hello@your-domain.com
 ```
 
